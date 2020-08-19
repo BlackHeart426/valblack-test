@@ -37,7 +37,7 @@ module.exports.loginAdmin = async function(req, res) {
 
 module.exports.login = async function(req, res) {
   const candidate = await Client.findOne({email: req.body.email})
-
+  console.log( req.body)
   if (candidate) {
     // Проверка пароля, пользователь существует
     const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
