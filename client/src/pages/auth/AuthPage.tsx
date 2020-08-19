@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import './authPage.scss'
 import {useHttp} from "../../services/http.service";
 import {useMessage} from "../../services/message.service";
-import {useApi} from "../../services/api.service";
+import {useApiAuth} from "../../services/auth/api.service";
 import {MaterialService} from "../../services/material.service";
 import { useHistory } from "react-router-dom";
 
@@ -10,7 +10,7 @@ export const AuthPage = () => {
     const message = useMessage()
     const history = useHistory();
     // const {loading, error, request, clearError} = useHttp()
-    const {loginUser} = useApi()
+    const {loginUser} = useApiAuth()
     const [form, setForm] = useState({
         email: 'val@gmail.com', password: '1q2w3e4r'
     })

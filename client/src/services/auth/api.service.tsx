@@ -1,9 +1,7 @@
-import {useCallback} from 'react'
-import {MaterialService} from "./material.service";
-import { useHttp } from './http.service';
+import { useHttp } from '../http.service';
 import {useAuth} from "./auth.service";
 
-export const useApi = () => {
+export const useApiAuth = () => {
     const {loading, error, request, clearError} = useHttp()
     const {login, logout} = useAuth()
 

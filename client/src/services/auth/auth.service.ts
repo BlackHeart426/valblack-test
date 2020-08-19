@@ -1,5 +1,5 @@
 import {useState , useCallback, useEffect} from 'react'
-import {useHttp} from "./http.service";
+import {useHttp} from "../http.service";
 
 const storageName = 'userData'
 
@@ -8,11 +8,10 @@ export interface Data {
     userId: string | null
 }
 
+// login, logout, isAuthenticated и сохранить токен
 export const useAuth = () => {
-    const {loading, error, request, clearError} = useHttp()
     const [token, setToken] = useState<string | null>(null)
     const [userId, setUserId] = useState<string | null>(null)
-
     const isAuthenticated = () => {
         return !!token
     }
