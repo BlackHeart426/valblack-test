@@ -13,7 +13,9 @@ export const useHttp = () => {
         try {
             if(body) {
                 body = JSON.stringify(body)
+                const token = JSON.parse(localStorage.getItem('userData') as string) // Замена на Redux
                 headers['Content-Type'] = 'application/json'
+                headers['Authorization'] = token.token
             }
             const response = await fetch(url, { method, body, headers})
             const data = await response.json()
