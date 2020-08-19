@@ -5,8 +5,9 @@ import {useMessage} from "../../services/message.service";
 import {useApiAuth} from "../../services/auth/api.service";
 import {MaterialService} from "../../services/material.service";
 import { useHistory } from "react-router-dom";
+import {AuthorizationForm} from "../../container/Authorization/AuthorizationForm";
 
-export const AuthPage = () => {
+export const AuthPage = (props: any) => {
     const message = useMessage()
     const history = useHistory();
     // const {loading, error, request, clearError} = useHttp()
@@ -14,6 +15,7 @@ export const AuthPage = () => {
     const [form, setForm] = useState({
         email: 'val@gmail.com', password: '1q2w3e4r'
     })
+    const {login = false, register= false} = props
 
     const changeHandler = (event: { target: { name: any; value: any; }; }) => {
         setForm({...form, [event.target.name]: event.target.value})
@@ -48,6 +50,9 @@ export const AuthPage = () => {
     }
 
     return(
+        // <div>
+        //     <AuthorizationForm form={login ? 'login' : 'signUp'}></AuthorizationForm>
+        // </div>
         <div className="row">
             <div className="col s6 offset-s3">
                 <h1>Тесты</h1>

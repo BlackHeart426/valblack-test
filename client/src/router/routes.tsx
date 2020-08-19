@@ -10,8 +10,7 @@ import {TestsPageAdmin} from "../modules/admin/pages/testsAdmin/TestsPageAdmin";
 import {AuthAdminPage} from "../modules/admin/pages/authAdmin/AuthAdminPage";
 import AuthAdminGuard from "../hoc/AuthAdminGuard";
 
-export const useRoutes = (isAuthenticated: boolean) => {
-    console.log('isAuth',isAuthenticated)
+export const useRoutes = () => {
     return (
         <Switch>
             <Route exact path="/" component={HomePage}/>
