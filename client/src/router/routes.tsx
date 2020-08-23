@@ -15,11 +15,11 @@ export const useRoutes = () => {
         <Switch>
             <Route exact path="/" component={HomePage}/>
             <Route exact path="/home" component={HomePage}/>
-            <AuthGuard exact path="/tests" component={TestPage}/>
+            <AuthGuard exact path="/testsInfo" component={TestPage}/>
             <Route exact path="/auth" component={AuthPage}/>
             <Route exact path="/admin" component={HomeAdminPage}/>
                 <Route exact path="/admin/home" component={HomeAdminPage}/>
-                <AuthAdminGuard exact path="/admin/tests" component={TestsPageAdmin}/>
+                <AuthAdminGuard exact path="/admin/testsInfo" component={TestsPageAdmin}/>
                 <Route exact path="/admin/auth" component={AuthAdminPage}/>
             <Route exact component={NonFoundPage}/>
         </Switch>
