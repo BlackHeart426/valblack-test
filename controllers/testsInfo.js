@@ -1,9 +1,9 @@
-const tests = require('../models/Tests')
+const testsInfo = require('../models/TestsInfo')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function(req, res) {
   try {
-    const data = await tests.find()
+    const data = await testsInfo.find()
     res.status(200).json(data)
   } catch (e) {
     errorHandler(res, e)
@@ -12,7 +12,7 @@ module.exports.getAll = async function(req, res) {
 
 module.exports.getById = async function(req, res) {
   try {
-    const data = await tests.findById(req.params.id)
+    const data = await testsInfo.findById(req.params.id)
     res.status(200).json(data)
   } catch (e) {
     errorHandler(res, e)
@@ -21,7 +21,7 @@ module.exports.getById = async function(req, res) {
 
 module.exports.remove = async function(req, res) {
   try {
-    await tests.remove({_id: req.params.id})
+    await testsInfo.remove({_id: req.params.id})
     res.status(200).json({
       message: 'Тест удален.'
     })
@@ -31,7 +31,7 @@ module.exports.remove = async function(req, res) {
 }
 
 module.exports.create = async function(req, res) {
-  const data = new tests({
+  const data = new testsInfo({
     name: req.body.name,
     questions: req.body.questions,
     durationOfTime: req.body.durationOfTime,
@@ -58,7 +58,7 @@ module.exports.update = async function(req, res) {
   }
 
   try {
-    const category = await tests.findOneAndUpdate(
+    const category = await testsInfo.findOneAndUpdate(
       {_id: req.params.id},
       {$set: updated},
       {new: true}

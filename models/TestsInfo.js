@@ -28,4 +28,4 @@ const testsSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('tests', testsSchema)
+module.exports = mongoose.model('tests-info', testsSchema)

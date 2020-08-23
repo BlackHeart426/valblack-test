@@ -1,7 +1,7 @@
 const express = require('express')
 const passport = require('passport')
 const upload = require('../middleware/upload')
-const controller = require('../controllers/tests')
+const controller = require('../controllers/testsInfo')
 const router = express.Router()
 
 router.get('/', controller.getAll)
