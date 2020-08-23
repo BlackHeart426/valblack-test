@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const authRoutes = require('./routes/auth')
 // const analyticsRoutes = require('./routes/analytics')
 const categoryRoutes = require('./routes/category')
-const testsRoutes = require('./routes/tests')
+const testsInfoRoutes = require('./routes/testsInfo')
 const keys = require('./config/keys')
 const app = express()
 
@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes)
 app.use('/api/category', categoryRoutes)
-app.use('/api/tests', testsRoutes)
+app.use('/api/tests-info', testsInfoRoutes)
 
 // if (process.env.NODE_ENV === 'production') {
 //     app.use(express.static('client/dist/sicilia-angular'))
