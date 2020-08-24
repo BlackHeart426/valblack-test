@@ -15,7 +15,7 @@ export const useRoutes = () => {
         <Switch>
             <Route exact path="/" component={HomePage}/>
             <Route exact path="/home" component={HomePage}/>
-            <Route exact path="/testsInfo" component={AuthGuard(TestPage)}/>
+            <Route exact path="/tests" component={AuthGuard(TestPage)}/>
             <Route exact path="/auth" component={AuthPage}/>
             <Route exact path="/admin" component={HomeAdminPage}/>
                 <Route exact path="/admin/home" component={HomeAdminPage}/>

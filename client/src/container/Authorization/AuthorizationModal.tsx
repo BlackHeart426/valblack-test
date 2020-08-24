@@ -30,6 +30,7 @@ export function AuthorizationModal(props: any) {
             {register && <Button
                 onClick={() => handleOpen('register')}
                 type="submit"
+                color="inherit"
                 variant="outlined"
             >
                 <strong>Register</strong>
@@ -39,8 +40,8 @@ export function AuthorizationModal(props: any) {
             <Button
                 onClick={() => handleOpen('login')}
                 type="submit"
-                color="primary"
-                variant="contained"
+                color="inherit"
+                variant="outlined"
             >
                 Login
             </Button>
