@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import {Avatar, Button, ListItemIcon} from '@material-ui/core';
+import {Avatar, Button, Divider, ListItemIcon} from '@material-ui/core';
 import {AccountCircle, MenuBook} from "@material-ui/icons";
 import {useStyles} from "./styles";
 import DehazeIcon from '@material-ui/icons/Dehaze';
@@ -26,6 +26,9 @@ import CreditCardIcon from '@material-ui/icons/CreditCard';
 // import {PROFILE, SETTINGS} from "../../constants/routes";
 import {grey} from "@material-ui/core/colors";
 import {AuthorizationModal} from "../../container/Authorization/AuthorizationModal";
+import {connect} from "react-redux";
+import {logoutActionCreate} from "../../store/action/currentUserAction";
+import {LISTTESTS, PROFILE, SETTINGS} from "../../router/enum";
 // import {AppState} from "../../store/reducers/rootReducer";
 
 function Navbar(props: any) {
@@ -47,11 +50,6 @@ function Navbar(props: any) {
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
-    };
-
-    const handleLogout = () => {
-        props.action.logout()
-        handleMenuClose()
     };
     const handleOpenMyBlog = () => {
         history.push("/"+props.pageCurrentUser)
@@ -98,10 +96,60 @@ function Navbar(props: any) {
     const handleTests = () => {
         history.push("/tests")
     }
-
     const handleHome = () => {
         history.push("/")
     }
+    const handleLogout = () => {
+        props.action.logout()
+        handleMenuClose()
+    };
+    const handleOpenIncome = () => {
+        history.push(PROFILE)
+        handleMenuClose()
+    };
+    const handleOpenSettings = () => {
+        history.push(SETTINGS)
+        handleMenuClose()
+    };
+
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            {props.pageCurrentUser && <MenuItem onClick={handleOpenMyBlog}>
+              <ListItemIcon className={classes.menuIcons}>
+                <WebIcon fontSize="small" />
+              </ListItemIcon>
+              <Typography variant="inherit">My page</Typography>
+            </MenuItem>}
+            <MenuItem onClick={handleOpenIncome}>
+                <ListItemIcon className={classes.menuIcons}>
+                    <AccountBalanceWalletIcon fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="inherit">My income</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleOpenSettings}>
+                <ListItemIcon className={classes.menuIcons}>
+                    <SettingsIcon fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="inherit">Settings</Typography>
+            </MenuItem>
+            <Divider/>
+            <MenuItem onClick={handleLogout}>
+                <ListItemIcon className={classes.menuIcons}>
+                    <ExitToAppIcon color={"primary"} fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="inherit" color={"primary"}><strong>Logout</strong></Typography>
+            </MenuItem>
+        </Menu>
+    );
 
     return (
         <div className={classes.root} >
@@ -127,29 +175,19 @@ function Navbar(props: any) {
                             </Button>
                         </div>
 
-                        {props.isAuthenticated
+                        {props.isAuthorized
                             ? <>
-                                <Button
-                                    startIcon={<DehazeIcon/>}
-                                    onClick={handleDrawerOpen}
-                                    variant="outlined">
-                                    <strong>My subscribers</strong>
-                                </Button>
                                 <div className={classes.grow} />
-                                {/*<div>*/}
-                                {/*    /!*add cookies*!/*/}
-                                {/*    <CreatePage/>*/}
-                                {/*</div>*/}
-                                {/*<div className={classes.account} >*/}
-                                {/*    <Button*/}
-                                {/*        size="medium"*/}
-                                {/*        startIcon={<Avatar alt="Remy Sharp" src={props.user} />}*/}
-                                {/*        onClick={handleProfileMenuOpen}*/}
-                                {/*    >*/}
-                                {/*        {email}*/}
-                                {/*    </Button>*/}
+                                <div className={classes.account} >
+                                    <Button
+                                        size="medium"
+                                        startIcon={<Avatar alt="Remy Sharp" src={props.user} />}
+                                        onClick={handleProfileMenuOpen}
+                                    >
+                                        {props.email}
+                                    </Button>
 
-                                {/*</div>*/}
+                                </div>
                             </>
                             :
                             <>
@@ -164,30 +202,27 @@ function Navbar(props: any) {
                         }
                     </Toolbar>
                 </AppBar>
+                {renderMenu}
             </div>
         </div>
 
     );
 }
-// function mapStateToProps(state: any) {
-//     return {
-//         isAuthenticated: state.auth.isAuthenticated,
-//         pageCurrentUser: state.currentUser.myPage,
-//         openDrawer: state.app.openDrawer,
-//         user: state.currentUser.Avatar
-//     }
-//
-// }
-//
-//
-// function mapDispatchToProps(dispatch: any) {
-//     return {
-//         action: {
-//             logout: () => dispatch(logoutActionCreator()),
-//             openingDrawer: () => dispatch(openDrawerActionCreator())
-//         }
-//     }
-// }
+function mapStateToProps(state: any) {
+    return {
+        isAuthorized: state.currentUser.data.isAuthorized,
+        email: state.currentUser.data.email,
+    }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
-export default Navbar
+}
+
+
+function mapDispatchToProps(dispatch: any) {
+    return {
+        action: {
+            logout: () => dispatch(logoutActionCreate()),
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

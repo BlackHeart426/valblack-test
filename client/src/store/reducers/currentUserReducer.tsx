@@ -96,6 +96,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                     auth: {
                         token: null
                     },
+                    isAuthorized: false,
                     email: null
                 }
             })
@@ -105,6 +106,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                     auth: {
                         token: action.data.token
                     },
+                    isAuthorized: true,
                     email: action.data.email
                 },
                 meta: {
