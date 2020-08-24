@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import InfoTests from "../pages/InfoTests";
+import InfoTests from "../pages/infoTests/InfoTests";
 import {HomePage} from "../pages/HomePage";
 import {AuthPage} from "../pages/auth/AuthPage";
 import {NonFoundPage} from "../pages/nonFound/NonFoundPage";
