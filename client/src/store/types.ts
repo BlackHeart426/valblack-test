@@ -1,9 +1,10 @@
 export enum EReduxActionTypes {
-    IS_AUTHENTICATED = 'auth/isAuthenticated',
 
-    LOGIN_AUTH_STARTED = 'auth/loginAuth_STARTED',
-    LOGIN_AUTH_DONE = 'auth/loginAuth_DONE',
-    LOGIN_AUTH_ERROR = 'auth/loginAuth_ERROR',
+    SET_CURRENT_USERS_STARTED = 'currentUser/setCurrentUser_STARTED',
+    SET_CURRENT_USERS_DONE = 'currentUser/setCurrentUser_DONE',
+    SET_CURRENT_USERS_ERROR = 'currentUser/setCurrentUser_ERROR',
+    SET_CURRENT_USERS_STORE = 'currentUser/setCurrentUserStore',
+
 
     FETCH_TESTS_INFO_STARTED = 'testInfo/fetchTestsInfo_STARTED',
     FETCH_TESTS_INFO_DONE = 'testInfo/fetchTestsInfo_DONE',
@@ -29,9 +30,6 @@ export enum EReduxActionTypes {
     FETCH_CATEGORIES_DONE = 'categories/fetchCategoriest_DONE',
     FETCH_CATEGORIES_ERROR = 'categories/fetchCategoriest_ERROR',
 
-    FETCH_CURRENT_USERS_STARTED = 'currentUser/fetchCurrentUser_STARTED',
-    FETCH_CURRENT_USERS_DONE = 'currentUser/fetchCurrentUser_DONE',
-    FETCH_CURRENT_USERS_ERROR = 'currentUser/fetchCurrentUser_ERROR',
 
 }
 

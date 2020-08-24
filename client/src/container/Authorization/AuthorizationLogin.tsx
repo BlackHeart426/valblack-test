@@ -7,6 +7,8 @@ import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {validateForm} from "../../components/validateForm/validateForm";
+import {connect} from "react-redux";
+import {loginActionCreator} from "../../store/action/currentUserAction";
 // import {authorizationActionCreator, authorizationGoogleActionCreator} from "../../store/action/authorization";
 // import {connect} from "react-redux";
 
@@ -38,8 +40,8 @@ function AuthorizationLogin(props: any) {
         },
     }
 
-    const [email, setEmail] = useState('test@gmail.com');
-    const [password, setPassword] = useState('1Test2Test3!@');
+    const [email, setEmail] = useState('val@gmail.com');
+    const [password, setPassword] = useState('1q2w3e4r');
     const [dialogOpened, setDialogOpened] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [errorForm, setError] = useState(initialState);
@@ -154,13 +156,13 @@ function AuthorizationLogin(props: any) {
     )
 }
 
-// function mapDispatchToProps(dispatch: any) {
-//     return {
-//         action: {
-//             authorization: (email: string, password: string) => dispatch(authorizationActionCreator(email, password, true)),
-//         }
-//     }
-// }
+function mapDispatchToProps(dispatch: any) {
+    return {
+        action: {
+            authorization: (email: string, password: string) => dispatch(loginActionCreator({email, password}))
+        }
+    }
+}
 
-// export default connect(null, mapDispatchToProps)(AuthorizationLogin)
-export default AuthorizationLogin
+export default connect(null, mapDispatchToProps)(AuthorizationLogin)
+// export default AuthorizationLogin
