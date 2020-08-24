@@ -29,6 +29,7 @@ export enum EReduxActionTypes {
     FETCH_CATEGORIES_STARTED = 'categories/fetchCategoriest_STARTED',
     FETCH_CATEGORIES_DONE = 'categories/fetchCategoriest_DONE',
     FETCH_CATEGORIES_ERROR = 'categories/fetchCategoriest_ERROR',
+    SET_CATEGORIES_STORE = 'categories/setCategoriesStore',
 
 
 }
