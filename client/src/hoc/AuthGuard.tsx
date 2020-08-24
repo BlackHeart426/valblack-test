@@ -8,7 +8,7 @@ export default function (Component: any) {
         render(): React.ReactNode {
             return (
                 <Route
-                    render={(props: RouteComponentProps<{}>) => (this.props.isAuthorized ? <Component {...props} /> : <NonFoundPage/>)}
+                    render={(props: RouteComponentProps<{}>) => (!this.props.isAuthorized ? <Component {...props} /> : <NonFoundPage/>)}
                 />
             )
         }

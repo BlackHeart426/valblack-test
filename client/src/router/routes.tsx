@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import {TestPage} from "../pages/TestsPage";
+import InfoTests from "../pages/InfoTests";
 import {HomePage} from "../pages/HomePage";
 import {AuthPage} from "../pages/auth/AuthPage";
 import {NonFoundPage} from "../pages/nonFound/NonFoundPage";
@@ -15,7 +15,7 @@ export const useRoutes = () => {
         <Switch>
             <Route exact path="/" component={HomePage}/>
             <Route exact path="/home" component={HomePage}/>
-            <Route exact path="/tests" component={AuthGuard(TestPage)}/>
+            <Route exact path="/tests" component={AuthGuard(InfoTests)}/>
             <Route exact path="/auth" component={AuthPage}/>
             <Route exact path="/admin" component={HomeAdminPage}/>
                 <Route exact path="/admin/home" component={HomeAdminPage}/>

@@ -170,6 +170,7 @@ function Navbar(props: any) {
                                 <div className={classes.account} >
                                     <Button
                                         size="medium"
+                                        color="inherit"
                                         startIcon={<Avatar alt="Remy Sharp" src={props.user} />}
                                         onClick={handleProfileMenuOpen}
                                     >

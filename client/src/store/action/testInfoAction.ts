@@ -1,5 +1,7 @@
 import {EReduxActionTypes} from "../types";
 import {useHttp} from "../../services/http.service";
+import {request} from "../../classes/request";
+import {ITestInfoState} from "../reducers/testInfoReducer";
 
 function requestTestInfo() {
     return {
@@ -23,7 +25,7 @@ function errorTestInfo(error: string) {
 }
 
 function shouldFetchTestInfo(state: any) {
-    const data = state.testsInfo.data.meta //interface isFetching isFetched, error
+    const data = state.testInfo.data
     if (!data) {
         return true
     } else if (data.isFetching) {
@@ -34,11 +36,10 @@ function shouldFetchTestInfo(state: any) {
 }
 
 function fetchTestInfo() {
-    const {request} = useHttp()
     return function (dispatch: (arg0: { type: EReduxActionTypes; }) => void) {
         dispatch(requestTestInfo())
 
-        return request('/api/tests-info/', 'POST', {}, true)
+        return request('/api/tests-info/', "GET")
             .then(
                 response => response.json(),
                 error =>  dispatch(errorTestInfo(error)) //вызов toast
@@ -48,13 +49,14 @@ function fetchTestInfo() {
             )
     }
 }
-// testData
-// export function getTestInfoActionCreator(uuidTest: string) {
-//     // if (shouldFetchTestInfo(getState(), uuidTest)) {
-//     //     return dispatch(fetchTestInfo(uuidTest))
-//     // } else {
-//     //     return Promise.resolve()
-//     // }
-// }
 
-//getState(), interface  isFetching isFetched, error
+export function getTestInfoActionCreator() {
+    return (dispatch: (arg0: (dispatch: (arg0: { type: EReduxActionTypes; }) => void) => Promise<void>) => any, getState: () => any) => {
+        if (shouldFetchTestInfo(getState())) {
+            return dispatch(fetchTestInfo())
+        } else {
+            return Promise.resolve()
+        }
+    }
+}
+

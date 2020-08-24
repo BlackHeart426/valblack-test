@@ -1,9 +1,7 @@
 import {EReduxActionTypes} from "../types";
 
 const initialState = {
-    data: {
-        list: null
-    },
+    data: null,
     meta: {
         netWorkStatus: {
             isFetching: false,
@@ -15,7 +13,9 @@ const initialState = {
 
 interface IAction {
     type: string,
-    payload: boolean
+    data: IListTestsInfo[],
+    error: string | null,
+    receivedAt: string | null
 }
 
 interface IListTestsInfo {
@@ -28,9 +28,7 @@ interface IListTestsInfo {
 }
 
 export interface ITestInfoState {
-    data: {
-        list: IListTestsInfo | null
-    },
+    data: IListTestsInfo | null,
     meta: {
         netWorkStatus: {
             isFetching: boolean,
@@ -45,11 +43,41 @@ export interface ITestInfoState {
 //     []
 // ]
 // оптимизировать
-export const authReducer = (state: ITestInfoState = initialState, action: IAction) => {
-    // switch (action.type) {
-    //     case EReduxActionTypes.IS_AUTHENTICATED:
-    //         return Object.assign({}, state, {isAuthenticated: action.payload})
-    //     default:
-    //         return state
-    // }
+export const testInfoReducer = (state: ITestInfoState = initialState, action: IAction) => {
+    switch (action.type) {
+        case EReduxActionTypes.FETCH_TESTS_INFO_STARTED:
+            return Object.assign({}, state, {
+                meta: {
+                    netWorkStatus: {
+                        isFetching: true,
+                        isFetched: false,
+                        error: null
+                    }
+                }
+            })
+        case EReduxActionTypes.FETCH_TESTS_INFO_ERROR:
+            return Object.assign({}, state, {
+                meta: {
+                    netWorkStatus: {
+                        isFetching: false,
+                        isFetched: true,
+                        error: action.error
+                    }
+                }
+            })
+        case EReduxActionTypes.FETCH_TESTS_INFO_DONE:
+            return Object.assign({}, state, {
+                data: action.data,
+                meta: {
+                    netWorkStatus: {
+                        isFetching: false,
+                        isFetched: true,
+                        error: null,
+                        lastUpdated: action.receivedAt
+                    }
+                }
+            })
+        default:
+            return state
+    }
 }
