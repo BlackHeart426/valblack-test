@@ -4,7 +4,7 @@ import {getTestInfoActionCreator} from "../../store/action/testInfoAction";
 import {styleInfoTests} from "./styleInfoTests";
 import {Grid, Paper} from "@material-ui/core";
 import {TestCard} from "./testCard/TestCard";
-import {Filter} from "./filter/filter";
+import Filter from "./filter/filter";
 
 const InfoTests = (props: any) => {
     const classes = styleInfoTests();
