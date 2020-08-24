@@ -46,10 +46,10 @@ export interface ITestInfoState {
 // ]
 // оптимизировать
 export const authReducer = (state: ITestInfoState = initialState, action: IAction) => {
-    switch (action.type) {
-        case EReduxActionTypes.IS_AUTHENTICATED:
-            return Object.assign({}, state, {isAuthenticated: action.payload})
-        default:
-            return state
-    }
+    // switch (action.type) {
+    //     case EReduxActionTypes.IS_AUTHENTICATED:
+    //         return Object.assign({}, state, {isAuthenticated: action.payload})
+    //     default:
+    //         return state
+    // }
 }

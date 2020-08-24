@@ -1,13 +1,13 @@
 import {EReduxActionTypes} from "../types";
 import {combineReducers} from "redux";
-import {authReducer} from "./authReducer";
+import {currentUserReducer} from "./currentUserReducer";
 
 export interface IReduxBaseAction {
     type: EReduxActionTypes
 }
 
 const rootReduce = combineReducers({
-    auth: authReducer,
+    currentUser: currentUserReducer,
 })
 
 export type AppState = ReturnType<typeof rootReduce>

@@ -8,14 +8,22 @@ export type Method = 'GET' | 'POST'
 export const useHttp = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
-    const request = useCallback(async (url: string, method: Method = 'GET', body = null, headers: any = {}) => {
+    const request = useCallback(
+        async (
+            url: string,
+            method: Method = 'GET',
+            body = null,
+            protect: boolean = false,
+            headers: any = {}) => {
         setLoading(true)
         try {
             if(body) {
                 body = JSON.stringify(body)
-                const token = JSON.parse(localStorage.getItem('userData') as string) // Замена на Redux
                 headers['Content-Type'] = 'application/json'
-                headers['Authorization'] = token.token
+                if (protect) {
+                    const token = JSON.parse(localStorage.getItem('userData') as string) // Замена на Redux
+                    headers['Authorization'] = token.token
+                }
             }
             const response = await fetch(url, { method, body, headers})
             const data = await response.json()
