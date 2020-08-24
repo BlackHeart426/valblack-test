@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { Switch, RouteComponentProps, Route, Redirect, RouteProps } from "react-router-dom";
-import {HomePage} from "../pages/HomePage";
+import { RouteComponentProps, Route } from "react-router-dom";
 import {NonFoundPage} from "../pages/nonFound/NonFoundPage";
 import {connect} from "react-redux";
 

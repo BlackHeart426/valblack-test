@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import './authPage.scss'
-import {useHttp} from "../../services/http.service";
 import {useMessage} from "../../services/message.service";
 import {useApiAuth} from "../../services/auth/api.service";
 import {MaterialService} from "../../services/material.service";
 import { useHistory } from "react-router-dom";
-import {AuthorizationForm} from "../../container/Authorization/AuthorizationForm";
 
 export const AuthPage = (props: any) => {
     const message = useMessage()
