@@ -2,18 +2,26 @@ import React, {Component} from 'react';
 import { Switch, RouteComponentProps, Route, Redirect, RouteProps } from "react-router-dom";
 import {HomePage} from "../pages/HomePage";
 import {NonFoundPage} from "../pages/nonFound/NonFoundPage";
+import {connect} from "react-redux";
 
-export const AuthGuard: React.FC<RouteProps> = ({component: Component, ...rest}) => {
-    if (!Component) {
-        return null;
+export default function (Component: any) {
+    class AuthGuard extends React.Component<any, any> {
+        render(): React.ReactNode {
+            return (
+                <Route
+                    render={(props: RouteComponentProps<{}>) => (this.props.isAuthorized ? <Component {...props} /> : <NonFoundPage/>)}
+                />
+            )
+        }
     }
-    const user = null // Получение из Redux
-    return (
-        <Route
-            {...rest}
-            render={(props: RouteComponentProps<{}>) => (!!user ? <Component {...props} /> : <NonFoundPage/>)}
-        />
-    );
-};
 
-export default AuthGuard;
+    const mapStateToProps = (state: { currentUser: { data: { isAuthorized: any; }; }; }) => {
+        return {
+            isAuthorized: state.currentUser.data.isAuthorized,
+        };
+    };
+
+    return connect(
+        mapStateToProps
+    )(AuthGuard);
+}

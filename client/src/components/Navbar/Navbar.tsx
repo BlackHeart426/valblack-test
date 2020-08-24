@@ -14,22 +14,14 @@ import DehazeIcon from '@material-ui/icons/Dehaze';
 // import {AuthorizationModal} from "../../container/Authorization/AuthorizationModal";
 // import CreatePage from "../CreatePage";
 import {Link, useHistory} from 'react-router-dom';
-// import {openDrawerActionCreator} from "../../store/action/app";
-import SendIcon from '@material-ui/icons/Send';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SettingsIcon from '@material-ui/icons/Settings';
-import PortraitIcon from '@material-ui/icons/Portrait';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import WebIcon from '@material-ui/icons/Web';
-// import {Divider} from "semantic-ui-react";
-import CreditCardIcon from '@material-ui/icons/CreditCard';
-// import {PROFILE, SETTINGS} from "../../constants/routes";
-import {grey} from "@material-ui/core/colors";
 import {AuthorizationModal} from "../../container/Authorization/AuthorizationModal";
 import {connect} from "react-redux";
 import {logoutActionCreate} from "../../store/action/currentUserAction";
 import {LISTTESTS, PROFILE, SETTINGS} from "../../router/enum";
-// import {AppState} from "../../store/reducers/rootReducer";
 
 function Navbar(props: any) {
     const classes = useStyles();
@@ -94,7 +86,7 @@ function Navbar(props: any) {
     );
 
     const handleTests = () => {
-        history.push("/tests")
+        history.push("/testsInfo")
     }
     const handleHome = () => {
         history.push("/")
