@@ -81,7 +81,6 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                 }
             })
         case EReduxActionTypes.SET_CURRENT_USERS_ERROR:
-            console.log(state)
             return Object.assign({}, state, {
                 meta: {
                     netWorkStatus: {
@@ -91,8 +90,16 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                     }
                 }
             })
+        case EReduxActionTypes.SET_CURRENT_USERS_STORE:
+            return Object.assign({}, state, {
+                data: {
+                    auth: {
+                        token: null
+                    },
+                    email: null
+                }
+            })
         case EReduxActionTypes.SET_CURRENT_USERS_DONE:
-            console.log(state)
             return Object.assign({}, state, {
                 data: {
                     auth: {

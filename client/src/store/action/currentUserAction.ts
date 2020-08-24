@@ -42,3 +42,11 @@ export function loginActionCreator(form: IForm) {
             )
     }
 }
+
+export function logoutActionCreate() {
+    return {
+        type: EReduxActionTypes.SET_CURRENT_USERS_STORE
+    }
+}
+
+//AutoLogin session
