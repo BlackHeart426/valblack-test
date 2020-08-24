@@ -1,36 +1,54 @@
 import React from "react";
 import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Paper, Typography} from "@material-ui/core";
 import {styleTestCard} from "./styleTestCard";
+import {Skeleton} from "@material-ui/lab";
 
 export const TestCard = (props: any) => {
     const classes = styleTestCard();
-    const {test} = props
+    const {test, loading} = props
     return (
         <>
             <Card className={classes.root}>
                 <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="Contemplative Reptile"
-                        height="140"
-                        image={test.imageSrc}
-                        title="Contemplative Reptile"
-                    />
+                    {loading ? (
+                        <Skeleton animation="wave" variant="rect" height='140px' />
+                    ) : (
+                            <CardMedia
+                                component="img"
+                                alt="Contemplative Reptile"
+                                height="140"
+                                image={test.imageSrc}
+                                title="Contemplative Reptile"
+                            />
+                    )}
                     <CardContent>
-                        <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                            {test.name}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                            across all continents except Antarctica
-                        </Typography>
+                        {loading ? (
+                            <>
+                                <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
+                                <Skeleton animation="wave" height={10} width="80%" />
+                                <Skeleton animation="wave" height={10} width="80%" />
+                                <Skeleton animation="wave" height={10} width="80%" />
+                                <Skeleton animation="wave" height={10} width="80%" />
+                            </>
+                        ) : (
+                            <>
+                            <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                                {test && test.name}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                                across all continents except Antarctica
+                            </Typography>
+                            </>
+                        )}
+
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                        Открыть
-                    </Button>
-                </CardActions>
+                {/*<CardActions>*/}
+                {/*    <Button size="small" color="primary">*/}
+                {/*        Открыть*/}
+                {/*    </Button>*/}
+                {/*</CardActions>*/}
             </Card>
         </>
     )

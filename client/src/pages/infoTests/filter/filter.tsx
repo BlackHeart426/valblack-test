@@ -1,36 +1,41 @@
 import React, {useEffect} from "react";
 import {Paper, TextField} from "@material-ui/core";
 import {styleFilter} from "./styleFilter";
-import {Autocomplete} from "@material-ui/lab";
+import {Autocomplete, Skeleton} from "@material-ui/lab";
 import {getTestInfoActionCreator} from "../../../store/action/testInfoAction";
 import {connect} from "react-redux";
 import {getCategoriesActionCreator, setCategoriesActionCreator} from "../../../store/action/categoriesAction";
 
 const Filter = (props: any) => {
     const [value, setValue] = React.useState<string | null>(null);
-
+    const {loading} = props
     useEffect(() => {
         props.action.getCategories()
-        console.log(props.categories)
     },[])
     const classes = styleFilter()
 
     return ( //lazyLoad
         <>
-            {props.arrCategories && <Paper className={classes.paper}>
-                <Autocomplete
-                    id="combo-box-categories"
-                    size={'small'}
-                    className={classes.autocomplete}
-                    options={props.arrCategories}
-                    onChange={(event: any, newValue: string | null) => {
-                        props.action.setCategory(newValue);
-                    }}
-                    getOptionLabel={(option: any) => option.name}
-                    style={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} label="Категория" variant="outlined" />}
-                />
-            </Paper>}
+            {props.arrCategories
+                && <Paper className={classes.paper}>
+                    {loading
+                        ?
+                            <Skeleton variant="rect" height='28px'/>
+                        :   <Autocomplete
+                            id="combo-box-categories"
+                            size={'small'}
+                            className={classes.autocomplete}
+                            options={props.arrCategories}
+                            onChange={(event: any, newValue: string | null) => {
+                                props.action.setCategory(newValue);
+                            }}
+                            getOptionLabel={(option: any) => option.name}
+                            style={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Категория" variant="outlined" />}
+                        />
+                    }
+                </Paper>
+            }
         </>
     )
 }

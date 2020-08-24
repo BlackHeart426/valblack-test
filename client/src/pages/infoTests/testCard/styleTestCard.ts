@@ -17,6 +17,9 @@ export const styleTestCard = makeStyles((theme: Theme) =>
             fontWeight: 500,
             maxHeight: '42px',
             fontSize: '15px'
+        },
+        media: {
+            height: '140px'
         }
 
     }),
