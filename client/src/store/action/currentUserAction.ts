@@ -1,6 +1,12 @@
 import {EReduxActionTypes} from "../types";
 import {requestService} from "../../services/request.service";
-import {saveLocalStorage, removeLocalStorage} from "../../services/auth.service";
+import {saveLocalStorage, removeLocalStorage, getLocalStorage} from "../../services/auth.service";
+
+export interface ILocalStore {
+    token: string,
+    email: string,
+    isAuth: boolean
+}
 
 function requestCurrentUser() {
     return {
@@ -13,6 +19,14 @@ function receiveCurrentUser(json: { token: string, email: string }) {
     saveLocalStorage(json)
     return {
         type: EReduxActionTypes.SET_CURRENT_USERS_DONE,
+        data: json,
+        receivedAt: Date.now()
+    }
+}
+
+export function setCurrentUser(json: ILocalStore | null) {
+    return {
+        type: EReduxActionTypes.SET_CURRENT_USERS_STORE,
         data: json,
         receivedAt: Date.now()
     }
@@ -49,7 +63,12 @@ export function loginActionCreator(form: IForm) {
 export function logoutActionCreate() {
     removeLocalStorage()
     return {
-        type: EReduxActionTypes.SET_CURRENT_USERS_STORE
+        type: EReduxActionTypes.SET_CURRENT_USERS_STORE,
+        data: {
+            token: null,
+            email: null,
+            isAuth: false
+        }
     }
 }
 

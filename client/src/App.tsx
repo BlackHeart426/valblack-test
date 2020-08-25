@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import {useRoutes} from "./router/routes";
-import {useAuth} from "./hooks/auth.service";
 import './App.css';
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {grey} from "@material-ui/core/colors";
+import {connect} from "react-redux";
+import {ILocalStore, loginActionCreator, setCurrentUser} from "./store/action/currentUserAction";
+import {getLocalStorage, isAuth} from "./services/auth.service";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -19,21 +21,36 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 
-function App() {
-  const classes = useStyles()
-  const routes = useRoutes()
-  return (
-      <div className={classes.root}>
+function App(props: any) {
+    const classes = useStyles()
+    const routes = useRoutes()
+    useEffect(()=>{
+        console.log('first download')
+        if (isAuth()) {
+            props.action.setCurrentUser(JSON.parse(getLocalStorage() as string))
+        }
 
-          <div className={classes.content}>
-              <Router>
-                  <Navbar/>
-                  {routes}
-              </Router>
-          </div>
+    },[])
+    return (
+        <div className={classes.root}>
 
-      </div>
-  );
+            <div className={classes.content}>
+                <Router>
+                    <Navbar/>
+                    {routes}
+                </Router>
+            </div>
+
+        </div>
+    );
 }
 
-export default App;
+function mapDispatchToProps(dispatch: any) {
+    return {
+        action: {
+            setCurrentUser: (json: ILocalStore) => dispatch(setCurrentUser(json))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(App);

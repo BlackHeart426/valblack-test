@@ -32,8 +32,9 @@ interface IAction {
     error: string | null,
     data: {
         email: string | null,
-        token: string | null
-    }
+        token: string | null,
+        isAuth: boolean
+    },
     receivedAt: string | null
 }
 
@@ -94,10 +95,10 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
             return Object.assign({}, state, {
                 data: {
                     auth: {
-                        token: null
+                        token: action.data.token
                     },
-                    isAuthorized: false,
-                    email: null
+                    isAuthorized: action.data.isAuth,
+                    email: action.data.email
                 }
             })
         case EReduxActionTypes.SET_CURRENT_USERS_DONE:
