@@ -1,6 +1,4 @@
 import {useState , useCallback, useEffect} from 'react'
-import {useHttp} from "../http.service";
-
 const storageName = 'userData'
 
 export interface Data {
@@ -8,13 +6,9 @@ export interface Data {
     userId: string | null
 }
 
-// login, logout, isAuthenticated и сохранить токен
 export const useAuth = () => {
     const [token, setToken] = useState<string | null>(null)
     const [userId, setUserId] = useState<string | null>(null)
-    const isAuthenticated = () => {
-        return !!token
-    }
 
     const login = useCallback((jwtToken, id) => {
         setToken(jwtToken)
@@ -36,7 +30,6 @@ export const useAuth = () => {
             login(data.token, data.userId)
         }
     }, [login])
-    // поэтому login обернут в useCallback, иначе отследить login не было бы возможно (создавался бы новый)
 
-    return {login, logout, token, userId, isAuthenticated}
+    return {login, logout, token, userId}
 }

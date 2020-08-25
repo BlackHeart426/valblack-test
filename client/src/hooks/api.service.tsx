@@ -1,4 +1,4 @@
-import { useHttp } from '../http.service';
+import { useHttp } from '../services/http.service';
 import {useAuth} from "./auth.service";
 
 export const useApiAuth = () => {

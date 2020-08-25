@@ -1,7 +1,7 @@
 
 export type Method = 'GET' | 'POST'
 
-export async function request(
+export async function requestService(
     url: string,
     method: Method,
     body: any = null,

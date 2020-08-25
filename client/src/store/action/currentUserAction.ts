@@ -1,5 +1,6 @@
 import {EReduxActionTypes} from "../types";
-import {request} from "../../classes/request";
+import {requestService} from "../../services/request.service";
+import {saveLocalStorage, removeLocalStorage} from "../../services/auth.service";
 
 function requestCurrentUser() {
     return {
@@ -8,7 +9,8 @@ function requestCurrentUser() {
 }
 
 //interface for json
-function receiveCurrentUser(json: string) {
+function receiveCurrentUser(json: { token: string, email: string }) {
+    saveLocalStorage(json)
     return {
         type: EReduxActionTypes.SET_CURRENT_USERS_DONE,
         data: json,
@@ -32,18 +34,20 @@ export function loginActionCreator(form: IForm) {
     return function (dispatch: (arg0: { type: EReduxActionTypes; }) => void) {
         dispatch(requestCurrentUser())
 
-        return request('/api/auth/login', "POST", form)
+        return requestService('/api/auth/login', "POST", form)
             .then(
                 response => response.json(),
                 error =>  dispatch(errorCurrentUser(error))
             )
             .then(
-                json => dispatch(receiveCurrentUser(json))
+                json => dispatch(receiveCurrentUser(json)),
+
             )
     }
 }
 
 export function logoutActionCreate() {
+    removeLocalStorage()
     return {
         type: EReduxActionTypes.SET_CURRENT_USERS_STORE
     }

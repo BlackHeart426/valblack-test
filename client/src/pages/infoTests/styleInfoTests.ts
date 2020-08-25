@@ -9,7 +9,7 @@ export const styleInfoTests = makeStyles((theme: Theme) =>
             width: 'calc(100vw - 100px)',
             height: '100%',
             margin: '0 auto',
-            maxWidth: '1400px'
+            maxWidth: '1200px'
         },
         container: {
             padding: '40px 50px'

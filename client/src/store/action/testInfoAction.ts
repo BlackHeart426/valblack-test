@@ -1,6 +1,6 @@
 import {EReduxActionTypes} from "../types";
 import {useHttp} from "../../services/http.service";
-import {request} from "../../classes/request";
+import {requestService} from "../../services/request.service";
 import {ITestInfoState} from "../reducers/testInfoReducer";
 
 function requestTestInfo() {
@@ -39,7 +39,7 @@ function fetchTestInfo() {
     return function (dispatch: (arg0: { type: EReduxActionTypes; }) => void) {
         dispatch(requestTestInfo())
 
-        return request('/api/tests-info/', "GET")
+        return requestService('/api/tests-info/', "GET")
             .then(
                 response => response.json(),
                 error =>  dispatch(errorTestInfo(error)) //вызов toast

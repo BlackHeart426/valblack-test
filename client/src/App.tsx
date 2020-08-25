@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import {useRoutes} from "./router/routes";
-import {useAuth} from "./services/auth/auth.service";
+import {useAuth} from "./hooks/auth.service";
 import './App.css';
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {grey} from "@material-ui/core/colors";

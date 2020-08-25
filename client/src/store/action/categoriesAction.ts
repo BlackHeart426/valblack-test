@@ -1,6 +1,6 @@
 import {EReduxActionTypes} from "../types";
 import {useHttp} from "../../services/http.service";
-import {request} from "../../classes/request";
+import {requestService} from "../../services/request.service";
 
 function requestCategories() {
     return {
@@ -47,7 +47,7 @@ function fetchCategories() {
     return function (dispatch: (arg0: { type: EReduxActionTypes; }) => void) {
         dispatch(requestCategories())
 
-        return request('/api/category/', "GET")
+        return requestService('/api/category/', "GET")
             .then(
                 response => response.json(),
                 error =>  dispatch(errorCategories(error)) //вызов toast
