@@ -1,6 +1,6 @@
 import {createStyles, fade, makeStyles, Theme} from "@material-ui/core/styles";
 
-export const styleInfoTests = makeStyles((theme: Theme) =>
+export const styleTestList = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             flexGrow: 1,

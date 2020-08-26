@@ -18,7 +18,8 @@ interface IAction {
     receivedAt: string | null
 }
 
-interface IListTestsInfo {
+export interface IListTestsInfo {
+    _id?: string,
     name: string,
     questions: number,
     durationOfTime: null,

@@ -141,7 +141,7 @@ function Navbar(props: any) {
     return (
         <div className={classes.root} >
             <div className={classes.grow}>
-                <AppBar position="fixed" elevation={0} style={{borderBottom: '1px solid #eaeaea'}}>
+                <AppBar position="fixed" elevation={0} >
                     <Toolbar style={{padding: 0}}>
                         <Typography className={classes.title} variant="h5" noWrap  onClick={handleHome}>
                             valBlack-test

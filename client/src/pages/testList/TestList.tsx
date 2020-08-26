@@ -1,13 +1,13 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {getTestInfoActionCreator} from "../../store/action/testInfoAction";
-import {styleInfoTests} from "./styleInfoTests";
+import {styleTestList} from "./styleTestList";
 import {Grid, Hidden, Paper} from "@material-ui/core";
 import {TestCard} from "./testCard/TestCard";
 import Filter from "./filter/filter";
 
-const InfoTests = (props: any) => {
-    const classes = styleInfoTests();
+const TestList = (props: any) => {
+    const classes = styleTestList();
 
     useEffect(() => {
         props.action.getInfoTests()
@@ -86,4 +86,4 @@ function mapDispatchToProps(dispatch: any) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InfoTests)
+export default connect(mapStateToProps, mapDispatchToProps)(TestList)
