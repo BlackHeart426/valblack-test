@@ -53,8 +53,8 @@ function fetchTestInfo() {
 export function getTestInfoActionCreator() {
     return (dispatch: (arg0: (dispatch: (arg0: { type: EReduxActionTypes; }) => void) => Promise<void>) => any, getState: () => any) => {
         if (shouldFetchTestInfo(getState())) {
-            return setTimeout(() => {dispatch(fetchTestInfo())}, 3000)
-            // return dispatch(fetchTestInfo())
+            // return setTimeout(() => {dispatch(fetchTestInfo())}, 3000)
+            return dispatch(fetchTestInfo())
         } else {
             return Promise.resolve()
         }

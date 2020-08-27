@@ -12,25 +12,32 @@ export const styleTestInfo = makeStyles((theme: Theme) =>
             maxWidth: '1200px'
         },
         backgroundTop: {
-            backgroundColor: '#aeaeae',
-            height: '300px'
+            backgroundColor: '#2b3137',
+            height: '300px',
+            color: '#fff'
         },
         container: {
             position: 'relative',
-            padding: '40px 50px'
+            padding: '40px 0'
         },
         content: {
             width: '60%'
         },
         boxCardInfo: {
-            right: -800,
+            right: 0,
             top: 0,
-            width: '100%',
             position: 'absolute',
             zIndex: 1000
         },
         cardInfoContainer: {
-          width: '300px'
+            fixed: '1',
+            width: '350px',
+        },
+        cardContent: {
+            textAlign: 'left',
+        },
+        rating: {
+
         },
         cardInfoImage: {
         },
