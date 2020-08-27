@@ -13,8 +13,7 @@ import {Footer} from "./components/Navbar/footer";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root : {
-            background: grey[200],
-            minHeight: 780
+            background: grey[200]
         },
         wrapper: {
           paddingTop: 60

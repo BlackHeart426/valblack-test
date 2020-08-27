@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Result = (props: any) => {
+export const PassedResult = (props: any) => {
 
     const handleOpenSettings = (event: any) => {
 
