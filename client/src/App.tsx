@@ -8,14 +8,26 @@ import {grey} from "@material-ui/core/colors";
 import {connect} from "react-redux";
 import {ILocalStore, loginActionCreator, setCurrentUser} from "./store/action/currentUserAction";
 import {getLocalStorage, isAuth} from "./services/auth.service";
+import {Footer} from "./components/Navbar/footer";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root : {
-            background: grey[200]
+            background: grey[200],
+            minHeight: 780
+        },
+        wrapper: {
+          paddingTop: 60
         },
         content: {
-            paddingTop: '60px'
+            flex: '1 0 auto'
+        },
+        footer: {
+            boxSizing: 'border-box',
+            height: '100px',
+            backgroundColor: '#eee',
+            bordeTop: '1px solid #e0e0e0',
+            paddingTop: '35px'
         }
     })
 )
@@ -34,10 +46,19 @@ function App(props: any) {
     return (
         <div className={classes.root}>
 
-            <div className={classes.content}>
+            <div className={classes.wrapper}>
                 <Router>
                     <Navbar/>
-                    {routes}
+                    <div className={classes.content}>
+                        {routes}
+                    </div>
+                    <footer>
+                        <div className={classes.footer} >
+                            <Footer />
+                        </div>
+                    </footer>
+
+
                 </Router>
             </div>
 

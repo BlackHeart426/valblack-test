@@ -4,6 +4,8 @@ export const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             flexGrow: 1,
+            backgroundColor: '#f7f7fa',
+            maxWidth: '1200px'
         },
         grow: {
             flexGrow: 1,
@@ -30,5 +32,8 @@ export const useStyles = makeStyles((theme: Theme) =>
                 marginLeft: '25px',
             },
         },
+        footer: {
+            minHeight: 'calc(100vh - 80px)'
+        }
     }),
 );

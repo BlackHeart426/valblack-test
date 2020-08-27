@@ -83,15 +83,15 @@ const TestInfo = (props: any) => {
                                                     </Typography>
                                                 </Grid>
                                                 <Grid item xs={5}>
-                                                    <Typography variant="h6" color="textSecondary" component="p">
+                                                    <Typography variant="h6" align={"center"} color="textSecondary" component="p">
                                                         {testInfo.category
                                                             && props.arrCategories.filter((category: any) =>
                                                             category._id === testInfo.category)[0].name}
                                                     </Typography>
-                                                    <Typography variant="h6" color="textSecondary" component="p">
+                                                    <Typography variant="h6" align={"center"} color="textSecondary" component="p">
                                                         {testInfo.questions}
                                                     </Typography>
-                                                    <Typography variant="h6" color="textSecondary" component="p">
+                                                    <Typography variant="h6" align={"center"} color="textSecondary" component="p">
                                                         {testInfo.durationOfTime}
                                                     </Typography>
                                                 </Grid>
@@ -111,6 +111,13 @@ const TestInfo = (props: any) => {
                         </Box>
                     </div>
                 </div>
+            </div>
+            <div>
+                Lorem ipsumipsumipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cum dolores error hic illum incidunt molestiae nulla perferendis, similique!
+                Lorem ipsumipsumipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cum dolores error hic illum incidunt molestiae nulla perferendis, similique!
+                Lorem ipsumipsumipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cum dolores error hic illum incidunt molestiae nulla perferendis, similique!
+                Lorem ipsumipsumipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cum dolores error hic illum incidunt molestiae nulla perferendis, similique!
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cum dolores error hic illum incidunt molestiae nulla perferendis, similique!
             </div>
         </div>
     )

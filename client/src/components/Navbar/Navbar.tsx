@@ -120,20 +120,20 @@ function Navbar(props: any) {
                 <ListItemIcon className={classes.menuIcons}>
                     <AccountBalanceWalletIcon fontSize="small" />
                 </ListItemIcon>
-                <Typography variant="inherit">My income</Typography>
+                <Typography variant="inherit">Профиль</Typography>
             </MenuItem>
             <MenuItem onClick={handleOpenSettings}>
                 <ListItemIcon className={classes.menuIcons}>
                     <SettingsIcon fontSize="small" />
                 </ListItemIcon>
-                <Typography variant="inherit">Settings</Typography>
+                <Typography variant="inherit">Настройки</Typography>
             </MenuItem>
             <Divider/>
             <MenuItem onClick={handleLogout}>
                 <ListItemIcon className={classes.menuIcons}>
                     <ExitToAppIcon color={"primary"} fontSize="small" />
                 </ListItemIcon>
-                <Typography variant="inherit" color={"primary"}><strong>Logout</strong></Typography>
+                <Typography variant="inherit" color={"primary"}><strong>Выйти</strong></Typography>
             </MenuItem>
         </Menu>
     );
@@ -152,7 +152,7 @@ function Navbar(props: any) {
                                 color="inherit"
                                 onClick={handleTests}
                             >
-                                Tests
+                                Тесты
                             </Button>
                         </div>
                         <div className={classes.menuButton}>
@@ -160,7 +160,7 @@ function Navbar(props: any) {
                                 size="large"
                                 color="inherit"
                             >
-                                Rating
+                                Рейтинг
                             </Button>
                         </div>
 
