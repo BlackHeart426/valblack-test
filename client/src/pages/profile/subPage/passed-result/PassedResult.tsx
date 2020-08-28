@@ -1,14 +1,11 @@
 import React from "react";
+import {CardResult} from "./cardResult/CardResult";
 
 export const PassedResult = (props: any) => {
 
-    const handleOpenSettings = (event: any) => {
-
-    }
-
     return (
-        <div>
-            Result
+        <div style={{paddingTop: 10}}>
+            <CardResult />
         </div>
     )
 }
