@@ -18,10 +18,9 @@ export const useRoutes = () => {
             <Route exact path="/" component={HomePage}/>
             <Route exact path="/home" component={HomePage}/>
             <Route exact path="/tests" component={AuthGuard(TestList)}/>
-            <Route exact path="/profile" component={AuthGuard(Profile)}/>
-            <Route exact path="/profile" component={AuthGuard(Profile)}/>
-            <Route exact path="/profile/passed-tests" component={AuthGuard(Profile)}/>
-            <Route exact path="/profile/settings" component={AuthGuard(Profile)}/>
+            <Route exact path="/profile/" component={AuthGuard(Profile)}/>
+            {/*<Route exact path="/profile/passed-tests" component={AuthGuard(Profile)}/>*/}
+            {/*<Route exact path="/profile/settings" component={AuthGuard(Profile)}/>*/}
             <Route exact path="/t/:id" component={AuthGuard(TestInfo)}/>
             <Route exact path="/auth" component={AuthPage}/>
             <Route exact path="/admin" component={HomeAdminPage}/>

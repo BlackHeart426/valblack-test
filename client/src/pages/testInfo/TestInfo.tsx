@@ -28,7 +28,7 @@ const TestInfo = (props: any) => {
     useEffect(() => {
         props.action.getCategories()
         props.arrTestsInfo
-            ? setTestInfo(props.arrTestsInfo.filter((testInfo: IListTestsInfo) => testInfo._id === props.match.params.id)[0])
+            ? setTestInfo(prev => props.arrTestsInfo.filter((testInfo: IListTestsInfo) => testInfo._id === props.match.params.id)[0])
             : props.action.getInfoTests()
         console.log(props.loadingTestInfo)
     },[props.arrTestsInfo])
