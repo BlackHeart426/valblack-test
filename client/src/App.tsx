@@ -6,7 +6,7 @@ import './App.css';
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {grey} from "@material-ui/core/colors";
 import {connect} from "react-redux";
-import {ILocalStore, loginActionCreator, setCurrentUser} from "./store/action/currentUserAction";
+import {ILocalStore, loginActionCreator, setCurrentUser} from "./store/action/currentUser/currentUserAction";
 import {getLocalStorage, isAuth} from "./services/auth.service";
 import {Footer} from "./components/Navbar/footer";
 

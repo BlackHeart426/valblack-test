@@ -1,9 +1,25 @@
-import React from "react";
+import React, {useRef} from "react";
 import {useStyleSettings} from "./styleSettings";
 import {Button, Grid, TextField, Typography} from "@material-ui/core";
 
 export const Settings = (props: any) => {
     const classes = useStyleSettings()
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    const click = () => inputRef.current != null && inputRef.current.click()
+
+    function onFileUpload(event: any): void {
+        const file = event.target.files[0]
+        const image = file
+        console.log(image)
+        const reader = new FileReader()
+
+        // reader.onload = () => {
+        //     this.imagePreview = reader.result
+        // }
+
+        reader.readAsDataURL(file)
+    }
     return (
         <div className={classes.container}>
             <div className={classes.avatarChange}>
@@ -21,12 +37,19 @@ export const Settings = (props: any) => {
                             <Typography align={"left"} >
                                 Загрузить новый:
                             </Typography>
+                            <input
+                                type="file"
+                                accept=" image/jpeg, image/png"
+                                style={{display: 'none'}}
+                                onChange={onFileUpload}
+                                ref={inputRef}
+                            />
                             <Button
                                 color={"secondary"}
                                 fullWidth={true}
                                 className={classes.uploadAvatar}
                                 variant={"outlined"}
-                                // onClick={handleOpenSettings}
+                                onClick={click}
                             >
                                 выберите файл
                             </Button>

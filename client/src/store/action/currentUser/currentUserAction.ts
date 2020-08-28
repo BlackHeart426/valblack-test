@@ -1,6 +1,6 @@
-import {EReduxActionTypes} from "../types";
-import {requestService} from "../../services/request.service";
-import {saveLocalStorage, removeLocalStorage, getLocalStorage} from "../../services/auth.service";
+import {EReduxActionTypes} from "../../types";
+import {requestService} from "../../../services/request.service";
+import {removeLocalStorage, saveLocalStorage} from "../../../services/auth.service";
 
 export interface ILocalStore {
     token: string,

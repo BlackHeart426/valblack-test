@@ -15,7 +15,7 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import WebIcon from '@material-ui/icons/Web';
 import {AuthorizationModal} from "../../container/Authorization/AuthorizationModal";
 import {connect} from "react-redux";
-import {logoutActionCreate} from "../../store/action/currentUserAction";
+import {logoutActionCreate} from "../../store/action/currentUser/currentUserAction";
 import {LISTTESTS, PROFILE, SETTINGS} from "../../router/enum";
 
 function Navbar(props: any) {

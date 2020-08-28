@@ -8,7 +8,7 @@ import Link from "@material-ui/core/Link";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {validateForm} from "../../components/validateForm/validateForm";
 import {connect} from "react-redux";
-import {loginActionCreator} from "../../store/action/currentUserAction";
+import {loginActionCreator} from "../../store/action/currentUser/currentUserAction";
 // import {authorizationActionCreator, authorizationGoogleActionCreator} from "../../store/action/authorization";
 // import {connect} from "react-redux";
 
