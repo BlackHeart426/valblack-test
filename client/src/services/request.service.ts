@@ -1,5 +1,5 @@
 
-export type Method = 'GET' | 'POST'
+export type Method = 'GET' | 'POST' | 'PATCH'
 
 export async function requestService(
     url: string,

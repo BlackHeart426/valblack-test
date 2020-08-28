@@ -24,11 +24,14 @@ function errorCurrentUserAvatar(error: string) {
     }
 }
 
-export function uploadAvatarActionCreator(imageFile: any) {
+export function uploadAvatarActionCreator(imageFile: any, clientId: string) {
     return function (dispatch: (arg0: { type: EReduxActionTypes; }) => void) {
         dispatch(requestCurrentUserAvatar())
-
-        return requestService('/api/user/avatar', "POST", imageFile)
+        const fd = new FormData()
+        if (imageFile) {
+            fd.append('image', imageFile, imageFile.name)
+        }
+        return requestService(`/api/client/avatar/${clientId}`, "PATCH", fd)
             .then(
                 response => response.json(),
                 error =>  dispatch(errorCurrentUserAvatar(error))
