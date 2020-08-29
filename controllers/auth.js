@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const keys = require('../config/keys')
-const Client = require('../models/Client')
+// const Client = require('../models/Client')
 const errorHandler = require('../utils/errorHandler')
 
 
@@ -36,7 +36,7 @@ module.exports.loginAdmin = async function(req, res) {
 }
 
 module.exports.login = async function(req, res) {
-  const candidate = await Client.findOne({email: req.body.email})
+  const candidate = await User.findOne({email: req.body.email})
   console.log( req.body)
   if (candidate) {
     // Проверка пароля, пользователь существует
@@ -50,7 +50,8 @@ module.exports.login = async function(req, res) {
 
       res.status(200).json({
         token: `Bearer ${token}`,
-        email: req.body.email
+        email: req.body.email,
+        is_admin: false
       })
     } else {
       // Пароли не совпали
@@ -99,7 +100,7 @@ module.exports.registerAdmin = async function(req, res) {
 
 module.exports.register = async function(req, res) {
   // email password
-  const candidate = await Client.findOne({email: req.body.email})
+  const candidate = await User.findOne({email: req.body.email})
 
   if (candidate) {
     // Пользователь существует, нужно отправить ошибку
@@ -111,14 +112,15 @@ module.exports.register = async function(req, res) {
 
     const salt = bcrypt.genSaltSync(10)
     const password = await req.body.password
-    const client = new Client({
+    const user = new User({
       email: req.body.email,
-      password: bcrypt.hashSync(password, salt)
+      password: bcrypt.hashSync(password, salt),
+      is_admin: false
     })
 
     try {
-      await client.save()
-      res.status(201).json(client)
+      await user.save()
+      res.status(201).json(user)
     } catch(e) {
       errorHandler(res, e)
     }

@@ -1,10 +1,9 @@
-const Client = require('../models/Client')
+const User = require('../models/User')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.update = async function(req, res) {
-  console.log('server')
   try {
-    const client = await new Client({
+    const client = await new User({
       avatarUrl: req.file ? req.file.path : ''
     }).save()
     res.status(201).json(client)

@@ -148,9 +148,9 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
             })
         case EReduxActionTypes.UPLOAD_AVATAR_CURRENT_USERS_DONE:
             return Object.assign({}, state, {
-                data: {
+                data: Object.assign({}, state.data, {
                     avatarUrl: action.avatarUrl
-                },
+                }),
                 meta: {
                     uploadAvatarNetWorkStatus: {
                         isFetching: false,

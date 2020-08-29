@@ -7,7 +7,6 @@ export async function requestService(
     body: any = null,
     protect: boolean = false,
     headers: any = {}) {
-    console.log('request')
     try {
         if (body) {
             body = JSON.stringify(body)
@@ -16,6 +15,7 @@ export async function requestService(
         if (protect) {
             const token = JSON.parse(localStorage.getItem('userData') as string) // Замена на Redux
             headers['Authorization'] = token.token
+            console.log('token', token.token)
         }
         return await fetch(url, { method, body, headers})
 

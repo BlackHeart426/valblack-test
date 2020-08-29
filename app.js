@@ -4,7 +4,7 @@ const passport = require('passport')
 const path = require('path')
 const bodyParser = require('body-parser')
 const authRoutes = require('./routes/auth')
-const clientRoutes = require('./routes/client')
+const userRoutes = require('./routes/user')
 // const analyticsRoutes = require('./routes/analytics')
 const categoryRoutes = require('./routes/category')
 const testsInfoRoutes = require('./routes/testsInfo')
@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/auth', authRoutes)
-app.use('/api/client', clientRoutes)
+app.use('/api/user', userRoutes)
 app.use('/api/category', categoryRoutes)
 app.use('/api/tests-info', testsInfoRoutes)
 
