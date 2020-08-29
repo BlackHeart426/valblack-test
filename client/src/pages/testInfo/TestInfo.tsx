@@ -30,7 +30,6 @@ const TestInfo = (props: any) => {
         props.arrTestsInfo
             ? setTestInfo(prev => props.arrTestsInfo.filter((testInfo: IListTestsInfo) => testInfo._id === props.match.params.id)[0])
             : props.action.getInfoTests()
-        console.log(props.loadingTestInfo)
     },[props.arrTestsInfo])
 
     return(

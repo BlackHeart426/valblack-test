@@ -11,9 +11,13 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  is_admin: {
+  isAdmin: {
     type: Boolean,
     required: true
+  },
+  imageSrc: {
+    type: String,
+    default: ''
   },
 
 })

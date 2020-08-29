@@ -2,11 +2,21 @@ const User = require('../models/User')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.update = async function(req, res) {
+  const updated = {
+    name: req.body.name
+  }
+
+  if (req.file) {
+    updated.imageSrc = req.file.path
+  }
+
   try {
-    const client = await new User({
-      avatarUrl: req.file ? req.file.path : ''
-    }).save()
-    res.status(201).json(client)
+    const user = await User.findOneAndUpdate(
+      {_id: req.params.id},
+      {$set: updated},
+      {new: true}
+    )
+    res.status(200).json(user)
   } catch (e) {
     errorHandler(res, e)
   }

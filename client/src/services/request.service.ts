@@ -1,3 +1,4 @@
+import fetch from 'cross-fetch';
 
 export type Method = 'GET' | 'POST' | 'PATCH'
 
@@ -6,16 +7,16 @@ export async function requestService(
     method: Method,
     body: any = null,
     protect: boolean = false,
+    formData: boolean = false,
     headers: any = {}) {
     try {
-        if (body) {
+        if (body && !formData) {
             body = JSON.stringify(body)
             headers['Content-Type'] = 'application/json'
         }
         if (protect) {
             const token = JSON.parse(localStorage.getItem('userData') as string) // Замена на Redux
             headers['Authorization'] = token.token
-            console.log('token', token.token)
         }
         return await fetch(url, { method, body, headers})
 

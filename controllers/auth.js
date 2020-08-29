@@ -37,7 +37,6 @@ module.exports.loginAdmin = async function(req, res) {
 
 module.exports.login = async function(req, res) {
   const candidate = await User.findOne({email: req.body.email})
-  console.log( req.body)
   if (candidate) {
     // Проверка пароля, пользователь существует
     const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
@@ -51,7 +50,7 @@ module.exports.login = async function(req, res) {
       res.status(200).json({
         token: `Bearer ${token}`,
         email: req.body.email,
-        is_admin: false
+        isAdmin: false
       })
     } else {
       // Пароли не совпали
@@ -82,7 +81,6 @@ module.exports.registerAdmin = async function(req, res) {
 
     const salt = bcrypt.genSaltSync(10)
     const password = await req.body.password
-    console.log(req.body)
     const user = new User({
       email: req.body.email,
       password: bcrypt.hashSync(password, salt)
@@ -115,7 +113,7 @@ module.exports.register = async function(req, res) {
     const user = new User({
       email: req.body.email,
       password: bcrypt.hashSync(password, salt),
-      is_admin: false
+      isAdmin: false
     })
 
     try {

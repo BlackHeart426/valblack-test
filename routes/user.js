@@ -6,7 +6,7 @@ const controller = require('../controllers/user')
 
 
 router.patch('/avatar/:id',
-  passport.authenticate('jwt', {session: false}),
+  // passport.authenticate('jwt', {session: false}),
   upload.single('image'),
   controller.update)
 

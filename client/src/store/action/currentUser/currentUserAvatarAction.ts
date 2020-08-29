@@ -32,8 +32,7 @@ export function uploadAvatarActionCreator(imageFile: any, clientId: string = '5f
         if (imageFile) {
             fd.append('image', imageFile, imageFile.name)
         }
-        console.log('123',fd)
-        return requestService(`/api/user/avatar/${clientId}`, "PATCH", fd, true)
+        return requestService(`/api/user/avatar/${clientId}`, "PATCH", fd, true, true)
             .then(
                 response => response.json(),
                 error =>  dispatch(errorCurrentUserAvatar(error))
