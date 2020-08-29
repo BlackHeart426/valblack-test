@@ -1,9 +1,11 @@
 const express = require('express')
-
+const upload = require('../middleware/upload')
 const router = express.Router()
+const passport = require('passport')
+const controller = require('../controllers/client')
 
 
-router.patch('/:id', passport.authenticate('jwt', {session: false}), upload.single('image'), controller.update)
+router.patch('/avatar/:id', passport.authenticate('jwt', {session: false}), upload.single('image'), controller.update)
 
 
 module.exports = router

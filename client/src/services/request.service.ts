@@ -7,6 +7,7 @@ export async function requestService(
     body: any = null,
     protect: boolean = false,
     headers: any = {}) {
+    console.log('request')
     try {
         if (body) {
             body = JSON.stringify(body)

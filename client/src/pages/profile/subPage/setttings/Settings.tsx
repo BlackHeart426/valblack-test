@@ -1,8 +1,12 @@
 import React, {useRef} from "react";
 import {useStyleSettings} from "./styleSettings";
 import {Button, Grid, TextField, Typography} from "@material-ui/core";
+import {getTestInfoActionCreator} from "../../../../store/action/testInfoAction";
+import {getCategoriesActionCreator} from "../../../../store/action/categoriesAction";
+import {connect} from "react-redux";
+import {uploadAvatarActionCreator} from "../../../../store/action/currentUser/currentUserAvatarAction";
 
-export const Settings = (props: any) => {
+const Settings = (props: any) => {
     const classes = useStyleSettings()
     const inputRef = useRef<HTMLInputElement>(null)
 
@@ -12,6 +16,8 @@ export const Settings = (props: any) => {
         const file = event.target.files[0]
         const image = file
         console.log(image)
+
+        props.action.uploadAvatar(image)
         const reader = new FileReader()
 
         // reader.onload = () => {
@@ -91,3 +97,22 @@ export const Settings = (props: any) => {
         </div>
     )
 }
+
+
+function mapStateToProps(state: any) {
+    return {
+        // arrTestsInfo: state.testInfo.data,
+        // arrCategories: state.categories.data.list
+    }
+
+}
+
+function mapDispatchToProps(dispatch: any) {
+    return {
+        action: {
+            uploadAvatar: (image: any) => dispatch(uploadAvatarActionCreator(image)),
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings)

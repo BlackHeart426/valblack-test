@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useStyleProfile} from "./styleProfile";
 import {Button, Grid, Tab, Tabs, Typography} from "@material-ui/core";
 import {useHistory, useParams, useLocation} from "react-router-dom";
-import {Settings} from "./subPage/setttings/Settings";
+import Settings from "./subPage/setttings/Settings";
 import {PassedResult} from "./subPage/passed-result/PassedResult";
 import {Activity} from "./subPage/activity/Activity";
 import ProfileInfo from "./ProfileInfo";

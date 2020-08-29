@@ -36,8 +36,4 @@ const ProfileInfo = (props: any) => {
     )
 }
 
-function arePropsEqual(prevProps: any, nextProps: any) {
-    return prevProps.label === nextProps.label;
-}
-
-export default memo(ProfileInfo, arePropsEqual)
+export default memo(ProfileInfo)
