@@ -36,7 +36,7 @@ const initialState = {
 interface IAction {
     type: string,
     error: string | null,
-    avatarUrl: string | null,
+    imageSrc: string | null,
     data: {
         email: string | null,
         token: string | null,
@@ -128,37 +128,40 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
             })
         case EReduxActionTypes.UPLOAD_AVATAR_CURRENT_USERS_STARTED:
             return Object.assign({}, state, {
-                meta: {
+                meta: Object.assign({}, state.meta, {
                     uploadAvatarNetWorkStatus: {
                         isFetching: true,
                         isFetched: false,
                         error: null
                     }
-                }
+                    }
+                )
             })
         case EReduxActionTypes.UPLOAD_AVATAR_CURRENT_USERS_ERROR:
             return Object.assign({}, state, {
-                meta: {
-                    uploadAvatarNetWorkStatus: {
-                        isFetching: false,
-                        isFetched: true,
-                        error: action.error
+                meta: Object.assign({}, state.meta, {
+                        uploadAvatarNetWorkStatus: {
+                            isFetching: false,
+                            isFetched: true,
+                            error: action.error
+                        }
                     }
-                }
+                )
             })
         case EReduxActionTypes.UPLOAD_AVATAR_CURRENT_USERS_DONE:
             return Object.assign({}, state, {
                 data: Object.assign({}, state.data, {
-                    avatarUrl: action.avatarUrl
+                    avatarUrl: action.imageSrc
                 }),
-                meta: {
+                meta: Object.assign({}, state.meta, {
                     uploadAvatarNetWorkStatus: {
                         isFetching: false,
                         isFetched: true,
                         error: null,
                         lastUpdated: action.receivedAt
                     }
-                }
+                    }
+                )
             })
         default:
             return state

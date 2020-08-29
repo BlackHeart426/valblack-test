@@ -2,14 +2,13 @@ const User = require('../models/User')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.update = async function(req, res) {
-  const updated = {
-    name: req.body.name
-  }
+
+  const updated = {}
 
   if (req.file) {
     updated.imageSrc = req.file.path
   }
-
+  console.log(updated)
   try {
     const user = await User.findOneAndUpdate(
       {_id: req.params.id},

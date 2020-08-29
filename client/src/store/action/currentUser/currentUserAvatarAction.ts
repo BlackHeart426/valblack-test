@@ -9,10 +9,10 @@ function requestCurrentUserAvatar() {
 }
 
 
-function receiveCurrentUserAvatar(json: { token: string, email: string }) {
+function receiveCurrentUserAvatar(json: any) {
     return {
         type: EReduxActionTypes.UPLOAD_AVATAR_CURRENT_USERS_DONE,
-        data: json,
+        imageSrc: json.imageSrc,
         receivedAt: Date.now()
     }
 }
@@ -24,7 +24,7 @@ function errorCurrentUserAvatar(error: string) {
     }
 }
 
-export function uploadAvatarActionCreator(imageFile: any, clientId: string = '5f42b973b5089744283ed9fc') {
+export function uploadAvatarActionCreator(imageFile: any, clientId: string = '5f4a156716c2cd2040e28717') {
 
     return function (dispatch: (arg0: { type: EReduxActionTypes; }) => void) {
         dispatch(requestCurrentUserAvatar())
