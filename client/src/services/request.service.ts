@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import {getLocalStorage} from "./auth.service";
 
 export type Method = 'GET' | 'POST' | 'PATCH'
 
@@ -15,8 +16,8 @@ export async function requestService(
             headers['Content-Type'] = 'application/json'
         }
         if (protect) {
-            const token = JSON.parse(localStorage.getItem('userData') as string) // Замена на Redux
-            headers['Authorization'] = token.token
+            const token = getLocalStorage('token') as string // Замена на Redux
+            headers['Authorization'] = token
         }
         return await fetch(url, { method, body, headers})
 

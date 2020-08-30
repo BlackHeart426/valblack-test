@@ -1,6 +1,6 @@
 import {EReduxActionTypes} from "../../types";
 import {requestService} from "../../../services/request.service";
-import {removeLocalStorage, saveLocalStorage} from "../../../services/auth.service";
+import {removeLocalStorage, saveItemLocalStorage, saveLocalStorage} from "../../../services/auth.service";
 
 function requestCurrentUserAvatar() {
     return {
@@ -10,6 +10,7 @@ function requestCurrentUserAvatar() {
 
 
 function receiveCurrentUserAvatar(json: any) {
+    saveItemLocalStorage('avatarUrl', json.imageSrc)
     return {
         type: EReduxActionTypes.UPLOAD_AVATAR_CURRENT_USERS_DONE,
         data: json,

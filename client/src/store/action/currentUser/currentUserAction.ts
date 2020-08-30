@@ -24,7 +24,8 @@ function receiveCurrentUser(json: { token: string, email: string }) {
     }
 }
 
-export function setCurrentUser(json: ILocalStore | null) {
+export function setCurrentUser(json: any) {
+
     return {
         type: EReduxActionTypes.SET_CURRENT_USERS_STORE,
         data: json,
@@ -61,7 +62,7 @@ export function loginActionCreator(form: IForm) {
 }
 
 export function logoutActionCreate() {
-    removeLocalStorage()
+    removeLocalStorage('token')
     return {
         type: EReduxActionTypes.SET_CURRENT_USERS_STORE,
         data: {

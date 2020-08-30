@@ -7,7 +7,7 @@ import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {grey} from "@material-ui/core/colors";
 import {connect} from "react-redux";
 import {ILocalStore, loginActionCreator, setCurrentUser} from "./store/action/currentUser/currentUserAction";
-import {getLocalStorage, isAuth} from "./services/auth.service";
+import {getAllLocalStorage, getLocalStorage, isAuth} from "./services/auth.service";
 import {Footer} from "./components/Navbar/footer";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,7 +38,9 @@ function App(props: any) {
     useEffect(()=>{
         console.log('first download')
         if (isAuth()) {
-            props.action.setCurrentUser(JSON.parse(getLocalStorage() as string))
+            getAllLocalStorage()
+            // console.log(getAllLocalStorage())
+            props.action.setCurrentUser(getAllLocalStorage())
         }
 
     },[])
@@ -68,7 +70,7 @@ function App(props: any) {
 function mapDispatchToProps(dispatch: any) {
     return {
         action: {
-            setCurrentUser: (json: ILocalStore) => dispatch(setCurrentUser(json))
+            setCurrentUser: (json: any) => dispatch(setCurrentUser(json))
         }
     }
 }
