@@ -171,7 +171,7 @@ function Navbar(props: any) {
                                     <Button
                                         size="medium"
                                         color="inherit"
-                                        startIcon={<Avatar alt="Remy Sharp" src={props.user} />}
+                                        startIcon={<Avatar alt="Remy Sharp" src={props.avatarUrl} />}
                                         onClick={handleProfileMenuOpen}
                                     >
                                         {props.email}
@@ -202,6 +202,7 @@ function mapStateToProps(state: any) {
     return {
         isAuthorized: state.currentUser.data.isAuthorized,
         email: state.currentUser.data.email,
+        avatarUrl: state.currentUser.data.avatarUrl
     }
 
 }

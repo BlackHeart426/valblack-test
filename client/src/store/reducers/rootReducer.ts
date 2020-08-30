@@ -1,11 +1,13 @@
 import {EReduxActionTypes} from "../types";
 import {combineReducers} from "redux";
-import {currentUserReducer} from "./currentUserReducer";
-import {testInfoReducer} from "./testInfoReducer";
-import {categoriesReducer} from "./categoriesReducer";
+import {currentUserReducer, ICurrentUserState} from "./currentUserReducer";
+import {ITestInfoState, testInfoReducer} from "./testInfoReducer";
+import {categoriesReducer, ICategoriesState} from "./categoriesReducer";
 
-export interface IReduxBaseAction {
-    type: EReduxActionTypes
+export interface RootState {
+    currentUser: ICurrentUserState,
+    testInfo: ITestInfoState,
+    categories: ICategoriesState
 }
 
 const rootReduce = combineReducers({

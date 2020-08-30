@@ -35,7 +35,7 @@ const Settings = (props: any) => {
                 </div>
                 <Grid container spacing={3}>
                     <Grid item xs={3}>
-                        <img  className={classes.avatar}  src={"https://cdn.proghub.ru/avatars/e6db24892cfa78a79509e8d00a65dd92.png"}/>
+                        <img  className={classes.avatar}  src={props.avatarUrl}/>
                     </Grid>
                     <Grid item xs={9}>
                         <div>
@@ -100,7 +100,7 @@ const Settings = (props: any) => {
 
 function mapStateToProps(state: any) {
     return {
-        // arrTestsInfo: state.testInfo.data,
+        avatarUrl: state.currentUser.data.avatarUrl,
         // arrCategories: state.categories.data.list
     }
 

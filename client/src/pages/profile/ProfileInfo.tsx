@@ -1,8 +1,11 @@
 import {Button, Typography} from "@material-ui/core";
 import React, {useEffect, memo} from "react";
 import {useHistory} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/reducers/rootReducer";
 
 const ProfileInfo = (props: any) => {
+    const avatarUrl = useSelector((state: RootState) => state.currentUser.data.avatarUrl)
     const {classes, openSettings} = props;
 
     useEffect(() => {
@@ -12,7 +15,7 @@ const ProfileInfo = (props: any) => {
     return (
         <>
             <div className={classes.avatarContainer}>
-                <img className={classes.avatar} src={"https://cdn.proghub.ru/avatars/e6db24892cfa78a79509e8d00a65dd92.png"}/>
+                <img className={classes.avatar} src={avatarUrl ? avatarUrl : ''}/>
             </div>
             <div className={classes.userName}>
                 <Typography align={"left"} variant="h5">
