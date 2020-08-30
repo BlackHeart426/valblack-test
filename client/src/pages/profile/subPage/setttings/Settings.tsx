@@ -15,8 +15,8 @@ const Settings = (props: any) => {
     function onFileUpload(event: any): void {
         const file = event.target.files[0]
         const image = file
-
-        props.action.uploadAvatar(image)
+        console.log(props.uuid)
+        props.action.uploadAvatar(image, props.uuid)
         const reader = new FileReader()
 
         // reader.onload = () => {
@@ -101,7 +101,7 @@ const Settings = (props: any) => {
 function mapStateToProps(state: any) {
     return {
         avatarUrl: state.currentUser.data.avatarUrl,
-        // arrCategories: state.categories.data.list
+        uuid: state.currentUser.data.uuid
     }
 
 }
@@ -109,7 +109,8 @@ function mapStateToProps(state: any) {
 function mapDispatchToProps(dispatch: any) {
     return {
         action: {
-            uploadAvatar: (image: any) => dispatch(uploadAvatarActionCreator(image)),
+            uploadAvatar: (image: any, uuid: string) => dispatch(uploadAvatarActionCreator(image, uuid)),
+            // updateName: (name: string) => dispatch(uploadAvatarActionCreator(name))
         }
     }
 }

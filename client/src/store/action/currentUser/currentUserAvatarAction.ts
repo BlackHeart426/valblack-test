@@ -25,7 +25,7 @@ function errorCurrentUserAvatar(error: string) {
     }
 }
 
-export function uploadAvatarActionCreator(imageFile: any, clientId: string = '5f4a156716c2cd2040e28717') {
+export function uploadAvatarActionCreator(imageFile: any, clientId: string ) {
 
     return function (dispatch: (arg0: { type: EReduxActionTypes; }) => void) {
         dispatch(requestCurrentUserAvatar())

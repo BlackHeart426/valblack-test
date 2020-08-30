@@ -37,6 +37,7 @@ interface IAction {
     type: string,
     error: string | null,
     data: {
+        _id: string | null,
         imageSrc: string | null,
         email: string | null,
         token: string | null,
@@ -109,6 +110,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                     isAuthorized: action.data.isAuth,
                     email: action.data.email,
                     name: action.data.name,
+                    uuid: action.data._id,
                     hasAvatar: Boolean(action.data.avatarUrl),
                     avatarUrl: action.data.avatarUrl
                 }
@@ -122,6 +124,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                     isAuthorized: true,
                     email: action.data.email,
                     name: action.data.name,
+                    uuid: action.data._id,
                     hasAvatar: Boolean(action.data.avatarUrl),
                     avatarUrl: action.data.avatarUrl
                 },

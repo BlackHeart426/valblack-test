@@ -1,6 +1,6 @@
 import {EReduxActionTypes} from "../../types";
 import {requestService} from "../../../services/request.service";
-import {removeLocalStorage, saveLocalStorage} from "../../../services/auth.service";
+import {clearLocalStorage, removeLocalStorage, saveLocalStorage} from "../../../services/auth.service";
 
 export interface ILocalStore {
     token: string,
@@ -62,7 +62,7 @@ export function loginActionCreator(form: IForm) {
 }
 
 export function logoutActionCreate() {
-    removeLocalStorage('token')
+    clearLocalStorage()
     return {
         type: EReduxActionTypes.SET_CURRENT_USERS_STORE,
         data: {

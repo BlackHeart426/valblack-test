@@ -52,7 +52,8 @@ module.exports.login = async function(req, res) {
         email: req.body.email,
         avatarUrl: candidate.imageSrc,
         name: candidate.name,
-        isAdmin: false
+        isAdmin: false,
+        _id: candidate._id
       })
     } else {
       // Пароли не совпали
