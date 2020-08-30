@@ -36,11 +36,13 @@ const initialState = {
 interface IAction {
     type: string,
     error: string | null,
-    imageSrc: string | null,
     data: {
+        imageSrc: string | null,
         email: string | null,
         token: string | null,
-        isAuth: boolean
+        isAuth: boolean,
+        avatarUrl: string | null,
+        name: string | null
     },
     receivedAt: string | null
 }
@@ -105,7 +107,10 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                         token: action.data.token
                     },
                     isAuthorized: action.data.isAuth,
-                    email: action.data.email
+                    email: action.data.email,
+                    name: action.data.name,
+                    hasAvatar: Boolean(action.data.avatarUrl),
+                    avatarUrl: action.data.avatarUrl
                 }
             })
         case EReduxActionTypes.SET_CURRENT_USERS_DONE:
@@ -115,7 +120,10 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                         token: action.data.token
                     },
                     isAuthorized: true,
-                    email: action.data.email
+                    email: action.data.email,
+                    name: action.data.name,
+                    hasAvatar: Boolean(action.data.avatarUrl),
+                    avatarUrl: action.data.avatarUrl
                 },
                 meta: {
                     netWorkStatus: {
@@ -151,7 +159,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
         case EReduxActionTypes.UPLOAD_AVATAR_CURRENT_USERS_DONE:
             return Object.assign({}, state, {
                 data: Object.assign({}, state.data, {
-                    avatarUrl: action.imageSrc
+                    avatarUrl: action.data.imageSrc
                 }),
                 meta: Object.assign({}, state.meta, {
                     uploadAvatarNetWorkStatus: {

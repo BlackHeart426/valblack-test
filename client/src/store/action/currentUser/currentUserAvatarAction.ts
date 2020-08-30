@@ -12,7 +12,7 @@ function requestCurrentUserAvatar() {
 function receiveCurrentUserAvatar(json: any) {
     return {
         type: EReduxActionTypes.UPLOAD_AVATAR_CURRENT_USERS_DONE,
-        imageSrc: json.imageSrc,
+        data: json,
         receivedAt: Date.now()
     }
 }
