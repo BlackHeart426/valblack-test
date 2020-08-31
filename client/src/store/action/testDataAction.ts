@@ -1,5 +1,4 @@
 import {EReduxActionTypes} from "../types";
-import {useApiAuth} from "../../hooks/api.service";
 import {useHttp} from "../../services/http.service";
 
 function requestTestData(uuidTest: string) {

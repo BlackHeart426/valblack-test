@@ -7,7 +7,8 @@ const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
 // const analyticsRoutes = require('./routes/analytics')
 const categoryRoutes = require('./routes/category')
-const testsInfoRoutes = require('./routes/testsInfo')
+const testInfoRoutes = require('./routes/testInfo')
+const testResultRoutes = require('./routes/testResult')
 const keys = require('./config/keys')
 const app = express()
 
@@ -33,7 +34,8 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/category', categoryRoutes)
-app.use('/api/tests-info', testsInfoRoutes)
+app.use('/api/test-info', testInfoRoutes)
+app.use('/api/test-result', testResultRoutes)
 
 // if (process.env.NODE_ENV === 'production') {
 //     app.use(express.static('client/dist/sicilia-angular'))

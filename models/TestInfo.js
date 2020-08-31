@@ -25,7 +25,11 @@ const testsSchema = new Schema({
   rating: {
     type: String,
     default: ''
+  },
+  questionsAndAnswers: {
+    type: String,
+    default: ''
   }
 })
 
-module.exports = mongoose.model('tests-info', testsSchema)
+module.exports = mongoose.model('test-infos', testsSchema)

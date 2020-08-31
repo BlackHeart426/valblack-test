@@ -2,13 +2,12 @@ const express = require('express')
 const upload = require('../middleware/upload')
 const router = express.Router()
 const passport = require('passport')
-const controller = require('../controllers/user')
+const controller = require('../controllers/testResult')
 
 
-router.patch('/avatar/:id',
-  passport.authenticate('jwt', {session: false}),
-  upload.single('image'),
-  controller.update)
+router.post('/:id',
+  // passport.authenticate('jwt', {session: false}),
+  controller.create)
 
 
 module.exports = router

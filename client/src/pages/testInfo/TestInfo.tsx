@@ -102,7 +102,7 @@ const TestInfo = (props: any) => {
                                     </CardContent>
                                     <CardActions className={classes.cardInfoAction}>
                                         <Button variant="contained" color="primary" fullWidth={true}>
-                                            Открыть
+                                            Пройти
                                         </Button>
                                     </CardActions>
                                 </Card>
