@@ -22,7 +22,8 @@ const PassingTest = (props: any) => {
         <div>
             PassingTest
             <pre>
-                {JSON.stringify(testInfo)}
+                {/*{JSON.stringify(testInfo)}*/}
+
             </pre>
         </div>
     )
