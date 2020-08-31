@@ -1,15 +1,22 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {IListTestsInfo} from "../../store/reducers/testInfoReducer";
 import {getTestInfoActionCreator} from "../../store/action/testInfoAction";
 import {getCategoriesActionCreator} from "../../store/action/categoriesAction";
 import {setCurrentAnswerTestUser} from "../../store/action/currentUser/currentUserAction";
 import {connect} from "react-redux";
+import {Questions} from "./questionsAndAnswers/Questions";
+import {useStylePassedTest} from "./stylePassedTest";
 
 const PassingTest = (props: any) => {
+    const classes = useStylePassedTest()
     const [testInfo, setTestInfo] = useState<IListTestsInfo>({
         category: "", durationOfTime: null, imageSrc: "", name: "", questions: 0, rating: 0
     })
+    const inputRef = useRef<HTMLInputElement>(null)
 
+    const openQuestionHandle = (event: any) => {
+        console.log(inputRef)
+    }
 
     useEffect(() => {
         const answersCurrentTest = JSON.parse(props.answersCurrentTest)
@@ -21,10 +28,15 @@ const PassingTest = (props: any) => {
     return (
         <div>
             PassingTest
-            <pre>
-                {/*{JSON.stringify(testInfo)}*/}
-
-            </pre>
+                <Questions/>
+                <div className={classes.runTestSwitcher}>
+                    <div id="1" className={classes.runTestQuestionTab} ref={inputRef} onClick={openQuestionHandle}>
+                        1
+                    </div>
+                    <div id="2" className={classes.runTestQuestionTab} ref={inputRef}  onClick={openQuestionHandle}>
+                        2
+                    </div>
+                </div>
         </div>
     )
 }

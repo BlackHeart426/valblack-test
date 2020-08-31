@@ -8,7 +8,7 @@ const QA = [
 
 ]
 
-export const QuestionsAndAnswers = (props: any) => {
+export const Questions = (props: any) => {
 
     return (
         <div>
