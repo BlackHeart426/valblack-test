@@ -37,6 +37,7 @@ interface IAction {
     type: string,
     error: string | null,
     data: {
+        answersCurrentTest: string | null,
         _id: string | null,
         imageSrc: string | null,
         email: string | null,
@@ -103,7 +104,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
             })
         case EReduxActionTypes.SET_CURRENT_USERS_STORE:
             return Object.assign({}, state, {
-                data: {
+                data: Object.assign({}, state.data,{
                     auth: {
                         token: action.data.token
                     },
@@ -112,8 +113,15 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                     name: action.data.name,
                     uuid: action.data._id,
                     hasAvatar: Boolean(action.data.avatarUrl),
-                    avatarUrl: action.data.avatarUrl
-                }
+                    avatarUrl: action.data.avatarUrl,
+                    answersCurrentTest: action.data.answersCurrentTest
+                })
+            })
+        case EReduxActionTypes.SET_CURRENT_USERS_ANSWER_TEST_STORE:
+            return Object.assign({}, state, {
+                data: Object.assign({}, state.data,{
+                    answersCurrentTest: action.data.answersCurrentTest,
+                })
             })
         case EReduxActionTypes.SET_CURRENT_USERS_DONE:
             return Object.assign({}, state, {

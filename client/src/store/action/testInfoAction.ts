@@ -39,7 +39,7 @@ function fetchTestInfo() {
     return function (dispatch: (arg0: { type: EReduxActionTypes; }) => void) {
         dispatch(requestTestInfo())
 
-        return requestService('/api/tests-info/', "GET")
+        return requestService('/api/test-info/', "GET")
             .then(
                 response => response.json(),
                 error =>  dispatch(errorTestInfo(error)) //вызов toast

@@ -1,6 +1,11 @@
 import {EReduxActionTypes} from "../../types";
 import {requestService} from "../../../services/request.service";
-import {clearLocalStorage, removeLocalStorage, saveLocalStorage} from "../../../services/auth.service";
+import {
+    clearLocalStorage,
+    removeLocalStorage,
+    saveItemLocalStorage,
+    saveLocalStorage
+} from "../../../services/auth.service";
 
 export interface ILocalStore {
     token: string,
@@ -25,9 +30,17 @@ function receiveCurrentUser(json: { token: string, email: string }) {
 }
 
 export function setCurrentUser(json: any) {
-
+    // saveItemLocalStorage()
     return {
         type: EReduxActionTypes.SET_CURRENT_USERS_STORE,
+        data: json,
+        receivedAt: Date.now()
+    }
+}
+export function setCurrentAnswerTestUser(json: any) {
+    saveItemLocalStorage('answersCurrentTest', JSON.stringify(json.answersCurrentTest))
+    return {
+        type: EReduxActionTypes.SET_CURRENT_USERS_ANSWER_TEST_STORE,
         data: json,
         receivedAt: Date.now()
     }

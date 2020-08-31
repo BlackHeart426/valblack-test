@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {styleTestInfo} from "./styleTestInfo";
+import {default as UUID} from "node-uuid";
 import {IListTestsInfo} from "../../store/reducers/testInfoReducer";
-import { useLocation, useParams } from "react-router-dom";
 import {getTestInfoActionCreator} from "../../store/action/testInfoAction";
 import {
     Box,
@@ -17,9 +17,12 @@ import {
 } from "@material-ui/core";
 import {Rating, Skeleton} from "@material-ui/lab";
 import {getCategoriesActionCreator} from "../../store/action/categoriesAction";
+import {useHistory} from "react-router-dom";
+import {setCurrentAnswerTestUser, setCurrentUser} from "../../store/action/currentUser/currentUserAction";
 
 
 const TestInfo = (props: any) => {
+    const history = useHistory();
     const [testInfo, setTestInfo] = useState<IListTestsInfo>({
         category: "", durationOfTime: null, imageSrc: "", name: "", questions: 0, rating: 0
     })
@@ -31,6 +34,19 @@ const TestInfo = (props: any) => {
             ? setTestInfo(prev => props.arrTestsInfo.filter((testInfo: IListTestsInfo) => testInfo._id === props.match.params.id)[0])
             : props.action.getInfoTests()
     },[props.arrTestsInfo])
+
+    const beginningTestHandle = () => {
+        const uuid = UUID.v4();
+        const data = {
+            answersCurrentTest: {
+                testId: props.match.params.id,
+                userTestID: uuid
+            }
+        }
+        props.action.setAnswersCurrentTest(data)
+
+        history.push("/rt/"+uuid)
+    }
 
     return(
         <div className={classes.root}>
@@ -101,7 +117,12 @@ const TestInfo = (props: any) => {
 
                                     </CardContent>
                                     <CardActions className={classes.cardInfoAction}>
-                                        <Button variant="contained" color="primary" fullWidth={true}>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            fullWidth={true}
+                                            onClick={beginningTestHandle}
+                                        >
                                             Пройти
                                         </Button>
                                     </CardActions>
@@ -135,6 +156,7 @@ function mapDispatchToProps(dispatch: any) {
         action: {
             getInfoTests: () => dispatch(getTestInfoActionCreator()),
             getCategories: () => dispatch(getCategoriesActionCreator()),
+            setAnswersCurrentTest: (data: { answersCurrentTest: any }) => dispatch(setCurrentAnswerTestUser(data))
         }
     }
 }

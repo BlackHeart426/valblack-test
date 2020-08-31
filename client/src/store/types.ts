@@ -4,6 +4,7 @@ export enum EReduxActionTypes {
     SET_CURRENT_USERS_DONE = 'currentUser/setCurrentUser_DONE',
     SET_CURRENT_USERS_ERROR = 'currentUser/setCurrentUser_ERROR',
     SET_CURRENT_USERS_STORE = 'currentUser/setCurrentUserStore',
+    SET_CURRENT_USERS_ANSWER_TEST_STORE = 'currentUser/setCurrentUserAnswersTestStore',
 
     UPLOAD_AVATAR_CURRENT_USERS_STARTED = 'currentUser/uploadUserAvatar_STARTED',
     UPLOAD_AVATAR_CURRENT_USERS_DONE = 'currentUser/uploadUserAvatar_DONE',

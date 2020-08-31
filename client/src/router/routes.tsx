@@ -11,7 +11,7 @@ import AuthAdminGuard from "../hoc/AuthAdminGuard";
 import AuthGuard from "../hoc/AuthGuard";
 import TestInfo from "../pages/testInfo/TestInfo";
 import {Profile} from "../pages/profile/Profile";
-import {PassingTest} from "../pages/passingTest/PassingTest";
+import PassingTest from "../pages/passingTest/PassingTest";
 
 export const useRoutes = () => {
     return (
@@ -23,7 +23,7 @@ export const useRoutes = () => {
             {/*<Route exact path="/profile/passed-tests" component={AuthGuard(Profile)}/>*/}
             {/*<Route exact path="/profile/settings" component={AuthGuard(Profile)}/>*/}
             <Route exact path="/t/:id" component={AuthGuard(TestInfo)}/>
-            <Route exact path="/pt/:id" component={AuthGuard(PassingTest)}/>
+            <Route exact path="/rt/:id" component={AuthGuard(PassingTest)}/>
             <Route exact path="/auth" component={AuthPage}/>
             <Route exact path="/admin" component={HomeAdminPage}/>
                 <Route exact path="/admin/home" component={HomeAdminPage}/>
