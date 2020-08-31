@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
             background: grey[200]
         },
         wrapper: {
-          paddingTop: 60
+          paddingTop: 50
         },
         content: {
             flex: '1 0 auto'
