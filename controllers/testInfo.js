@@ -37,7 +37,8 @@ module.exports.create = async function(req, res) {
     durationOfTime: req.body.durationOfTime,
     rating: req.body.rating,
     category: req.body.category,
-    imageSrc: req.body.imageSrc
+    imageSrc: req.body.imageSrc,
+    questionsAndAnswers: req.body.questionsAndAnswers
   })
 
   try {

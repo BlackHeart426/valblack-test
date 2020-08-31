@@ -38,10 +38,11 @@ export function setCurrentUser(json: any) {
     }
 }
 export function setCurrentAnswerTestUser(json: any) {
-    saveItemLocalStorage('answersCurrentTest', JSON.stringify(json.answersCurrentTest))
+    const data = JSON.stringify(json.answersCurrentTest)
+    saveItemLocalStorage('answersCurrentTest', data)
     return {
         type: EReduxActionTypes.SET_CURRENT_USERS_ANSWER_TEST_STORE,
-        data: json,
+        data: data,
         receivedAt: Date.now()
     }
 }

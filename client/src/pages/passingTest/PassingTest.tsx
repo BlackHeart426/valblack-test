@@ -13,8 +13,6 @@ const PassingTest = (props: any) => {
 
     useEffect(() => {
         const answersCurrentTest = JSON.parse(props.answersCurrentTest)
-        console.log(answersCurrentTest.testId)
-
         props.arrTestsInfo
             ? setTestInfo(prev => props.arrTestsInfo.filter((testInfo: IListTestsInfo) => testInfo._id === answersCurrentTest.testId)[0])
             : props.action.getInfoTests()

@@ -120,7 +120,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
         case EReduxActionTypes.SET_CURRENT_USERS_ANSWER_TEST_STORE:
             return Object.assign({}, state, {
                 data: Object.assign({}, state.data,{
-                    answersCurrentTest: action.data.answersCurrentTest,
+                    answersCurrentTest: action.data,
                 })
             })
         case EReduxActionTypes.SET_CURRENT_USERS_DONE:
