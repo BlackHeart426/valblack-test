@@ -6,7 +6,7 @@ module.exports.update = async function(req, res) {
   const updated = {}
 
   if (req.file) {
-    updated.imageSrc = req.file.path
+    updated.imageSrc = '\\'+req.file.path
   }
   console.log(updated)
   try {
