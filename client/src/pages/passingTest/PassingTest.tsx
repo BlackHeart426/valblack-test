@@ -33,11 +33,19 @@ const PassingTest = (props: any) => {
     },[props.arrTestsInfo])
 
     return (
-        <div>
+        <div className={classes.runTestContainer}>
+            <div className={classes.runTestHeader}>
+                <div className={classes.runTestTitle}>
+                    йцу
+                </div>
+            </div>
+            <div className={classes.runTestQuestion}>
                 <Questions
                     question = {currentQuestion}
                     selectedAnswer={onSelectedAnswerHandle}
                 />
+            </div>
+
             {/*{JSON.stringify(questions)}*/}
                 <div className={classes.runTestSwitcher}>
                     { questions && Object.keys(questions).map((item: any, index: number) => (

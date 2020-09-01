@@ -8,12 +8,25 @@ export const useStylePassedTest = makeStyles((theme: Theme) =>
         },
         runTestContainer: {
 
+            paddingTop: 50,
+            maxWidth: '960px',
+            margin: '0 auto'
         },
         runTestHeader: {
-
+            borderBottom:  '1px solid #b4b4b4',
+            display: 'flex',
+            marginBottom: 20,
+            justifyContent: 'space-between'
+        },
+        runTestTitle: {
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
+            paddingTop: 10,
+            paddingBottom: 10
         },
         runTestQuestion: {
-
+            marginTop: 5,
+            marginBottom: 10
         },
         runTestSwitcher: {
             position: 'absolute',
