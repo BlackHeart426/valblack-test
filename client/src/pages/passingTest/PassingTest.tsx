@@ -4,38 +4,52 @@ import {getTestInfoActionCreator} from "../../store/action/testInfoAction";
 import {getCategoriesActionCreator} from "../../store/action/categoriesAction";
 import {setCurrentAnswerTestUser} from "../../store/action/currentUser/currentUserAction";
 import {connect} from "react-redux";
-import {Questions} from "./questionsAndAnswers/Questions";
+import {IQuestion, Questions} from "./questionsAndAnswers/Questions";
 import {useStylePassedTest} from "./stylePassedTest";
 
 const PassingTest = (props: any) => {
     const classes = useStylePassedTest()
-    const [testInfo, setTestInfo] = useState<IListTestsInfo>({
-        category: "", durationOfTime: null, imageSrc: "", name: "", questions: 0, rating: 0
-    })
+    const [questions, setQuestions] = useState<any>(null)
+    const [currentQuestion, setCurrentQuestion] = useState<any>(null)
     const inputRef = useRef<HTMLInputElement>(null)
 
-    const openQuestionHandle = (event: any) => {
-        console.log(inputRef)
+    const openQuestionHandle = (id: any) => {
+        setCurrentQuestion(questions[id])
     }
 
+    const onSelectedAnswerHandle = (nextQuestions: string) => {
+        setCurrentQuestion(questions[nextQuestions])
+    }
     useEffect(() => {
         const answersCurrentTest = JSON.parse(props.answersCurrentTest)
-        props.arrTestsInfo
-            ? setTestInfo(prev => props.arrTestsInfo.filter((testInfo: IListTestsInfo) => testInfo._id === answersCurrentTest.testId)[0])
-            : props.action.getInfoTests()
+        if (props.arrTestsInfo) {
+            const arrQuestions = JSON.parse(props.arrTestsInfo.filter((testInfo: IListTestsInfo) =>
+                testInfo._id === answersCurrentTest.testId)[0].questionsAndAnswers)
+            setQuestions(arrQuestions)
+            setCurrentQuestion(Object.values(arrQuestions).filter((item: any) => item.order === 1)[0])
+        } else {
+            props.action.getInfoTests()
+        }
     },[props.arrTestsInfo])
 
     return (
         <div>
-            PassingTest
-                <Questions/>
+                <Questions
+                    question = {currentQuestion}
+                    selectedAnswer={onSelectedAnswerHandle}
+                />
+            {/*{JSON.stringify(questions)}*/}
                 <div className={classes.runTestSwitcher}>
-                    <div id="1" className={classes.runTestQuestionTab} ref={inputRef} onClick={openQuestionHandle}>
-                        1
-                    </div>
-                    <div id="2" className={classes.runTestQuestionTab} ref={inputRef}  onClick={openQuestionHandle}>
-                        2
-                    </div>
+                    { questions && Object.keys(questions).map((item: any, index: number) => (
+                        <div
+                            key={index}
+                            id="1"
+                            className={classes.runTestQuestionTab}
+                            ref={inputRef}
+                            onClick={() => openQuestionHandle(item)}>
+                            {index+1}
+                        </div>
+                    )) }
                 </div>
         </div>
     )
