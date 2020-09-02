@@ -19,16 +19,18 @@ const PassingTest = (props: any) => {
         setSelectedQuestion(id)
     }
 
+    //rewrite
     const onSaveAnswerHandle = (nextQuestions: string, selected: []) => {
-        setCurrentQuestion(questions[nextQuestions])
-        setSelectedQuestion(nextQuestions)
         const answersCurrentTest = JSON.parse(props.answersCurrentTest)
-        const question =   { '_id': selectedQuestion, answers: selected }
         let questionArr = []
         if (answersCurrentTest.questions) {
             questionArr = answersCurrentTest.questions
         }
-        questionArr.push(question)
+        questionArr.push({ '_id': selectedQuestion, answers: selected })
+
+        setCurrentQuestion(questions[nextQuestions])
+        setSelectedQuestion(nextQuestions)
+
         props.action.setAnswersCurrentTest({...answersCurrentTest, questions: questionArr})
     }
     useEffect(() => {
