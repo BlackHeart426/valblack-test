@@ -49,7 +49,7 @@ const PassingTest = (props: any) => {
             <div className={classes.runTestQuestion}>
                 <Questions
                     question = {currentQuestion}
-                    selectedAnswer={onSelectedAnswerHandle}
+                    onSelectedAnswer={onSelectedAnswerHandle}
                 />
             </div>
 

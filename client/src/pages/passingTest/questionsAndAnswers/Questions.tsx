@@ -17,14 +17,17 @@ export interface IQuestion {
     image: string,
     answers: IAnswers[],
 }
-export const Questions = (props: { question: IQuestion, selectedAnswer: (nextQuestions: string) => void }) => {
-    const [selected, setSelected] = useState<string | null>(null)
+export const Questions = (props: { question: IQuestion, onSelectedAnswer: (nextQuestions: string) => void }) => {
+    const [selected, setSelected] = useState<any>([])
     const classes = useQuestion()
-    const { question, selectedAnswer } = props
+    const { question, onSelectedAnswer } = props
 
-    const selectedAnswerHandle = (uuid: string) => {
-        console.log(uuid)
-        setSelected(uuid)
+    const onSelectedAnswerHandle = (uuid: string) => {
+        setSelected((prev: any) => (
+            prev.includes(uuid)
+                ? prev.filter((item: any) => item !== uuid)
+                : [...prev, uuid]
+        ))
     }
 
     return (
@@ -32,7 +35,6 @@ export const Questions = (props: { question: IQuestion, selectedAnswer: (nextQue
             <div className={classes.questionBody}>
                 <div className={classes.questionTitle}>
                     {question && question.name}
-                    {/*{question.name}*/}
                 </div>
                 <div>
 
@@ -41,9 +43,9 @@ export const Questions = (props: { question: IQuestion, selectedAnswer: (nextQue
                     {question && question.answers.map((item: any, index: number) => (
                             <Paper
                                 key={item._id}
-                                className={(selected === item._id) ? classes.questionAnswerItemSelected : classes.questionAnswerItem}
+                                className={(selected.includes(item._id)) ? classes.questionAnswerItemSelected : classes.questionAnswerItem}
                                 square
-                                onClick={() => selectedAnswerHandle(item._id)}
+                                onClick={() => onSelectedAnswerHandle(item._id)}
                             >
                                 {item.name}
                             </Paper>
@@ -52,15 +54,17 @@ export const Questions = (props: { question: IQuestion, selectedAnswer: (nextQue
                 </div>
             </div>
 
-            <Button
+            {selected
+                && <Button
                 variant="contained"
                 color="primary"
-                size={"medium"}
+                size={"large"}
                 fullWidth={true}
-                onClick={() => selectedAnswer(question.nextQuestion)}
-            >
-                Ответить
-            </Button>
+                onClick={() => onSelectedAnswer(question.nextQuestion)}
+                >
+                    Ответить
+                </Button>
+            }
 
         </div>
     )
