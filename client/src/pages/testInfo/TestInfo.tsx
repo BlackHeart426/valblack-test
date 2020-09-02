@@ -38,10 +38,8 @@ const TestInfo = (props: any) => {
     const beginningTestHandle = () => {
         const uuid = UUID.v4();
         const data = {
-            answersCurrentTest: {
-                testId: props.match.params.id,
-                userTestID: uuid
-            }
+            testId: props.match.params.id,
+            userTestID: uuid
         }
         props.action.setAnswersCurrentTest(data)
 

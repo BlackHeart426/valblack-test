@@ -15,13 +15,21 @@ const PassingTest = (props: any) => {
     const inputRef = useRef<HTMLInputElement>(null)
 
     const onSelectQuestionHandle = (id: any) => {
-        console.log(id)
         setCurrentQuestion(questions[id])
         setSelectedQuestion(id)
     }
 
-    const onSelectedAnswerHandle = (nextQuestions: string) => {
+    const onSaveAnswerHandle = (nextQuestions: string, selected: []) => {
         setCurrentQuestion(questions[nextQuestions])
+        setSelectedQuestion(nextQuestions)
+        const answersCurrentTest = JSON.parse(props.answersCurrentTest)
+        const question =   { '_id': selectedQuestion, answers: selected }
+        let questionArr = []
+        if (answersCurrentTest.questions) {
+            questionArr = answersCurrentTest.questions
+        }
+        questionArr.push(question)
+        props.action.setAnswersCurrentTest({...answersCurrentTest, questions: questionArr})
     }
     useEffect(() => {
         const answersCurrentTest = JSON.parse(props.answersCurrentTest)
@@ -31,6 +39,7 @@ const PassingTest = (props: any) => {
             const currentQuestion = Object.keys(arrQuestions).map((item: any, index:number) => {
                 return arrQuestions[item] =  { ...arrQuestions[item], _id: item }
             }).filter((item: any) => item.order === 1)[0]
+
             setQuestions(arrQuestions)
             setSelectedQuestion(currentQuestion._id)
             setCurrentQuestion(currentQuestion)
@@ -49,7 +58,7 @@ const PassingTest = (props: any) => {
             <div className={classes.runTestQuestion}>
                 <Questions
                     question = {currentQuestion}
-                    onSelectedAnswer={onSelectedAnswerHandle}
+                    onSaveAnswer={onSaveAnswerHandle}
                 />
             </div>
 
@@ -82,7 +91,7 @@ function mapDispatchToProps(dispatch: any) {
     return {
         action: {
             getInfoTests: () => dispatch(getTestInfoActionCreator()),
-            setAnswersCurrentTest: (data: { answersCurrentTest: any }) => dispatch(setCurrentAnswerTestUser(data))
+            setAnswersCurrentTest: (data: []) => dispatch(setCurrentAnswerTestUser(data))
         }
     }
 }

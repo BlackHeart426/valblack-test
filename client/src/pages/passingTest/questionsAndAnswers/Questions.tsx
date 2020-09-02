@@ -4,6 +4,7 @@ import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import {green} from "@material-ui/core/colors";
 import {Button, CardActions, Paper, Typography} from "@material-ui/core";
 import {useQuestion} from "./styleQuestion";
+import {on} from "cluster";
 
 interface IAnswers {
     name: string,
@@ -17,10 +18,10 @@ export interface IQuestion {
     image: string,
     answers: IAnswers[],
 }
-export const Questions = (props: { question: IQuestion, onSelectedAnswer: (nextQuestions: string) => void }) => {
+export const Questions = (props: { question: IQuestion, onSaveAnswer: (nextQuestions: string, selected: []) => void }) => {
     const [selected, setSelected] = useState<any>([])
     const classes = useQuestion()
-    const { question, onSelectedAnswer } = props
+    const { question, onSaveAnswer } = props
 
     const onSelectedAnswerHandle = (uuid: string) => {
         setSelected((prev: any) => (
@@ -28,6 +29,11 @@ export const Questions = (props: { question: IQuestion, onSelectedAnswer: (nextQ
                 ? prev.filter((item: any) => item !== uuid)
                 : [...prev, uuid]
         ))
+    }
+
+    const onSaveAnswerHandle = (question: string, selected: []) => {
+        setSelected([])
+        onSaveAnswer(question, selected)
     }
 
     return (
@@ -41,26 +47,26 @@ export const Questions = (props: { question: IQuestion, onSelectedAnswer: (nextQ
                 </div>
                 <div className={classes.questionAnswerList} >
                     {question && question.answers.map((item: any, index: number) => (
-                            <Paper
-                                key={item._id}
-                                className={(selected.includes(item._id)) ? classes.questionAnswerItemSelected : classes.questionAnswerItem}
-                                square
-                                onClick={() => onSelectedAnswerHandle(item._id)}
-                            >
-                                {item.name}
-                            </Paper>
+                        <Paper
+                            key={item._id}
+                            className={(selected.includes(item._id)) ? classes.questionAnswerItemSelected : classes.questionAnswerItem}
+                            square
+                            onClick={() => onSelectedAnswerHandle(item._id)}
+                        >
+                            {item.name}
+                        </Paper>
                     ))}
 
                 </div>
             </div>
 
-            {selected
+            {selected.length > 0
                 && <Button
                 variant="contained"
                 color="primary"
                 size={"large"}
                 fullWidth={true}
-                onClick={() => onSelectedAnswer(question.nextQuestion)}
+                onClick={() => onSaveAnswerHandle(question.nextQuestion, selected)}
                 >
                     Ответить
                 </Button>
