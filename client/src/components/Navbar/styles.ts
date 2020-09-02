@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             flexGrow: 1,
-            backgroundColor: '#f7f7fa',
+            backgroundColor: '#f7f8fa',
             maxWidth: '1200px'
         },
         grow: {

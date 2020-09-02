@@ -5,10 +5,10 @@ import {getCategoriesActionCreator} from "../../store/action/categoriesAction";
 import {setCurrentAnswerTestUser} from "../../store/action/currentUser/currentUserAction";
 import {connect} from "react-redux";
 import {IQuestion, Questions} from "./questionsAndAnswers/Questions";
-import {useStylePassedTest} from "./stylePassedTest";
+import {useStylePassingTest} from "./stylePassingTest";
 
 const PassingTest = (props: any) => {
-    const classes = useStylePassedTest()
+    const classes = useStylePassingTest()
     const [questions, setQuestions] = useState<any>(null)
     const [currentQuestion, setCurrentQuestion] = useState<any>(null)
     const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null)

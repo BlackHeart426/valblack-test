@@ -13,7 +13,7 @@ import {Footer} from "./components/Navbar/footer";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root : {
-            background: grey[200],
+            background: '#f7f8fa',
 
         },
         wrapper: {
@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme: Theme) =>
             minHeight: 'calc(100vh - 150px)'
         },
         footer: {
+            marginTop: 5,
             boxSizing: 'border-box',
             height: '100px',
-            backgroundColor: '#eee',
-            bordeTop: '1px solid #e0e0e0',
+            backgroundColor: '#f7f8fa',
             paddingTop: '35px'
         }
     })

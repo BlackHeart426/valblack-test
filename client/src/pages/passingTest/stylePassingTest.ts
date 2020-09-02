@@ -1,7 +1,7 @@
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import {blue, grey} from "@material-ui/core/colors";
 
-export const useStylePassedTest = makeStyles((theme: Theme) =>
+export const useStylePassingTest = makeStyles((theme: Theme) =>
     createStyles({
         root: {
 

@@ -43,7 +43,7 @@ const TestInfo = (props: any) => {
         }
         props.action.setAnswersCurrentTest(data)
 
-        history.push("/rt/"+uuid)
+        history.push("/pt/"+uuid)
     }
 
     return(
