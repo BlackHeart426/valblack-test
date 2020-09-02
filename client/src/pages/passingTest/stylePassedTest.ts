@@ -56,6 +56,23 @@ export const useStylePassedTest = makeStyles((theme: Theme) =>
             '& selected': {
                 backgroundColor: blue[200]
             }
+        },
+        runTestQuestionTabSelected: {
+            padding: '1em 0',
+            cursor: 'pointer',
+            width: '100%',
+            height: '100%',
+            textAlign: 'center',
+            fontSize: '1.25em',
+            fontWeight: 300,
+            background:  'rgba(91,131,255,0.6)',
+            color: '#fff',
+            '&:not(:last-child)': {
+                borderRight: '1px solid #b0b0b0 ',
+            },
+            '& selected': {
+                backgroundColor: blue[200]
+            }
         }
 
     }),

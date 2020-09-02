@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import {green} from "@material-ui/core/colors";
@@ -18,8 +18,15 @@ export interface IQuestion {
     answers: IAnswers[],
 }
 export const Questions = (props: { question: IQuestion, selectedAnswer: (nextQuestions: string) => void }) => {
+    const [selected, setSelected] = useState<string | null>(null)
     const classes = useQuestion()
     const { question, selectedAnswer } = props
+
+    const selectedAnswerHandle = (uuid: string) => {
+        console.log(uuid)
+        setSelected(uuid)
+    }
+
     return (
         <div>
             <div className={classes.questionBody}>
@@ -30,11 +37,16 @@ export const Questions = (props: { question: IQuestion, selectedAnswer: (nextQue
                 <div>
 
                 </div>
-                <div className={classes.questionAnswerList}>
+                <div className={classes.questionAnswerList} >
                     {question && question.answers.map((item: any, index: number) => (
-                        <Paper key={index} className={classes.questionAnswerItem} square >
-                            {item.name}
-                        </Paper>
+                            <Paper
+                                key={item._id}
+                                className={(selected === item._id) ? classes.questionAnswerItemSelected : classes.questionAnswerItem}
+                                square
+                                onClick={() => selectedAnswerHandle(item._id)}
+                            >
+                                {item.name}
+                            </Paper>
                     ))}
 
                 </div>

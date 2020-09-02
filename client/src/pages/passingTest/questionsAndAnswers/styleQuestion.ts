@@ -20,7 +20,18 @@ export const useQuestion = makeStyles((theme: Theme) =>
         },
         questionAnswerItem: {
             padding: '15px 30px',
-            marginTop: 1
+            marginTop: 1,
+            '&:hover': {
+                background:  '#d1d1d1',
+                cursor: 'pointer',
+            }
+        },
+        questionAnswerItemSelected: {
+            padding: '15px 30px',
+            marginTop: 1,
+            background:  'rgba(91,131,255,0.6)',
+            cursor: 'pointer',
+            color: '#fff'
         },
 
     }),

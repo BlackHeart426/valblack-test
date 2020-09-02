@@ -11,10 +11,13 @@ const PassingTest = (props: any) => {
     const classes = useStylePassedTest()
     const [questions, setQuestions] = useState<any>(null)
     const [currentQuestion, setCurrentQuestion] = useState<any>(null)
+    const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null)
     const inputRef = useRef<HTMLInputElement>(null)
 
-    const openQuestionHandle = (id: any) => {
+    const onSelectQuestionHandle = (id: any) => {
+        console.log(id)
         setCurrentQuestion(questions[id])
+        setSelectedQuestion(id)
     }
 
     const onSelectedAnswerHandle = (nextQuestions: string) => {
@@ -25,8 +28,12 @@ const PassingTest = (props: any) => {
         if (props.arrTestsInfo) {
             const arrQuestions = JSON.parse(props.arrTestsInfo.filter((testInfo: IListTestsInfo) =>
                 testInfo._id === answersCurrentTest.testId)[0].questionsAndAnswers)
+            const currentQuestion = Object.keys(arrQuestions).map((item: any, index:number) => {
+                return arrQuestions[item] =  { ...arrQuestions[item], _id: item }
+            }).filter((item: any) => item.order === 1)[0]
             setQuestions(arrQuestions)
-            setCurrentQuestion(Object.values(arrQuestions).filter((item: any) => item.order === 1)[0])
+            setSelectedQuestion(currentQuestion._id)
+            setCurrentQuestion(currentQuestion)
         } else {
             props.action.getInfoTests()
         }
@@ -46,19 +53,19 @@ const PassingTest = (props: any) => {
                 />
             </div>
 
-            {/*{JSON.stringify(questions)}*/}
-                <div className={classes.runTestSwitcher}>
-                    { questions && Object.keys(questions).map((item: any, index: number) => (
-                        <div
-                            key={index}
-                            id="1"
-                            className={classes.runTestQuestionTab}
-                            ref={inputRef}
-                            onClick={() => openQuestionHandle(item)}>
-                            {index+1}
-                        </div>
-                    )) }
-                </div>
+            <div className={classes.runTestSwitcher}>
+                { questions && Object.keys(questions).map((item: any, index: number) => (
+                    <div
+                        key={item}
+                        id="1"
+                        className={(selectedQuestion === item)
+                            ? classes.runTestQuestionTabSelected : classes.runTestQuestionTab}
+                        ref={inputRef}
+                        onClick={() => onSelectQuestionHandle(item)}>
+                        {index+1}
+                    </div>
+                )) }
+            </div>
         </div>
     )
 }
