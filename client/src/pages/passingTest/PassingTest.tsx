@@ -7,8 +7,9 @@ import {connect} from "react-redux";
 import {IQuestion, Questions} from "./questionsAndAnswers/Questions";
 import {useStylePassingTest} from "./stylePassingTest";
 import {useHistory} from "react-router-dom";
-import {checkTestService} from "../../services/checkTest.service";
+import {resultTestService} from "../../services/resultTestService";
 import {removeLocalStorage} from "../../services/auth.service";
+import {setTestResultActionCreator} from "../../store/action/testResult/setTestResultAction";
 
 const PassingTest = (props: any) => {
     const history = useHistory();
@@ -35,9 +36,13 @@ const PassingTest = (props: any) => {
             setCurrentQuestion(questions[nextQuestions])
             setSelectedQuestion(nextQuestions)
         } else {
-            const resultTest = checkTestService(questions, answersCurrentTest)
+            const templateWithAnswerUser = resultTestService(questions,
+                answersCurrentTest,
+                props.uuidUser,
+            )
+            props.action.setTestResult(templateWithAnswerUser)
             //Отправка в сторе и на сервер и сохр в сторе
-            // history.push(`/rt/${answersCurrentTest.userTestID}`)
+            history.push(`/rt/${answersCurrentTest.userTestID}`)
         }
 
 
@@ -95,7 +100,8 @@ const PassingTest = (props: any) => {
 function mapStateToProps(state: any) {
     return {
         arrTestsInfo: state.testInfo.data,
-        answersCurrentTest: state.currentUser.data.answersCurrentTest
+        answersCurrentTest: state.currentUser.data.answersCurrentTest,
+        uuidUser: state.currentUser.data.uuid,
     }
 
 }
@@ -104,7 +110,8 @@ function mapDispatchToProps(dispatch: any) {
     return {
         action: {
             getInfoTests: () => dispatch(getTestInfoActionCreator()),
-            setAnswersCurrentTest: (data: []) => dispatch(setCurrentAnswerTestUser(data))
+            setAnswersCurrentTest: (data: []) => dispatch(setCurrentAnswerTestUser(data)),
+            setTestResult: (data: any) => dispatch(setTestResultActionCreator(data))
         }
     }
 }

@@ -33,12 +33,14 @@ const moment = require('moment')
 
 module.exports.create = async function(req, res) {
   const data = new testResult({
-    userId: req.params.id,
-    testId: req.body.testId,
-    category: req.body.category,
+    uuid: req.body._id,
     rightAnswer: req.body.rightAnswer,
     summaryAnswer: req.body.summaryAnswer,
-    testPassed: req.body.testPassed
+    testPassed: req.body.testPassed,
+    userId: req.body.userId,
+    testId: req.body.testId,
+    // category: string,
+    templateWithAnswer: req.body.templateWithAnswer
   })
 
 

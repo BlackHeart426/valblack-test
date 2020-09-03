@@ -32,8 +32,8 @@ export const Questions = (props: { question: IQuestion, onSaveAnswer: (nextQuest
     }
 
     const onSaveAnswerHandle = (question: string, selected: []) => {
-        setSelected([])
         onSaveAnswer(question, selected)
+        setSelected([])
     }
 
     return (
@@ -46,7 +46,7 @@ export const Questions = (props: { question: IQuestion, onSaveAnswer: (nextQuest
 
                 </div>
                 <div className={classes.questionAnswerList} >
-                    {question && question.answers.map((item: any, index: number) => (
+                    {question && Object.values(question.answers).map((item: any, index: number) => (
                         <Paper
                             key={item._id}
                             className={(selected.includes(item._id)) ? classes.questionAnswerItemSelected : classes.questionAnswerItem}

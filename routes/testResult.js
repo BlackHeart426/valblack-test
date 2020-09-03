@@ -5,7 +5,7 @@ const passport = require('passport')
 const controller = require('../controllers/testResult')
 
 
-router.post('/:id',
+router.post('/',
   // passport.authenticate('jwt', {session: false}),
   controller.create)
 

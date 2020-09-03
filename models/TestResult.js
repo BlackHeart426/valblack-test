@@ -10,11 +10,19 @@ const resultSchema = new Schema({
     ref: 'test-infos',
     type: Schema.Types.ObjectId
   },
-  category: {
-    ref: 'categories',
-    type: Schema.Types.ObjectId
-  },
+  // category: {
+  //   ref: 'categories',
+  //   type: Schema.Types.ObjectId
+  // },
   rightAnswer: {
+    type: String,
+    default: ''
+  },
+  templateWithAnswer: {
+    type: String,
+    default: ''
+  },
+  uuid: {
     type: String,
     default: ''
   },
