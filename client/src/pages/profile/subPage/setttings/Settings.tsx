@@ -15,7 +15,6 @@ const Settings = (props: any) => {
     function onFileUpload(event: any): void {
         const file = event.target.files[0]
         const image = file
-        console.log(props.uuid)
         props.action.uploadAvatar(image, props.uuid)
         const reader = new FileReader()
 

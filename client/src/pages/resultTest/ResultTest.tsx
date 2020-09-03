@@ -10,6 +10,13 @@ const ResultTest = (props: any) => {
     const [currentQuestion, setCurrentQuestion] = useState<any>(null)
     const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null)
     const inputRef = useRef<HTMLInputElement>(null)
+
+    useEffect(() => {
+        //Проверка результата в сторе если нет то запрос можно все через Action
+
+        //Получить результат и отобразить
+
+    },[])
     return (
         <div className={classes.resultTestContainer}>
             <div className={classes.resultTestHeader}>

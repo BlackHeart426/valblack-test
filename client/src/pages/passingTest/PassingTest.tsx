@@ -6,8 +6,12 @@ import {setCurrentAnswerTestUser} from "../../store/action/currentUser/currentUs
 import {connect} from "react-redux";
 import {IQuestion, Questions} from "./questionsAndAnswers/Questions";
 import {useStylePassingTest} from "./stylePassingTest";
+import {useHistory} from "react-router-dom";
+import {checkTestService} from "../../services/checkTest.service";
+import {removeLocalStorage} from "../../services/auth.service";
 
 const PassingTest = (props: any) => {
+    const history = useHistory();
     const classes = useStylePassingTest()
     const [questions, setQuestions] = useState<any>(null)
     const [currentQuestion, setCurrentQuestion] = useState<any>(null)
@@ -27,13 +31,20 @@ const PassingTest = (props: any) => {
             questionArr = answersCurrentTest.questions
         }
         questionArr.push({ '_id': selectedQuestion, answers: selected })
+        if (nextQuestions) {
+            setCurrentQuestion(questions[nextQuestions])
+            setSelectedQuestion(nextQuestions)
+        } else {
+            const resultTest = checkTestService(questions, answersCurrentTest)
+            //Отправка в сторе и на сервер и сохр в сторе
+            // history.push(`/rt/${answersCurrentTest.userTestID}`)
+        }
 
-        setCurrentQuestion(questions[nextQuestions])
-        setSelectedQuestion(nextQuestions)
 
         props.action.setAnswersCurrentTest({...answersCurrentTest, questions: questionArr})
     }
     useEffect(() => {
+        removeLocalStorage('answersCurrentTest')
         const answersCurrentTest = JSON.parse(props.answersCurrentTest)
         if (props.arrTestsInfo) {
             const arrQuestions = JSON.parse(props.arrTestsInfo.filter((testInfo: IListTestsInfo) =>

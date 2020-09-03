@@ -41,7 +41,6 @@ module.exports.create = async function(req, res) {
     testPassed: req.body.testPassed
   })
 
-  console.log(data)
 
   try {
     await data.save()

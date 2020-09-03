@@ -8,7 +8,6 @@ module.exports.update = async function(req, res) {
   if (req.file) {
     updated.imageSrc = '\\'+req.file.path
   }
-  console.log(updated)
   try {
     const user = await User.findOneAndUpdate(
       {_id: req.params.id},
