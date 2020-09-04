@@ -22,6 +22,10 @@ export enum EReduxActionTypes {
     SET_TEST_RESULT_DONE = 'testResult/setTestResult_DONE',
     SET_TEST_RESULT_ERROR = 'testResult/setTestResult_ERROR',
 
+    SET_TEST_RESULT_SHORT_INFO_STARTED = 'testResultShortInfo/setTestResultShortInfo_STARTED',
+    SET_TEST_RESULT_SHORT_INFO_DONE = 'testResultShortInfo/setTestResultShortInfo_DONE',
+    SET_TEST_RESULT_SHORT_INFO_ERROR = 'testResultShortInfo/setTestResultShortInfo_ERROR',
+
     FETCH_TESTS_RESULT_STARTED = 'testResult/fetchTestsResult_STARTED',
     FETCH_TESTS_RESULT_DONE = 'testResult/fetchTestsResult_DONE',
     FETCH_TESTS_RESULT_ERROR = 'testResult/fetchTestsResult_ERROR',

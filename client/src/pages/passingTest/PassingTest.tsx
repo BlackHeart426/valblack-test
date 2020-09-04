@@ -10,6 +10,7 @@ import {useHistory} from "react-router-dom";
 import {resultTestService} from "../../services/resultTestService";
 import {removeLocalStorage} from "../../services/auth.service";
 import {setTestResultActionCreator} from "../../store/action/testResult/setTestResultAction";
+import {setTestResultShortInfoActionCreator} from "../../store/action/testResult/setTestResultShortInfoAction";
 
 const PassingTest = (props: any) => {
     const history = useHistory();
@@ -41,6 +42,7 @@ const PassingTest = (props: any) => {
                 props.uuidUser,
             )
             props.action.setTestResult(templateWithAnswerUser)
+            props.action.setTestResultShortInfo(templateWithAnswerUser)
             //Отправка в сторе и на сервер и сохр в сторе
             history.push(`/rt/${answersCurrentTest.userTestID}`)
         }
@@ -111,7 +113,8 @@ function mapDispatchToProps(dispatch: any) {
         action: {
             getInfoTests: () => dispatch(getTestInfoActionCreator()),
             setAnswersCurrentTest: (data: []) => dispatch(setCurrentAnswerTestUser(data)),
-            setTestResult: (data: any) => dispatch(setTestResultActionCreator(data))
+            setTestResult: (data: any) => dispatch(setTestResultActionCreator(data)),
+            setTestResultShortInfo: (data: any) => dispatch(setTestResultShortInfoActionCreator(data))
         }
     }
 }

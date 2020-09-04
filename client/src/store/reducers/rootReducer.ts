@@ -4,6 +4,7 @@ import {currentUserReducer, ICurrentUserState} from "./currentUserReducer";
 import {ITestInfoState, testInfoReducer} from "./testInfoReducer";
 import {categoriesReducer, ICategoriesState} from "./categoriesReducer";
 import {testResultReducer} from "./testResultReducer";
+import {testResultShortInfoReducer} from "./testResultShortInfoReducer";
 
 export interface RootState {
     currentUser: ICurrentUserState,
@@ -15,7 +16,8 @@ const rootReduce = combineReducers({
     currentUser: currentUserReducer,
     testInfo: testInfoReducer,
     categories: categoriesReducer,
-    testResult: testResultReducer
+    testResult: testResultReducer,
+    testResultShortInfo: testResultShortInfoReducer
 })
 
 export type AppState = ReturnType<typeof rootReduce>
