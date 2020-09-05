@@ -1,4 +1,5 @@
 import {EReduxActionTypes} from "../types";
+import {netWorkStatusDone, netWorkStatusError, netWorkStatusStarted} from "./rootReducer";
 
 const initialState = {
     data: null,
@@ -60,33 +61,20 @@ export const testResultShortInfoReducer = (state: ITestResultState = initialStat
         case EReduxActionTypes.SET_TEST_RESULT_SHORT_INFO_STARTED:
             return Object.assign({}, state, {
                 meta: {
-                    setNetWorkStatus: {
-                        isFetching: true,
-                        isFetched: false,
-                        error: null
-                    }
+                    setNetWorkStatus: netWorkStatusStarted()
                 }
             })
         case EReduxActionTypes.SET_TEST_RESULT_SHORT_INFO_ERROR:
             return Object.assign({}, state, {
                 meta: {
-                    setNetWorkStatus: {
-                        isFetching: false,
-                        isFetched: true,
-                        error: action.error
-                    }
+                    setNetWorkStatus: netWorkStatusError(action.error)
                 }
             })
         case EReduxActionTypes.SET_TEST_RESULT_SHORT_INFO_DONE:
             return Object.assign({}, state, {
                 data: action.data,
                 meta: {
-                    setNetWorkStatus: {
-                        isFetching: false,
-                        isFetched: true,
-                        error: null,
-                        lastUpdated: action.receivedAt
-                    }
+                    setNetWorkStatus: netWorkStatusDone(action.receivedAt)
                 }
             })
         default:

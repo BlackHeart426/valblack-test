@@ -23,3 +23,29 @@ const rootReduce = combineReducers({
 export type AppState = ReturnType<typeof rootReduce>
 
 export default rootReduce
+
+export const netWorkStatusStarted = () => {
+    return {
+        isFetching: true,
+        isFetched: false,
+        error: null
+    }
+}
+
+export const netWorkStatusError = (error: any) => {
+    return {
+        isFetching: false,
+        isFetched: true,
+        error: error
+    }
+}
+
+export const netWorkStatusDone = (lastUpdate: any = '') => {
+    return {
+        isFetching: false,
+        isFetched: true,
+        error: null,
+        lastUpdate
+    }
+}
+

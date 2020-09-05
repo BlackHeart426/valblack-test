@@ -1,14 +1,11 @@
 import {EReduxActionTypes} from "../../types";
 import {requestService} from "../../../services/request.service";
+import {netWorkStatusDone, netWorkStatusError, netWorkStatusStarted} from "../../reducers/rootReducer";
 
 function requestResultTest(uuidTest: string) {
     const data = {[uuidTest]: {
             meta: {
-                netWorkStatus: {
-                    isFetching: true,
-                    isFetched: false,
-                    error: null
-                }
+                netWorkStatus: netWorkStatusDone()
             }
         }
     }
@@ -22,11 +19,7 @@ function receiveResultTest(json: any) {
     const data = {[json.uuid]: {
             data: json,
             meta: {
-                netWorkStatus: {
-                    isFetching: false,
-                    isFetched: true,
-                    error: null
-                }
+                netWorkStatus: netWorkStatusStarted()
             }
         }
     }
@@ -41,11 +34,7 @@ function receiveResultTest(json: any) {
 function errorResultTest(error: string, uuidTest: string) {
     const data = {[uuidTest]: {
             meta: {
-                netWorkStatus: {
-                    isFetching: false,
-                    isFetched: true,
-                    error: error
-                }
+                netWorkStatus: netWorkStatusError(error)
             }
         }
     }

@@ -1,4 +1,5 @@
 import {EReduxActionTypes} from "../types";
+import {netWorkStatusDone, netWorkStatusError, netWorkStatusStarted} from "./rootReducer";
 
 const initialState = {
     data: {
@@ -85,11 +86,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
         case EReduxActionTypes.SET_CURRENT_USERS_STARTED:
             return Object.assign({}, state, {
                 meta: {
-                    netWorkStatus: {
-                        isFetching: true,
-                        isFetched: false,
-                        error: null
-                    }
+                    netWorkStatus: netWorkStatusStarted()
                 }
             })
         case EReduxActionTypes.SET_CURRENT_USERS_ERROR:
@@ -137,12 +134,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                     avatarUrl: action.data.avatarUrl
                 },
                 meta: {
-                    netWorkStatus: {
-                        isFetching: false,
-                        isFetched: true,
-                        error: null,
-                        lastUpdated: action.receivedAt
-                    }
+                    netWorkStatus: netWorkStatusDone(action.receivedAt)
                 }
             })
         case EReduxActionTypes.UPLOAD_AVATAR_CURRENT_USERS_STARTED:
@@ -159,11 +151,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
         case EReduxActionTypes.UPLOAD_AVATAR_CURRENT_USERS_ERROR:
             return Object.assign({}, state, {
                 meta: Object.assign({}, state.meta, {
-                        uploadAvatarNetWorkStatus: {
-                            isFetching: false,
-                            isFetched: true,
-                            error: action.error
-                        }
+                        uploadAvatarNetWorkStatus: netWorkStatusError(action.error)
                     }
                 )
             })
@@ -173,12 +161,7 @@ export const currentUserReducer = (state: ICurrentUserState = initialState, acti
                     avatarUrl: action.data.imageSrc
                 }),
                 meta: Object.assign({}, state.meta, {
-                    uploadAvatarNetWorkStatus: {
-                        isFetching: false,
-                        isFetched: true,
-                        error: null,
-                        lastUpdated: action.receivedAt
-                    }
+                    uploadAvatarNetWorkStatus: netWorkStatusDone(action.receivedAt)
                     }
                 )
             })

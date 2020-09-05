@@ -1,4 +1,5 @@
 import {EReduxActionTypes} from "../types";
+import {netWorkStatusDone, netWorkStatusError, netWorkStatusStarted} from "./rootReducer";
 
 const initialState = {
     data: {
@@ -53,11 +54,7 @@ export const categoriesReducer = (state: ICategoriesState = initialState, action
         case EReduxActionTypes.FETCH_CATEGORIES_STARTED:
             return Object.assign({}, state, {
                 meta: {
-                    netWorkStatus: {
-                        isFetching: true,
-                        isFetched: false,
-                        error: null
-                    }
+                    netWorkStatus: netWorkStatusStarted()
                 }
             })
         case EReduxActionTypes.SET_CATEGORIES_STORE:
@@ -67,23 +64,14 @@ export const categoriesReducer = (state: ICategoriesState = initialState, action
         case EReduxActionTypes.FETCH_CATEGORIES_ERROR:
             return Object.assign({}, state, {
                 meta: {
-                    netWorkStatus: {
-                        isFetching: false,
-                        isFetched: true,
-                        error: action.error
-                    }
+                    netWorkStatus: netWorkStatusError(action.error)
                 }
             })
         case EReduxActionTypes.FETCH_CATEGORIES_DONE:
             return Object.assign({}, state, {
                 data: Object.assign({}, state.data, {list: action.data}),
                 meta: {
-                    netWorkStatus: {
-                        isFetching: false,
-                        isFetched: true,
-                        error: null,
-                        lastUpdated: action.receivedAt
-                    }
+                    netWorkStatus: netWorkStatusDone(action.receivedAt)
                 }
             })
         default:
