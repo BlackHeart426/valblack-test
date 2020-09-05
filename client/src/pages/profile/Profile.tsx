@@ -51,7 +51,7 @@ const Profile = (props: any) => {
                         </div>
 
                         {subPage === 2 && <Settings/>}
-                        {subPage === 1 && <PassedResult/>}
+                        {subPage === 1 && <PassedResult arrTestResultShortInfo = {props.arrTestResultShortInfo}/>}
                         {subPage === 0 && <Activity/>}
                     </div>
                 </Grid>
@@ -63,6 +63,7 @@ const Profile = (props: any) => {
 function mapStateToProps(state: any) {
     return {
         userId: state.currentUser.data.uuid,
+        arrTestResultShortInfo: state.testResultShortInfo.data
     }
 
 }

@@ -31,6 +31,7 @@ export interface IListTestsResult {
     testPassed: boolean,
     userId: string,
     testId: string,
+    datePassed: string,
     // category: string,
     templateWithAnswer: string
 }

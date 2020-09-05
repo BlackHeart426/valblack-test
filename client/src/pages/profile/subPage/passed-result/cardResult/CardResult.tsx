@@ -2,10 +2,17 @@ import {styleCardResult} from "./styleCardResult";
 import React from "react";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import Grid from "@material-ui/core/Grid";
-import {green} from "@material-ui/core/colors";
+import {green, red} from "@material-ui/core/colors";
 import {Paper, Typography} from "@material-ui/core";
+import {IListTestsResult} from "../../../../../store/reducers/testResultShortInfoReducer";
+import moment from "moment";
+
+
 
 export const CardResult = (props: any) => {
+    const {
+        testResults
+    } = props
     const classes = styleCardResult()
     return (
         <div className={classes.root}>
@@ -18,16 +25,16 @@ export const CardResult = (props: any) => {
                     </Grid>
                     <Grid item xs={2}>
                         <Typography align={"center"}  >
-                            6 из 16
+                            {testResults.rightAnswer} из {testResults.summaryAnswer}
                         </Typography>
                     </Grid>
                     <Grid item xs={3}>
                         <Typography align={"center"}  color="textSecondary">
-                            14:51 19 August 2020
+                            {moment(testResults.datePassed).format('HH:mm LL')}
                         </Typography>
                     </Grid>
                     <Grid item xs={1} style={{textAlign: "right"}}>
-                        <CheckCircleOutlineIcon style={{ color: green[500] }}/>
+                        <CheckCircleOutlineIcon style = {testResults.testPassed ? { color: green[500] } : { color: red[500] } }/>
                     </Grid>
                 </Grid>
             </Paper>
