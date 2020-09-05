@@ -6,14 +6,20 @@ import Settings from "./subPage/setttings/Settings";
 import {PassedResult} from "./subPage/passed-result/PassedResult";
 import {Activity} from "./subPage/activity/Activity";
 import ProfileInfo from "./ProfileInfo";
+import {getResultTestActionCreator} from "../../store/action/testResult/getTestResultAction";
+import {connect} from "react-redux";
+import {getResultTestShortInfoByUserActionCreator} from "../../store/action/testShortInfo/getTestResultShortInfoAction";
 
 
 
-export const Profile = (props: any) => {
+const Profile = (props: any) => {
 
     const classes = useStyleProfile()
     const [subPage, setSubPage] = useState(0)
 
+    useEffect(() => {
+        props.action.getResultTestShortInfo(props.userId)
+    },[])
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
         setSubPage( newValue )
@@ -53,3 +59,20 @@ export const Profile = (props: any) => {
         </div>
     )
 }
+
+function mapStateToProps(state: any) {
+    return {
+        userId: state.currentUser.data.uuid,
+    }
+
+}
+
+function mapDispatchToProps(dispatch: any) {
+    return {
+        action: {
+            getResultTestShortInfo: (userId: string) => dispatch(getResultTestShortInfoByUserActionCreator(userId)),
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

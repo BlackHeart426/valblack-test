@@ -10,7 +10,7 @@ import {useHistory} from "react-router-dom";
 import {resultTestService} from "../../services/resultTestService";
 import {removeLocalStorage} from "../../services/auth.service";
 import {setTestResultActionCreator} from "../../store/action/testResult/setTestResultAction";
-import {setTestResultShortInfoActionCreator} from "../../store/action/testResult/setTestResultShortInfoAction";
+import {setTestResultShortInfoActionCreator} from "../../store/action/testShortInfo/setTestResultShortInfoAction";
 
 const PassingTest = (props: any) => {
     const history = useHistory();

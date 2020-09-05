@@ -77,6 +77,25 @@ export const testResultShortInfoReducer = (state: ITestResultState = initialStat
                     setNetWorkStatus: netWorkStatusDone(action.receivedAt)
                 }
             })
+        case EReduxActionTypes.FETCH_TEST_RESULT_SHORT_INFO_STARTED:
+            return Object.assign({}, state, {
+                meta: {
+                    setNetWorkStatus: netWorkStatusStarted()
+                }
+            })
+        case EReduxActionTypes.FETCH_TEST_RESULT_SHORT_INFO_ERROR:
+            return Object.assign({}, state, {
+                meta: {
+                    setNetWorkStatus: netWorkStatusError(action.error)
+                }
+            })
+        case EReduxActionTypes.FETCH_TEST_RESULT_SHORT_INFO_DONE:
+            return Object.assign({}, state, {
+                data: action.data,
+                meta: {
+                    setNetWorkStatus: netWorkStatusDone(action.receivedAt)
+                }
+            })
         default:
             return state
     }

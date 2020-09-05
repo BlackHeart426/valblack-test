@@ -10,7 +10,7 @@ import {AuthAdminPage} from "../modules/admin/pages/authAdmin/AuthAdminPage";
 import AuthAdminGuard from "../hoc/AuthAdminGuard";
 import AuthGuard from "../hoc/AuthGuard";
 import TestInfo from "../pages/testInfo/TestInfo";
-import {Profile} from "../pages/profile/Profile";
+import Profile from "../pages/profile/Profile";
 import PassingTest from "../pages/passingTest/PassingTest";
 import ResultTest from "../pages/resultTest/ResultTest";
 

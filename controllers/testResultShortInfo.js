@@ -11,14 +11,14 @@ const moment = require('moment')
 //   }
 // }
 
-// module.exports.getById = async function(req, res) {
-//   try {
-//     const data = await testsInfo.findById(req.params.id)
-//     res.status(200).json(data)
-//   } catch (e) {
-//     errorHandler(res, e)
-//   }
-// }
+module.exports.getByUser = async function(req, res) {
+  try {
+    const data = await testResultShortInfo.find({userId: req.params.userId})
+    res.status(200).json(data)
+  } catch (e) {
+    errorHandler(res, e)
+  }
+}
 
 // module.exports.remove = async function(req, res) {
 //   try {
