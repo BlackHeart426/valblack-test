@@ -66,6 +66,18 @@ export interface ITestResultState {
 // оптимизировать
 export const testResultReducer = (state: ITestResultState = initialState, action: IAction) => {
     switch (action.type) {
+        case EReduxActionTypes.FETCH_TESTS_RESULT_DONE:
+            return Object.assign({}, state, {
+                data: Object.assign({}, state.data, action.data),
+            })
+        case EReduxActionTypes.FETCH_TESTS_RESULT_STARTED:
+            return Object.assign({}, state, {
+                data: Object.assign({}, state.data, action.data),
+            })
+        case EReduxActionTypes.FETCH_TESTS_RESULT_ERROR:
+            return Object.assign({}, state, {
+                data: Object.assign({}, state.data, action.data),
+            })
         case EReduxActionTypes.SET_TEST_RESULT_STARTED:
             return Object.assign({}, state, {
                 meta: {
@@ -87,6 +99,7 @@ export const testResultReducer = (state: ITestResultState = initialState, action
                 }
             })
         case EReduxActionTypes.SET_TEST_RESULT_DONE:
+            console.log(action.data[action.data.uuid])
             return Object.assign({}, state, {
                 data: Object.assign({}, state.data, action.data),
                 meta: {

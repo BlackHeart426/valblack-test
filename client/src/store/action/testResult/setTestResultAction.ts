@@ -8,8 +8,17 @@ function requestResultTest() {
 }
 
 function receiveResultTest(json: any) {
-    const data = {[json.uuid]: json}
-    console.log(data)
+    const data = {[json.uuid]: {
+            data: json,
+            meta: {
+                netWorkStatus: {
+                    isFetching: false,
+                    isFetched: true,
+                    error: null
+                }
+            }
+        }
+    }
     return {
         type: EReduxActionTypes.SET_TEST_RESULT_DONE,
         data: data,

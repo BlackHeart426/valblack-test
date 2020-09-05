@@ -1,29 +1,62 @@
 import {EReduxActionTypes} from "../../types";
 import {requestService} from "../../../services/request.service";
 
-function requestResultTest() {
+function requestResultTest(uuidTest: string) {
+    const data = {[uuidTest]: {
+            meta: {
+                netWorkStatus: {
+                    isFetching: true,
+                    isFetched: false,
+                    error: null
+                }
+            }
+        }
+    }
     return {
-        type: EReduxActionTypes.FETCH_TESTS_RESULT_STARTED
+        type: EReduxActionTypes.FETCH_TESTS_RESULT_STARTED,
+        data
     }
 }
 
-function receiveResultTest(json: string) {
+function receiveResultTest(json: any) {
+    const data = {[json.uuid]: {
+            data: json,
+            meta: {
+                netWorkStatus: {
+                    isFetching: false,
+                    isFetched: true,
+                    error: null
+                }
+            }
+        }
+    }
+    console.log(data)
     return {
         type: EReduxActionTypes.FETCH_TESTS_RESULT_DONE,
-        data: json,
+        data: data,
         receivedAt: Date.now()
     }
 }
 
-function errorResultTest(error: string) {
+function errorResultTest(error: string, uuidTest: string) {
+    const data = {[uuidTest]: {
+            meta: {
+                netWorkStatus: {
+                    isFetching: false,
+                    isFetched: true,
+                    error: error
+                }
+            }
+        }
+    }
     return {
         type: EReduxActionTypes.FETCH_TESTS_RESULT_ERROR,
-        error
+        data
     }
 }
 
-function shouldFetchResultTest(state: any) {
-    const data = state.testResult.data
+function shouldFetchResultTest(state: any, uuidTest: string) {
+    const data = state.testResult.data[uuidTest]
     if (!data) {
         return true
     } else if (data.isFetching) {
@@ -33,14 +66,14 @@ function shouldFetchResultTest(state: any) {
     }
 }
 
-function fetchResultTest() {
+function fetchResultTest(uuidTest: string) {
     return function (dispatch: (arg0: { type: EReduxActionTypes; }) => void) {
-        dispatch(requestResultTest())
+        dispatch(requestResultTest(uuidTest))
 
-        return requestService('/api/test-result/', "GET")
+        return requestService(`/api/test-result/${uuidTest}`, "GET")
             .then(
                 response => response.json(),
-                error =>  dispatch(errorResultTest(error)) //вызов toast
+                error =>  dispatch(errorResultTest(error, uuidTest)) //вызов toast
             )
             .then(
                 json => dispatch(receiveResultTest(json))
@@ -48,11 +81,11 @@ function fetchResultTest() {
     }
 }
 
-export function getResultTestActionCreator() {
+export function getResultTestActionCreator(uuidTest: string) {
     return (dispatch: (arg0: (dispatch: (arg0: { type: EReduxActionTypes; }) => void) => Promise<void>) => any, getState: () => any) => {
-        if (shouldFetchResultTest(getState())) {
+        if (shouldFetchResultTest(getState(), uuidTest)) {
             // return setTimeout(() => {dispatch(fetchResultTest())}, 3000)
-            return dispatch(fetchResultTest())
+            return dispatch(fetchResultTest(uuidTest))
         } else {
             return Promise.resolve()
         }

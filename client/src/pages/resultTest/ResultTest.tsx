@@ -3,6 +3,8 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import {connect} from "react-redux";
 import {useStyleResultTest} from "./styleResultTest";
 import {Grid, Paper, Typography} from "@material-ui/core";
+import {getTestInfoActionCreator} from "../../store/action/testInfoAction";
+import {getResultTestActionCreator} from "../../store/action/testResult/getTestResultAction";
 
 const ResultTest = (props: any) => {
     const classes = useStyleResultTest()
@@ -13,7 +15,7 @@ const ResultTest = (props: any) => {
 
     useEffect(() => {
         //Проверка результата в сторе если нет то запрос можно все через Action
-
+        props.action.getResultTest(props.match.params.id);
         //Получить результат и отобразить
 
     },[])
@@ -105,6 +107,7 @@ const ResultTest = (props: any) => {
 
 function mapStateToProps(state: any) {
     return {
+
     }
 
 }
@@ -112,6 +115,7 @@ function mapStateToProps(state: any) {
 function mapDispatchToProps(dispatch: any) {
     return {
         action: {
+            getResultTest: (uuidTest: string) => dispatch(getResultTestActionCreator(uuidTest)),
         }
     }
 }
