@@ -1,24 +1,45 @@
 import {EReduxActionTypes} from "../types";
 
-const initialState = {
-    data: null,
+interface testResult {
+    data: IListTestsResult | null,
     meta: {
         netWorkStatus: {
-            isFetching: false,
-            isFetched: true,
-            error: null
-        },
+            isFetching: boolean,
+            isFetched: boolean,
+            error: string | null
+        }
+    }
+}
+
+// data: null,
+//     meta: {
+//     netWorkStatus: {
+//         isFetching: false,
+//             isFetched: true,
+//             error: null
+//     },
+//     setNetWorkStatus: {
+//         isFetching: false,
+//             isFetched: true,
+//             error: null
+//     }
+// }
+
+const initialState = {
+    data: {},
+    meta: {
         setNetWorkStatus: {
             isFetching: false,
             isFetched: true,
             error: null
         }
     }
+
 }
 
 interface IAction {
     type: string,
-    data: IListTestsResult[],
+    data: any,
     error: string | null,
     receivedAt: string | null
 }
@@ -35,19 +56,7 @@ export interface IListTestsResult {
 }
 
 export interface ITestResultState {
-    data: IListTestsResult | null,
-    meta: {
-        netWorkStatus: {
-            isFetching: boolean,
-            isFetched: boolean,
-            error: string | null
-        },
-        setNetWorkStatus: {
-            isFetching: boolean,
-            isFetched: boolean,
-            error: string | null
-        }
-    }
+    data: any
 }
 
 
@@ -79,7 +88,7 @@ export const testResultReducer = (state: ITestResultState = initialState, action
             })
         case EReduxActionTypes.SET_TEST_RESULT_DONE:
             return Object.assign({}, state, {
-                data: action.data,
+                data: Object.assign({}, state.data, action.data),
                 meta: {
                     setNetWorkStatus: {
                         isFetching: false,

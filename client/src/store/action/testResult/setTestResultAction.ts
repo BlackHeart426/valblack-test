@@ -7,10 +7,12 @@ function requestResultTest() {
     }
 }
 
-function receiveResultTest(json: string) {
+function receiveResultTest(json: any) {
+    const data = {[json.uuid]: json}
+    console.log(data)
     return {
         type: EReduxActionTypes.SET_TEST_RESULT_DONE,
-        data: json,
+        data: data,
         receivedAt: Date.now()
     }
 }

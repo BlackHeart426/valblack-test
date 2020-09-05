@@ -32,7 +32,7 @@ export function setTestResultShortInfoActionCreator(json: any) {
                 error =>  dispatch(errorResultTestShortInfo(error)) //вызов toast
             )
             .then(
-                json => dispatch(receiveResultTestShortInfo(json))
+                // json => dispatch(receiveResultTestShortInfo(json))
             )
     }
 }
