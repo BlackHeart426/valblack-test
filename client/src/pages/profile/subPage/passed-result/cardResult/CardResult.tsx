@@ -3,6 +3,7 @@ import React from "react";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import Grid from "@material-ui/core/Grid";
 import {green, red} from "@material-ui/core/colors";
+import { useHistory} from 'react-router-dom';
 import {Paper, Typography} from "@material-ui/core";
 import {IListTestsResult} from "../../../../../store/reducers/testResultShortInfoReducer";
 import moment from "moment";
@@ -10,12 +11,18 @@ import moment from "moment";
 
 
 export const CardResult = (props: any) => {
+    const history = useHistory()
     const {
         testResults
     } = props
     const classes = styleCardResult()
+
+    const openResultTest = (uuid: string) => {
+        history.push(`/rt/${uuid}`)
+    }
+
     return (
-        <div className={classes.root}>
+        <div className={classes.root} onClick={() => openResultTest(testResults.uuid)}>
             <Paper elevation={3} className={classes.card}>
                 <Grid container >
                     <Grid item xs={6}>
