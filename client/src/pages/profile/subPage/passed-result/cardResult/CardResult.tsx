@@ -20,7 +20,7 @@ export const CardResult = (props: any) => {
                 <Grid container >
                     <Grid item xs={6}>
                         <Typography align={"left"} >
-                           JavaScript основы
+                            {testResults.testId.name}
                         </Typography>
                     </Grid>
                     <Grid item xs={2}>
