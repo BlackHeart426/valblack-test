@@ -1,4 +1,5 @@
 const testResultShortInfo = require('../models/TestResultShortInfo')
+const testInfo = require('../models/TestInfo')
 const errorHandler = require('../utils/errorHandler')
 const moment = require('moment')
 
@@ -13,7 +14,13 @@ const moment = require('moment')
 
 module.exports.getByUser = async function(req, res) {
   try {
-    const data = await testResultShortInfo.find({userId: req.params.userId})
+    const data = await testResultShortInfo
+      .find({userId: req.params.userId})
+      .populate({
+        path: 'testId',
+        select: 'name',
+      })
+    console.log(data)
     res.status(200).json(data)
   } catch (e) {
     errorHandler(res, e)
