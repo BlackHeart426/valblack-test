@@ -20,7 +20,6 @@ module.exports.getByUser = async function(req, res) {
         path: 'testId',
         select: 'name',
       })
-    console.log(data)
     res.status(200).json(data)
   } catch (e) {
     errorHandler(res, e)

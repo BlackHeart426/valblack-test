@@ -39,6 +39,7 @@ app.use('/api/test-info', testInfoRoutes)
 app.use('/api/test-result', testResultRoutes)
 app.use('/api/test-result-short-info', testResultShortInfoRoutes)
 
+
 // if (process.env.NODE_ENV === 'production') {
 //     app.use(express.static('client/dist/sicilia-angular'))
 //

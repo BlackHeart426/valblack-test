@@ -4,7 +4,9 @@ const User = require('../models/User')
 const keys = require('../config/keys')
 // const Client = require('../models/Client')
 const errorHandler = require('../utils/errorHandler')
+const randtoken = require('rand-token')
 
+const tokenList = {}
 
 module.exports.loginAdmin = async function(req, res) {
   const candidate = await User.findOne({email: req.body.email})
@@ -16,7 +18,16 @@ module.exports.loginAdmin = async function(req, res) {
       const token = jwt.sign({
         email: candidate.email,
         userId: candidate._id
-      }, keys.jwt, {expiresIn: 60 * 60})
+      }, keys.jwt, {
+        expiresIn: '15m'
+      })
+
+      const refreshToken = jwt.sign({
+        email: candidate.email,
+        userId: candidate._id
+      }, keys.jwt, {
+        expiresIn: '86400'
+      })
 
       res.status(200).json({
         token: `Bearer ${token}`
@@ -35,8 +46,57 @@ module.exports.loginAdmin = async function(req, res) {
   }
 }
 
+// module.exports.rejectToken = async function (req, res, nexr) {
+//   let refreshToken = req.body.refreshToken
+//   if (refreshToken) {
+//
+//   }
+// }
+
+module.exports.refreshToken = async function(req, res) {
+  console.log(req.body.refreshToken)
+  console.log('tokenList',tokenList)
+  const refreshTokenUuid = req.body.refreshToken
+  const postData = req.body
+  if ((postData.refreshToken) && (postData.refreshToken in tokenList)) {
+
+    const token = jwt.sign({
+      email: tokenList[refreshTokenUuid].email,
+      userId: tokenList[refreshTokenUuid]._id
+    }, keys.jwt, {expiresIn: 60 * 60})
+
+    const avatarUrl = tokenList[refreshTokenUuid].avatarUrl
+    const name = tokenList[refreshTokenUuid].name
+    const email = tokenList[refreshTokenUuid].email
+    const isAdmin = tokenList[refreshTokenUuid].isAdmin
+    const _id = tokenList[refreshTokenUuid]._id
+
+    delete tokenList[refreshTokenUuid]
+
+    const refreshToken = randtoken.uid(256)
+
+    const data = {
+      token: `Bearer ${token}`,
+      refreshToken,
+      email,
+      avatarUrl,
+      name,
+      isAdmin,
+      _id
+    }
+
+    tokenList[refreshToken] = data
+    console.log('tokenList',tokenList)
+    res.status(200).json(data)
+
+  } else {
+    res.status(404).send('Invalid request')
+  }
+}
+
 module.exports.login = async function(req, res) {
   const candidate = await User.findOne({email: req.body.email})
+
   if (candidate) {
     // Проверка пароля, пользователь существует
     const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
@@ -47,14 +107,19 @@ module.exports.login = async function(req, res) {
         userId: candidate._id
       }, keys.jwt, {expiresIn: 60 * 60})
 
-      res.status(200).json({
+      const refreshToken = randtoken.uid(256)
+      const data = {
         token: `Bearer ${token}`,
+        refreshToken: refreshToken,
         email: req.body.email,
         avatarUrl: candidate.imageSrc,
         name: candidate.name,
         isAdmin: false,
         _id: candidate._id
-      })
+      }
+      tokenList[refreshToken] = data
+      console.log('tokenList',tokenList)
+      res.status(200).json(data)
     } else {
       // Пароли не совпали
       res.status(401).json({
