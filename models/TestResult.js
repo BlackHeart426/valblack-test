@@ -7,7 +7,7 @@ const resultSchema = new Schema({
     type: Schema.Types.ObjectId
   },
   testId: {
-    ref: 'test-infos',
+    ref: 'tests-infos',
     type: Schema.Types.ObjectId
   },
   // category: {

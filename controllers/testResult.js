@@ -13,7 +13,12 @@ const moment = require('moment')
 
 module.exports.getById = async function(req, res) {
   try {
-    const data = await testResult.findOne({uuid: req.params.uuid})
+    const data = await testResult
+      .findOne({uuid: req.params.uuid})
+      .populate({
+        path: 'testId',
+        select: 'name',
+      })
     res.status(200).json(data)
   } catch (e) {
     errorHandler(res, e)
