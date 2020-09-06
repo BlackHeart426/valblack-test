@@ -55,8 +55,6 @@ module.exports.loginAdmin = async function(req, res) {
 
 module.exports.refreshToken = async function(req, res) {
   const dateCreateToken = Date.now()
-  console.log(req.params.refreshToken)
-  console.log('tokenList',tokenList)
   const refreshTokenUuid = req.params.refreshToken
   if ((refreshTokenUuid) && (refreshTokenUuid in tokenList)) {
 

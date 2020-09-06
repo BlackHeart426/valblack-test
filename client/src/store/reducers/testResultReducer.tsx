@@ -46,14 +46,17 @@ interface IAction {
 }
 
 export interface IListTestsResult {
-    _id: string,
-    rightAnswer: number,
-    summaryAnswer: number,
+    _id: string | null,
+    rightAnswer: number | null,
+    summaryAnswer: number | null,
     testPassed: boolean,
-    userId: string,
-    testId: string,
+    userId: string | null,
+    testId: {
+        _id: string | null,
+        name: string | null
+    },
     // category: string,
-    templateWithAnswer: string
+    templateWithAnswer: string | null
 }
 
 export interface ITestResultState {
@@ -92,7 +95,6 @@ export const testResultReducer = (state: ITestResultState = initialState, action
                 }
             })
         case EReduxActionTypes.SET_TEST_RESULT_DONE:
-            console.log(action.data[action.data.uuid])
             return Object.assign({}, state, {
                 data: Object.assign({}, state.data, action.data),
                 meta: {

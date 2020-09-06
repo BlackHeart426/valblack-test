@@ -16,7 +16,6 @@ function requestResultTestShortInfo(uuidTest: string) {
 }
 
 function receiveResultTestShortInfo(json: any) {
-    console.log(json)
     return {
         type: EReduxActionTypes.FETCH_TEST_RESULT_SHORT_INFO_DONE,
         data: json,

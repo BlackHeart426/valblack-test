@@ -5,24 +5,52 @@ import {useStyleResultTest} from "./styleResultTest";
 import {Grid, Paper, Typography} from "@material-ui/core";
 import {getTestInfoActionCreator} from "../../store/action/testInfoAction";
 import {getResultTestActionCreator} from "../../store/action/testResult/getTestResultAction";
+import {IListTestsResult} from "../../store/reducers/testResultReducer";
+
 
 const ResultTest = (props: any) => {
     const classes = useStyleResultTest()
-    const [questions, setQuestions] = useState<any>(null)
-    const [currentQuestion, setCurrentQuestion] = useState<any>(null)
-    const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null)
+    const [resultTest, setResultTest] = useState<IListTestsResult>({
+        _id: null,
+        rightAnswer: null,
+        summaryAnswer: null,
+        testPassed: false,
+        userId: null,
+        testId: {
+            _id: null,
+            name: null
+        },
+        templateWithAnswer: null
+    })
     const inputRef = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
+        console.log('download')
         //Проверка результата в сторе если нет то запрос можно все через Action
         props.action.getResultTest(props.match.params.id);
         //Получить результат и отобразить
 
     },[])
+
+    useEffect(() => {
+
+        if (props.testResult[props.match.params.id]) {
+            console.log('props.testResult.length', props.testResult)
+            const data = props.testResult[props.match.params.id].data
+            if (data) {
+                console.log('data', data)
+                setResultTest( (prevState: IListTestsResult) => Object.assign({}, prevState, {...data}))
+            }
+
+        }
+
+
+    }, [props.testResult])
     return (
         <div className={classes.resultTestContainer}>
             <div className={classes.resultTestHeader}>
-                РЕЗУЛЬТАТ ТЕСТА "JAVASCRIPT: JUNIOR"
+                РЕЗУЛЬТАТ ТЕСТА "{resultTest.testId.name}"
+                {resultTest.rightAnswer}
             </div>
             <div className={classes.resultTestBannerResultSuccess}>
                 <Grid container>
@@ -107,7 +135,7 @@ const ResultTest = (props: any) => {
 
 function mapStateToProps(state: any) {
     return {
-
+        testResult: state.testResult.data
     }
 
 }

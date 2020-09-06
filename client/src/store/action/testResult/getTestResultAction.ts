@@ -23,7 +23,6 @@ function receiveResultTest(json: any) {
             }
         }
     }
-    console.log(data)
     return {
         type: EReduxActionTypes.FETCH_TESTS_RESULT_DONE,
         data: data,

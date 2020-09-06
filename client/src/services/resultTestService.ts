@@ -31,12 +31,10 @@ export function resultTestService(templateTest: any , answersCurrentTest: IAnswe
         testId: answersCurrentTest.testId,
         templateWithAnswer: JSON.stringify(templateWithAnswer)
     }
-    console.log(resultTest)
     return resultTest
 }
 
 function checkResultTest(correctQuestion: number, summaryAnswer: number) {
-    console.log(correctQuestion)
     console.log(summaryAnswer)
     const resultTestRate = (correctQuestion/summaryAnswer) * 100
     return resultTestRate > 75 ? true : false
