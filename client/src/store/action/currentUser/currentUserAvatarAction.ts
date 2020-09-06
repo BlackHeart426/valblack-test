@@ -40,7 +40,6 @@ export function uploadAvatarActionCreator(imageFile: any, clientId: string ) {
             )
             .then(
                 json => dispatch(receiveCurrentUserAvatar(json)),
-
             )
     }
 }

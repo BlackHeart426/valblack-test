@@ -54,11 +54,11 @@ module.exports.loginAdmin = async function(req, res) {
 // }
 
 module.exports.refreshToken = async function(req, res) {
-  console.log(req.body.refreshToken)
+  const dateCreateToken = Date.now()
+  console.log(req.params.refreshToken)
   console.log('tokenList',tokenList)
-  const refreshTokenUuid = req.body.refreshToken
-  const postData = req.body
-  if ((postData.refreshToken) && (postData.refreshToken in tokenList)) {
+  const refreshTokenUuid = req.params.refreshToken
+  if ((refreshTokenUuid) && (refreshTokenUuid in tokenList)) {
 
     const token = jwt.sign({
       email: tokenList[refreshTokenUuid].email,
@@ -82,7 +82,8 @@ module.exports.refreshToken = async function(req, res) {
       avatarUrl,
       name,
       isAdmin,
-      _id
+      _id,
+      dateCreateToken
     }
 
     tokenList[refreshToken] = data
@@ -96,7 +97,7 @@ module.exports.refreshToken = async function(req, res) {
 
 module.exports.login = async function(req, res) {
   const candidate = await User.findOne({email: req.body.email})
-
+  const dateCreateToken = Date.now()
   if (candidate) {
     // Проверка пароля, пользователь существует
     const passwordResult = bcrypt.compareSync(req.body.password, candidate.password)
@@ -115,7 +116,8 @@ module.exports.login = async function(req, res) {
         avatarUrl: candidate.imageSrc,
         name: candidate.name,
         isAdmin: false,
-        _id: candidate._id
+        _id: candidate._id,
+        dateCreateToken
       }
       tokenList[refreshToken] = data
       console.log('tokenList',tokenList)

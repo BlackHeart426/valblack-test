@@ -8,7 +8,7 @@ router.post('/login', controller.login)
 
 // router.post('/token/reject', controller.rejectToken)
 
-router.post('/token', controller.refreshToken)
+router.post('/token/:refreshToken', controller.refreshToken)
 
 router.post('/register', controller.register)
 
