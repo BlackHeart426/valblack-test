@@ -10,10 +10,11 @@ import {IListTestsResult} from "../../store/reducers/testResultReducer";
 
 const ResultTest = (props: any) => {
     const classes = useStyleResultTest()
+    const [templateWithAnswer, setTemplateWithAnswer] = useState<any | null>(null)
     const [resultTest, setResultTest] = useState<IListTestsResult>({
         _id: null,
-        rightAnswer: null,
-        summaryAnswer: null,
+        rightAnswer: 1,
+        summaryAnswer: 1,
         testPassed: false,
         userId: null,
         testId: {
@@ -37,9 +38,13 @@ const ResultTest = (props: any) => {
         if (props.testResult[props.match.params.id]) {
             console.log('props.testResult.length', props.testResult)
             const data = props.testResult[props.match.params.id].data
+
             if (data) {
-                console.log('data', data)
-                setResultTest( (prevState: IListTestsResult) => Object.assign({}, prevState, {...data}))
+                console.log('data1', data)
+                console.log('data2', data)
+                console.log('templateWithAnswer', data.templateWithAnswer)
+                setTemplateWithAnswer(JSON.parse(data.templateWithAnswer))
+                setResultTest( (prevState: IListTestsResult) => Object.assign({}, prevState, {...data})) //***
             }
 
         }
@@ -50,9 +55,8 @@ const ResultTest = (props: any) => {
         <div className={classes.resultTestContainer}>
             <div className={classes.resultTestHeader}>
                 РЕЗУЛЬТАТ ТЕСТА "{resultTest.testId.name}"
-                {resultTest.rightAnswer}
             </div>
-            <div className={classes.resultTestBannerResultSuccess}>
+            <div className={resultTest.testPassed ? classes.resultTestBannerResultSuccess : classes.resultTestBannerResultError}>
                 <Grid container>
                     <Grid item xs={3}>
                         <div className={classes.resultTestBannerResultIcon}>
@@ -62,10 +66,10 @@ const ResultTest = (props: any) => {
                     <Grid item xs={9}>
                         <div className={classes.resultTestBannerResultMeta}>
                             <div className={classes.resultTestBannerResultTitle}>
-                                Тест пройден!
+                                {resultTest.testPassed ? 'Тест пройден!' : 'Тест не пройден!'}
                             </div>
                             <div className={classes.resultTestBannerResultSubTitle}>
-                                blackheart прошел тест с результатом 9 из 10
+                                {resultTest.userId} прошел тест с результатом {resultTest.rightAnswer} из {resultTest.summaryAnswer}
                             </div>
                         </div>
                     </Grid>
@@ -81,10 +85,10 @@ const ResultTest = (props: any) => {
                     <Grid container>
                         <Grid item xs={6}>
                             <div className={classes.resultTestResultItem}>
-                                90%
+                                {(resultTest.rightAnswer / resultTest.summaryAnswer) * 100}%
                             </div>
                             <div style={{color: '#848688'}}>
-                                9 из 10 верных ответов
+                                {resultTest.rightAnswer} из {resultTest.summaryAnswer} верных ответов
                             </div>
                         </Grid>
                         <Grid item xs={6}>
@@ -104,28 +108,28 @@ const ResultTest = (props: any) => {
                     <div className={classes.wrapperQuestionsTitle}>
                         ОТВЕТЫ
                     </div>
-                    <div className={classes.resultTestResultQuestionItem}>
-                        <div className={classes.resultTestResultQuestionTitle}>
-                            <Typography align={"left"} variant="h5">
-                                <strong>#1 Какой из следующих методов удаляет последний элемент из массива и возвращает его?</strong>
-                            </Typography>
-                        </div>
-                        <div className={classes.resultTestResultQuestionAnswerList}>
-                            <div className={classes.resultTestResultQuestionAnswerItem}>
-                                    pop()
 
+                    {
+                        templateWithAnswer &&
+                        Object.keys(templateWithAnswer).map((q: any) => (
+                            <div className={classes.resultTestResultQuestionItem} key={q}>
+                                <div className={classes.resultTestResultQuestionTitleSuccess}>
+                                    <Typography align={"left"} variant="h5">
+                                        <strong>{templateWithAnswer[q].name}</strong>
+                                    </Typography>
+                                </div>
+                                {
+                                    Object.keys(templateWithAnswer[q].answers).map((answers: any) => (
+                                        <div className={classes.resultTestResultQuestionAnswerList} key={answers}>
+                                            <div className={classes.resultTestResultQuestionAnswerItem}>
+                                                {templateWithAnswer[q].answers[answers].name}
+                                            </div>
+                                        </div>
+                                    ))
+                                }
                             </div>
-                            <div className={classes.resultTestResultQuestionAnswerItem}>
-                                    last()
-                            </div>
-                            <div className={classes.resultTestResultQuestionAnswerItem}>
-                                    last()
-                            </div>
-                            <div className={classes.resultTestResultQuestionAnswerItem}>
-                                    last()
-                            </div>
-                        </div>
-                    </div>
+                        ))
+                    }
                 </div>
             </div>
 

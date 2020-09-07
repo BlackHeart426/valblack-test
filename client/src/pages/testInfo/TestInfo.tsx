@@ -131,11 +131,6 @@ const TestInfo = (props: any) => {
                 </div>
             </div>
             <div>
-                Lorem ipsumipsumipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cum dolores error hic illum incidunt molestiae nulla perferendis, similique!
-                Lorem ipsumipsumipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cum dolores error hic illum incidunt molestiae nulla perferendis, similique!
-                Lorem ipsumipsumipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cum dolores error hic illum incidunt molestiae nulla perferendis, similique!
-                Lorem ipsumipsumipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cum dolores error hic illum incidunt molestiae nulla perferendis, similique!
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam corporis cum dolores error hic illum incidunt molestiae nulla perferendis, similique!
             </div>
         </div>
     )

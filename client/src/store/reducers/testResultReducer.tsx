@@ -47,8 +47,8 @@ interface IAction {
 
 export interface IListTestsResult {
     _id: string | null,
-    rightAnswer: number | null,
-    summaryAnswer: number | null,
+    rightAnswer: number,
+    summaryAnswer: number ,
     testPassed: boolean,
     userId: string | null,
     testId: {

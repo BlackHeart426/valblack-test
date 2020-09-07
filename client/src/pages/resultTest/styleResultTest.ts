@@ -30,6 +30,12 @@ export const useStyleResultTest = makeStyles((theme: Theme) =>
             borderRadius: 5,
             background: 'repeating-linear-gradient(45deg,#47834a,#47834a 175px,#66bb6a 0,#66bb6a 750px)'
         },
+        resultTestBannerResultError: {
+            boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+            height: 120,
+            borderRadius: 5,
+            background: 'repeating-linear-gradient(45deg,#a73a38,#a73a38 175px,#ef5350 0,#ef5350 750px)'
+        },
         resultTestBannerResultIcon: {
             flexGrow: 2,
             textAlign: 'center',
@@ -88,12 +94,19 @@ export const useStyleResultTest = makeStyles((theme: Theme) =>
 
 
         },
-        resultTestResultQuestionTitle: {
+        resultTestResultQuestionTitleSuccess: {
             boxShadow: '0 0 2px rgba(0,0,0,0.5)',
             padding: '.75em',
             margin: 0,
             borderBottom: '.08333rem solid #e8edee',
             background: 'linear-gradient(45deg,#fff 95%,#94cf97 0)'
+        },
+        resultTestResultQuestionTitleError: {
+            boxShadow: '0 0 2px rgba(0,0,0,0.5)',
+            padding: '.75em',
+            margin: 0,
+            borderBottom: '.08333rem solid #e8edee',
+            background: 'linear-gradient(45deg,#fff 95%,#ef5350 0)'
         },
         resultTestResultQuestionAnswerList: {
 

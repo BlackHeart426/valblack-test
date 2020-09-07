@@ -16,6 +16,7 @@ const PassingTest = (props: any) => {
     const history = useHistory();
     const classes = useStylePassingTest()
     const [questions, setQuestions] = useState<any>(null)
+    const [nameTest, setNameTest] = useState<string>('')
     const [currentQuestion, setCurrentQuestion] = useState<any>(null)
     const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null)
     const inputRef = useRef<HTMLInputElement>(null)
@@ -52,14 +53,16 @@ const PassingTest = (props: any) => {
     }
     useEffect(() => {
         removeLocalStorage('answersCurrentTest')
-        const answersCurrentTest = JSON.parse(props.answersCurrentTest)
+
         if (props.arrTestsInfo) {
-            const arrQuestions = JSON.parse(props.arrTestsInfo.filter((testInfo: IListTestsInfo) =>
-                testInfo._id === answersCurrentTest.testId)[0].questionsAndAnswers)
+            const answersCurrentTest = JSON.parse(props.answersCurrentTest)
+            const data = props.arrTestsInfo.filter((testInfo: IListTestsInfo) =>
+                testInfo._id === answersCurrentTest.testId)[0]
+            const arrQuestions = JSON.parse(data.questionsAndAnswers)
             const currentQuestion = Object.keys(arrQuestions).map((item: any, index:number) => {
                 return arrQuestions[item] =  { ...arrQuestions[item], _id: item }
             }).filter((item: any) => item.order === 1)[0]
-
+            setNameTest(data.name)
             setQuestions(arrQuestions)
             setSelectedQuestion(currentQuestion._id)
             setCurrentQuestion(currentQuestion)
@@ -72,7 +75,7 @@ const PassingTest = (props: any) => {
         <div className={classes.runTestContainer}>
             <div className={classes.runTestHeader}>
                 <div className={classes.runTestTitle}>
-                    йцу
+                    {nameTest}
                 </div>
             </div>
             <div className={classes.runTestQuestion}>
