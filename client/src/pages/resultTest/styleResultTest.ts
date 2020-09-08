@@ -91,7 +91,7 @@ export const useStyleResultTest = makeStyles((theme: Theme) =>
             marginBottom: '1em'
         },
         resultTestResultQuestionItem: {
-
+            marginBottom: '1em'
 
         },
         resultTestResultQuestionTitleSuccess: {
