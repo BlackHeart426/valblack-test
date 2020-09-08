@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import {green} from "@material-ui/core/colors";
@@ -12,24 +12,44 @@ interface IAnswers {
 }
 
 export interface IQuestion {
+    _id?: string,
     name: string,
     order: number,
     nextQuestion: string,
     image: string,
     answers: IAnswers[],
 }
+//
 export const Questions = (props: { question: IQuestion, onSaveAnswer: (nextQuestions: string, selected: []) => void }) => {
     const [selected, setSelected] = useState<any>([])
+    // const [preSelected, setPreSelected] = useState<any>([])
     const classes = useQuestion()
-    const { question, onSaveAnswer } = props
+    const { question, onSaveAnswer} = props
 
     const onSelectedAnswerHandle = (uuid: string) => {
+        console.log('uuid',uuid)
         setSelected((prev: any) => (
             prev.includes(uuid)
                 ? prev.filter((item: any) => item !== uuid)
                 : [...prev, uuid]
         ))
     }
+
+    // useEffect(() => {
+    //     if (question) {
+    //         const answersCurrentTest = JSON.parse(selectedAnswer)
+    //         answersCurrentTest.questions.map((item: any) => {
+    //             // console.log('question', question._id)
+    //             if (question._id === item._id) {
+    //                 item.answers.map((answer: any) => {
+    //                     console.log('answer',answer)
+    //                     onSelectedAnswerHandle(answer)
+    //                 })
+    //             }
+    //         })
+    //     }
+    //
+    // },[question])
 
     const onSaveAnswerHandle = (question: string, selected: []) => {
         onSaveAnswer(question, selected)

@@ -73,6 +73,19 @@ export const useStylePassingTest = makeStyles((theme: Theme) =>
             '& selected': {
                 backgroundColor: blue[200]
             }
+        },
+        runTestQuestionTabDisabled: {
+            padding: '1em 0',
+            width: '100%',
+            height: '100%',
+            textAlign: 'center',
+            fontSize: '1.25em',
+            fontWeight: 300,
+            background:  'rgba(201,201,201,0.6)',
+            color: '#fff',
+            '&:not(:last-child)': {
+                borderRight: '1px solid #b0b0b0 ',
+            },
         }
 
     }),

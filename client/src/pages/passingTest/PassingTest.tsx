@@ -18,12 +18,15 @@ const PassingTest = (props: any) => {
     const [questions, setQuestions] = useState<any>(null)
     const [nameTest, setNameTest] = useState<string>('')
     const [currentQuestion, setCurrentQuestion] = useState<any>(null)
+    const [disabledQuestions, setDisabledQuestions] = useState<any>(null)
     const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null)
     const inputRef = useRef<HTMLInputElement>(null)
 
-    const onSelectQuestionHandle = (id: any) => {
-        setCurrentQuestion(questions[id])
-        setSelectedQuestion(id)
+    const onSelectQuestionHandle = (id: any, disabled: boolean) => {
+        if (!disabled) {
+            setCurrentQuestion(questions[id])
+            setSelectedQuestion(id)
+        }
     }
 
     //rewrite
@@ -48,24 +51,61 @@ const PassingTest = (props: any) => {
             history.push(`/rt/${answersCurrentTest.userTestID}`)
         }
 
-
+        setDisabledQuestions(questionArr)
         props.action.setAnswersCurrentTest({...answersCurrentTest, questions: questionArr})
     }
-    useEffect(() => {
-        removeLocalStorage('answersCurrentTest')
 
+    //rewrite
+    useEffect(() => {
+        // console.log('passing test',props.arrTestsInfo)
         if (props.arrTestsInfo) {
             const answersCurrentTest = JSON.parse(props.answersCurrentTest)
+
             const data = props.arrTestsInfo.filter((testInfo: IListTestsInfo) =>
                 testInfo._id === answersCurrentTest.testId)[0]
             const arrQuestions = JSON.parse(data.questionsAndAnswers)
             const currentQuestion = Object.keys(arrQuestions).map((item: any, index:number) => {
                 return arrQuestions[item] =  { ...arrQuestions[item], _id: item }
-            }).filter((item: any) => item.order === 1)[0]
+            }).filter((item: any) => {
+                //rewrite
+
+                if (answersCurrentTest.questions) {
+                    console.log('answersCurrentTest.questions',answersCurrentTest.questions)
+                    //есть ли итем внутри массива если нет то обычный return если есть то не возвращаем
+                    let check = false
+                    answersCurrentTest.questions.forEach((q: any) => {
+
+                        if (item._id == q._id) {
+                            check = true
+                        }
+                    })
+                    console.log('check',check)
+                    if (check) {
+
+                    } else {
+                        return item
+                    }
+
+
+
+                } else {
+                    console.log('item.order === 1')
+                    return item.order === 1
+                }
+                console.log('end')
+
+            })[0]
+            console.log('currentQuestion',currentQuestion)
             setNameTest(data.name)
             setQuestions(arrQuestions)
-            setSelectedQuestion(currentQuestion._id)
+
+            //проверить массив заблокированных вопросов и 1 которого там нет вывести в текущий
+
             setCurrentQuestion(currentQuestion)
+            setSelectedQuestion(currentQuestion._id)
+            setDisabledQuestions(answersCurrentTest.questions)
+
+
         } else {
             props.action.getInfoTests()
         }
@@ -86,17 +126,31 @@ const PassingTest = (props: any) => {
             </div>
 
             <div className={classes.runTestSwitcher}>
-                { questions && Object.keys(questions).map((item: any, index: number) => (
-                    <div
+                { questions && Object.keys(questions).map((item: any, index: number) => {
+                    let disabled = false
+
+                    disabledQuestions && disabledQuestions.map((disabledQuestion: any) => {
+
+                        // console.log('disabledQuestions',disabledQuestion._id)
+                        // console.log('item',item)
+                        if (disabledQuestion._id === item) {
+                            disabled = true
+                        }
+                    })
+                    console.log(disabled)
+                    return <div
                         key={item}
                         id="1"
-                        className={(selectedQuestion === item)
-                            ? classes.runTestQuestionTabSelected : classes.runTestQuestionTab}
+                        className={disabled
+                            ? classes.runTestQuestionTabDisabled :
+                            (selectedQuestion === item)
+                                ? classes.runTestQuestionTabSelected : classes.runTestQuestionTab}
                         ref={inputRef}
-                        onClick={() => onSelectQuestionHandle(item)}>
+                        // onClick={() => onSelectQuestionHandle(item, disabled)}
+                    >
                         {index+1}
                     </div>
-                )) }
+                }) }
             </div>
         </div>
     )
