@@ -6,7 +6,7 @@ export function saveLocalStorage(json: any) {
 }
 
 export function saveItemLocalStorage(name: string, data: any) {
-    console.log(name)
+
     localStorage.setItem(name, data)
 }
 

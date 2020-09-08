@@ -85,7 +85,6 @@ module.exports.refreshToken = async function(req, res) {
     }
 
     tokenList[refreshToken] = data
-    console.log('tokenList',tokenList)
     res.status(200).json(data)
 
   } else {
@@ -118,7 +117,6 @@ module.exports.login = async function(req, res) {
         dateCreateToken
       }
       tokenList[refreshToken] = data
-      console.log('tokenList',tokenList)
       res.status(200).json(data)
     } else {
       // Пароли не совпали

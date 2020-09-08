@@ -27,7 +27,7 @@ export const Questions = (props: { question: IQuestion, onSaveAnswer: (nextQuest
     const { question, onSaveAnswer} = props
 
     const onSelectedAnswerHandle = (uuid: string) => {
-        console.log('uuid',uuid)
+
         setSelected((prev: any) => (
             prev.includes(uuid)
                 ? prev.filter((item: any) => item !== uuid)

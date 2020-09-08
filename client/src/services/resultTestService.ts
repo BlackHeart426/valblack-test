@@ -36,7 +36,6 @@ export function resultTestService(templateTest: any , answersCurrentTest: IAnswe
 }
 
 function checkResultTest(correctQuestion: number, summaryAnswer: number) {
-    console.log(summaryAnswer)
     const resultTestRate = (correctQuestion/summaryAnswer) * 100
     return resultTestRate > 75 ? true : false
 }
@@ -94,8 +93,5 @@ function additionAnswerAtTemplateTest(templateTest: any , answersCurrentTest: IA
         return  question
         //
     })
-    console.log('arr',arr)
-
-
     return arr
 }

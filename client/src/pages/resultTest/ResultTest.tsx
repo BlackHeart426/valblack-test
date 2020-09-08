@@ -37,7 +37,6 @@ const ResultTest = (props: any) => {
     useEffect(() => {
 
         if (props.testResult[props.match.params.id]) {
-            console.log('props.testResult.length', props.testResult)
             const data = props.testResult[props.match.params.id].data
 
             if (data) {

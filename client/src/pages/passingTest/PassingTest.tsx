@@ -70,37 +70,26 @@ const PassingTest = (props: any) => {
                 //rewrite
 
                 if (answersCurrentTest.questions) {
-                    console.log('answersCurrentTest.questions',answersCurrentTest.questions)
                     //есть ли итем внутри массива если нет то обычный return если есть то не возвращаем
                     let check = false
                     answersCurrentTest.questions.forEach((q: any) => {
-
                         if (item._id == q._id) {
                             check = true
                         }
                     })
-                    console.log('check',check)
                     if (check) {
-
                     } else {
                         return item
                     }
 
-
-
                 } else {
-                    console.log('item.order === 1')
                     return item.order === 1
                 }
-                console.log('end')
 
             })[0]
-            console.log('currentQuestion',currentQuestion)
             setNameTest(data.name)
             setQuestions(arrQuestions)
-
             //проверить массив заблокированных вопросов и 1 которого там нет вывести в текущий
-
             setCurrentQuestion(currentQuestion)
             setSelectedQuestion(currentQuestion._id)
             setDisabledQuestions(answersCurrentTest.questions)
@@ -137,7 +126,6 @@ const PassingTest = (props: any) => {
                             disabled = true
                         }
                     })
-                    console.log(disabled)
                     return <div
                         key={item}
                         id="1"
