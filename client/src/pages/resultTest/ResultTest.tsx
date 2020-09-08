@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import HowToRegIcon from '@material-ui/icons/HowToReg';
 import {connect} from "react-redux";
 import {useStyleResultTest} from "./styleResultTest";
 import {Grid, Paper, Typography} from "@material-ui/core";
@@ -40,9 +41,6 @@ const ResultTest = (props: any) => {
             const data = props.testResult[props.match.params.id].data
 
             if (data) {
-                console.log('data1', data)
-                console.log('data2', data)
-                console.log('templateWithAnswer', data.templateWithAnswer)
                 setTemplateWithAnswer(JSON.parse(data.templateWithAnswer))
                 setResultTest( (prevState: IListTestsResult) => Object.assign({}, prevState, {...data})) //***
             }
@@ -85,7 +83,7 @@ const ResultTest = (props: any) => {
                     <Grid container>
                         <Grid item xs={6}>
                             <div className={classes.resultTestResultItem}>
-                                {(resultTest.rightAnswer / resultTest.summaryAnswer) * 100}%
+                                { ((resultTest.rightAnswer / resultTest.summaryAnswer) * 100).toFixed(2)}%
                             </div>
                             <div style={{color: '#848688'}}>
                                 {resultTest.rightAnswer} из {resultTest.summaryAnswer} верных ответов
@@ -111,18 +109,32 @@ const ResultTest = (props: any) => {
 
                     {
                         templateWithAnswer &&
-                        Object.keys(templateWithAnswer).map((q: any) => (
+                        Object.keys(templateWithAnswer).map((q: any, index: number) => (
                             <div className={classes.resultTestResultQuestionItem} key={q}>
-                                <div className={classes.resultTestResultQuestionTitleSuccess}>
+                                <div className={templateWithAnswer[q].questionIsAccepted
+                                    ? classes.resultTestResultQuestionTitleSuccess
+                                    : classes.resultTestResultQuestionTitleError
+                                }>
                                     <Typography align={"left"} variant="h5">
-                                        <strong>{templateWithAnswer[q].name}</strong>
+                                        <strong>#{index + 1} {templateWithAnswer[q].name}</strong>
                                     </Typography>
                                 </div>
                                 {
                                     Object.keys(templateWithAnswer[q].answers).map((answers: any) => (
-                                        <div className={classes.resultTestResultQuestionAnswerList} key={answers}>
-                                            <div className={classes.resultTestResultQuestionAnswerItem}>
+                                        <div className={templateWithAnswer[q].answers[answers].correct === true
+                                            ? classes.resultTestResultQuestionAnswerListSuccess
+                                            : classes.resultTestResultQuestionAnswerList
+                                        } key={answers}>
+                                            {/*resultTestResultQuestionAnswerItem*/}
+                                            <div className={(templateWithAnswer[q].answers[answers].correct === false
+                                                && templateWithAnswer[q].answers[answers].userAnswer === true)
+                                                ? classes.resultTestResultQuestionAnswerItemError
+                                                : classes.resultTestResultQuestionAnswerItem
+                                            }>
                                                 {templateWithAnswer[q].answers[answers].name}
+                                                {templateWithAnswer[q].answers[answers].userAnswer === true
+                                                    && <HowToRegIcon />
+                                                }
                                             </div>
                                         </div>
                                     ))

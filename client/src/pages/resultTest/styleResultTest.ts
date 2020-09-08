@@ -108,8 +108,32 @@ export const useStyleResultTest = makeStyles((theme: Theme) =>
             borderBottom: '.08333rem solid #e8edee',
             background: 'linear-gradient(45deg,#fff 95%,#ef5350 0)'
         },
+        resultTestResultQuestionAnswerListError: {
+            background: '#ef5350',
+            color: '#fff'
+        },
+        resultTestResultQuestionAnswerListSuccess: {
+            background: '#94cf97',
+            color: '#fff'
+        },
         resultTestResultQuestionAnswerList: {
+            background: '#fff'
+        },
 
+        resultTestResultQuestionAnswerItemError: {
+            boxShadow: '0 0 2px rgba(0,0,0,0.5)',
+            margin: '0',
+            color: '#ef5350',
+            borderBottom: '.08333rem solid #e8edee',
+            padding: '1em 2em',
+            lineHeight: 2,
+            // backgroundColor: '#fff',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            height: 'auto',
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'space-between'
 
         },
         resultTestResultQuestionAnswerItem: {
@@ -118,8 +142,7 @@ export const useStyleResultTest = makeStyles((theme: Theme) =>
             borderBottom: '.08333rem solid #e8edee',
             padding: '1em 2em',
             lineHeight: 2,
-            color: '#3a3a3a',
-            backgroundColor: '#fff',
+            // backgroundColor: '#fff',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             height: 'auto',

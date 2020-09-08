@@ -1,3 +1,4 @@
+import {log} from "util";
 
 interface IQuestion {
     _id: string,
@@ -48,7 +49,7 @@ function countTheCorrectAnswersAtTemplate(templateWithAnswer: any) {
         let checkAnswers = false
         let throwFlag = false
         Object.values(question.answers).forEach((answer: any) => {
-            if (answer.current === true) {
+            if (answer.correct === true) {
                 if (answer.userAnswer === true) {
                     checkAnswers = true
                 } else {
@@ -63,10 +64,38 @@ function countTheCorrectAnswersAtTemplate(templateWithAnswer: any) {
 }
 
 function additionAnswerAtTemplateTest(templateTest: any , answersCurrentTest: IAnswersCurrentTest) {
+
+
+
     answersCurrentTest.questions.map((item: any) => {
         item.answers.map((answer: any) => {
             templateTest[item._id].answers[answer].userAnswer = true
         })
     })
-    return templateTest
+
+    const arr = Object.values(templateTest).map((question: any) => {
+        let checkAnswers = false
+        let throwFlag = false
+        Object.values(question.answers).forEach((answer: any) => {
+            if (answer.correct === true) {
+                if (answer.userAnswer === true) {
+                    checkAnswers = true
+                } else {
+                    checkAnswers = false
+                    throwFlag = true
+                }
+            }
+        } )
+        if (!throwFlag && checkAnswers) {
+            question.questionIsAccepted = true
+        } else {
+            question.questionIsAccepted = false
+        }
+        return  question
+        //
+    })
+    console.log('arr',arr)
+
+
+    return arr
 }
