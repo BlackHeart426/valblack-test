@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Switch, RouteComponentProps, Route, Redirect, RouteProps } from "react-router-dom";
-import {HomePage} from "../pages/HomePage";
+import {HomePage} from "../pages/home/HomePage";
 import {NonFoundPage} from "../pages/nonFound/NonFoundPage";
 
 export const AuthAdminGuard: React.FC<RouteProps> = ({component: Component, ...rest}) => {

@@ -30,7 +30,6 @@ const Filter = (props: any) => {
                                 props.action.setCategory(newValue);
                             }}
                             getOptionLabel={(option: any) => option.name}
-                            style={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Категория" variant="outlined" />}
                         />
                     }

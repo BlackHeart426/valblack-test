@@ -52,7 +52,7 @@ const Profile = (props: any) => {
 
                         {subPage === 2 && <Settings/>}
                         {subPage === 1 && <PassedResult arrTestResultShortInfo = {props.arrTestResultShortInfo}/>}
-                        {subPage === 0 && <Activity/>}
+                        {subPage === 0 && <Activity arrTestResultShortInfo = {props.arrTestResultShortInfo}/>}
                     </div>
                 </Grid>
             </Grid>

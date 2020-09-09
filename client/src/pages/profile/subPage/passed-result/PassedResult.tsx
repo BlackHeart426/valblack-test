@@ -5,7 +5,7 @@ export const PassedResult = (props: any) => {
     const {arrTestResultShortInfo} = props
     return (
         <div style={{paddingTop: 10}}>
-            { arrTestResultShortInfo.sort(
+            { arrTestResultShortInfo && arrTestResultShortInfo.sort(
                 (a: any, b: any) => (a.datePassed > b.datePassed) ? -1 : 1
             ).map((testResults: any) =>
                 <CardResult key={testResults.uuid} testResults={testResults}/>)}

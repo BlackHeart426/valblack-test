@@ -27,15 +27,24 @@ const TestList = (props: any) => {
         <div className={classes.root}>
             <div className={classes.wrapper}>
                 <div className={classes.container}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={8}>
+                    <Hidden lgUp>
+                        <div className={classes.filterTop}>
+                            {props.loadingCategories
+                                ? <Filter loading={props.loadingCategories}/>
+                                : <Filter/>
+                            }
+
+                        </div>
+                    </Hidden>
+                    <Grid container spacing={3} >
+                        <Grid item xs={12} md={12} lg={8} xl={8} zeroMinWidth>
                             <div className={classes.content}>
                                 <Grid container spacing={3}>
                                     {props.arrTestsInfo &&
                                             props.arrTestsInfo
                                                 .filter((item: any) => filterCategory(item))
                                                 .map((test: any, index: number) => (
-                                                    <Grid item xs={4}  key={index}>
+                                                    <Grid item xs={12} sm={6} md={3} lg={4} xl={4}   key={index}>
                                                         <TestCard test={test}/>
                                                     </Grid>
                                             ))
@@ -50,7 +59,8 @@ const TestList = (props: any) => {
                                 </Grid>
                             </div>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Hidden mdDown>
+                        <Grid item xs={12} md={4} zeroMinWidth>
                             <div className={classes.filters}>
                                 {props.loadingCategories
                                 ? <Filter loading={props.loadingCategories}/>
@@ -59,6 +69,7 @@ const TestList = (props: any) => {
 
                             </div>
                         </Grid>
+                        </Hidden>
                     </Grid>
 
 

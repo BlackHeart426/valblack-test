@@ -16,6 +16,7 @@ export const styleTestCard = makeStyles((theme: Theme) =>
             whiteSpace: 'normal',
             fontWeight: 500,
             maxHeight: '42px',
+            minHeight: '42px',
             fontSize: '15px'
         },
         media: {

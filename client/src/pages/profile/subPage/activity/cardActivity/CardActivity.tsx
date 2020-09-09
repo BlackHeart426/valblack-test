@@ -4,9 +4,17 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import Grid from "@material-ui/core/Grid";
 import {green} from "@material-ui/core/colors";
 import {Paper, Typography} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 export const CardActivity = (props: any) => {
     const classes = styleCardActivity()
+    const history = useHistory()
+    const {
+        testResults
+    } = props
+    const openResultTest = (uuid: string) => {
+        history.push(`/rt/${uuid}`)
+    }
     return (
         <div className={classes.root}>
             <Paper elevation={3} className={classes.card}>

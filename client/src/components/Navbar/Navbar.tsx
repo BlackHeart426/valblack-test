@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import {Avatar, Button, Divider, ListItemIcon} from '@material-ui/core';
+import {Avatar, Button, Divider, Hidden, ListItemIcon} from '@material-ui/core';
 import {AccountCircle, MenuBook} from "@material-ui/icons";
 import {useStyles} from "./styles";
 import { useHistory} from 'react-router-dom';
@@ -146,23 +146,25 @@ function Navbar(props: any) {
                         <Typography className={classes.title} variant="h5" noWrap  onClick={handleHome}>
                             valBlack-test
                         </Typography>
-                        <div className={classes.menuButton}>
-                            <Button
-                                size="large"
-                                color="inherit"
-                                onClick={handleTests}
-                            >
-                                Тесты
-                            </Button>
-                        </div>
-                        <div className={classes.menuButton}>
-                            <Button
-                                size="large"
-                                color="inherit"
-                            >
-                                Рейтинг
-                            </Button>
-                        </div>
+                        <Hidden smDown>
+                            <div className={classes.menuButton}>
+                                <Button
+                                    size="large"
+                                    color="inherit"
+                                    onClick={handleTests}
+                                >
+                                    Тесты
+                                </Button>
+                            </div>
+                            <div className={classes.menuButton}>
+                                <Button
+                                    size="large"
+                                    color="inherit"
+                                >
+                                    Рейтинг
+                                </Button>
+                            </div>
+                        </Hidden>
 
                         {props.isAuthorized
                             ? <>
@@ -174,7 +176,9 @@ function Navbar(props: any) {
                                         startIcon={<Avatar alt="Remy Sharp" src={props.avatarUrl} />}
                                         onClick={handleProfileMenuOpen}
                                     >
-                                        {props.email}
+                                        <Hidden smDown>
+                                            {props.email}
+                                        </Hidden>
                                     </Button>
 
                                 </div>
