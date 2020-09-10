@@ -18,7 +18,12 @@ export const useStyleSettings = makeStyles((theme: Theme) =>
         avatar: {
             width: '200px',
             height: '200px',
-            boxShadow: '0 0 10px rgba(0,0,0,0.5)'
+            boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+        },
+        avatarContent: {
+            [theme.breakpoints.down('sm')]: {
+                textAlign: 'center',
+            },
         },
         nameChange: {
             paddingTop: 20,
@@ -31,7 +36,10 @@ export const useStyleSettings = makeStyles((theme: Theme) =>
             marginTop: 15
         },
         uploadAvatar: {
-            width: 380
+            width: 380,
+            [theme.breakpoints.down('sm')]: {
+                width: '100%',
+            },
         }
     }),
 );

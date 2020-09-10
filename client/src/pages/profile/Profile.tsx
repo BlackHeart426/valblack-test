@@ -28,34 +28,38 @@ const Profile = (props: any) => {
 
     return (
         <div className={classes.container}>
-            <Grid container spacing={3}>
-                <Grid item xs={3}>
-                    <div className={classes.leftSide}>
-                      <ProfileInfo classes={classes} openSettings={() => setSubPage( 2 )}/>
-                    </div>
-                </Grid>
-                <Grid item xs={9}>
-                    <div className={classes.rightSide}>
-                        <div className={classes.tabs}>
-                            <Tabs
-                                value={subPage}
-                                indicatorColor="primary"
-                                textColor="primary"
-                                onChange={handleChange}
-                                aria-label="disabled tabs example"
-                            >
-                                <Tab label="Активность" />
-                                <Tab label="Результаты тестов" />
-                                <Tab label="Настройки пользователя" />
-                            </Tabs>
+            <div className={classes.wrapper}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
+                        <div className={classes.leftSide}>
+                            <ProfileInfo classes={classes} openSettings={() => setSubPage( 2 )}/>
                         </div>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={9} lg={9} xl={9}>
+                        <div className={classes.rightSide}>
+                            <div className={classes.tabs}>
+                                <Tabs
+                                    value={subPage}
+                                    indicatorColor="primary"
+                                    textColor="primary"
+                                    variant="scrollable"
+                                    scrollButtons="on"
+                                    onChange={handleChange}
+                                    aria-label="disabled tabs example"
+                                >
+                                    <Tab label="Активность" />
+                                    <Tab label="Результаты тестов" />
+                                    <Tab label="Настройки пользователя" />
+                                </Tabs>
+                            </div>
 
-                        {subPage === 2 && <Settings/>}
-                        {subPage === 1 && <PassedResult arrTestResultShortInfo = {props.arrTestResultShortInfo}/>}
-                        {subPage === 0 && <Activity arrTestResultShortInfo = {props.arrTestResultShortInfo}/>}
-                    </div>
+                            {subPage === 2 && <Settings/>}
+                            {subPage === 1 && <PassedResult arrTestResultShortInfo = {props.arrTestResultShortInfo}/>}
+                            {subPage === 0 && <Activity arrTestResultShortInfo = {props.arrTestResultShortInfo}/>}
+                        </div>
+                    </Grid>
                 </Grid>
-            </Grid>
+            </div>
         </div>
     )
 }

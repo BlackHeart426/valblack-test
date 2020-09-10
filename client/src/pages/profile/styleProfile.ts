@@ -7,7 +7,15 @@ export const useStyleProfile = makeStyles((theme: Theme) =>
             width: 'calc(100vw - 100px)',
             height: '100%',
             margin: '0 auto',
-            maxWidth: '1200px'
+            maxWidth: '1200px',
+            [theme.breakpoints.down('sm')]: {
+                width: '100%',
+            },
+        },
+        wrapper: {
+            [theme.breakpoints.down('sm')]: {
+                padding: 5,
+            },
         },
         leftSide: {
         },

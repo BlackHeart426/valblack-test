@@ -25,22 +25,22 @@ export const CardResult = (props: any) => {
         <div className={classes.root} onClick={() => openResultTest(testResults.uuid)}>
             <Paper elevation={3} className={classes.card}>
                 <Grid container >
-                    <Grid item xs={6}>
+                    <Grid item xs={6} sm={6} md={6} lg={6} xl={6} >
                         <Typography align={"left"} >
                             {testResults.testId.name}
                         </Typography>
                     </Grid>
-                    <Grid item xs={2}>
-                        <Typography align={"center"}  >
+                    <Grid item xs={6} sm={6} md={6} lg={2} xl={2}>
+                        <Typography align={"center"}  className={classes.rightAnswer}>
                             {testResults.rightAnswer} из {testResults.summaryAnswer}
                         </Typography>
                     </Grid>
-                    <Grid item xs={3}>
-                        <Typography align={"center"}  color="textSecondary">
+                    <Grid item xs={9} sm={9} md={6} lg={3} xl={3}>
+                        <Typography align={"left"}  color="textSecondary">
                             {moment(testResults.datePassed).format('HH:mm LL')}
                         </Typography>
                     </Grid>
-                    <Grid item xs={1} style={{textAlign: "right"}}>
+                    <Grid item xs={3} sm={3} md={6} lg={1} xl={1} style={{textAlign: "center"}}>
                         <CheckCircleOutlineIcon style = {testResults.testPassed ? { color: green[500] } : { color: red[500] } }/>
                     </Grid>
                 </Grid>

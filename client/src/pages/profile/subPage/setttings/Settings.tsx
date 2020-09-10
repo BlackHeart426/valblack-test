@@ -33,10 +33,10 @@ const Settings = (props: any) => {
                     </Typography>
                 </div>
                 <Grid container spacing={3}>
-                    <Grid item xs={3}>
+                    <Grid item xs={12} sm={12} md={3} lg={3} xl={3} className={classes.avatarContent} >
                         <img  className={classes.avatar}  src={props.avatarUrl}/>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid item xs={12} sm={12} md={9} lg={9} xl={3}>
                         <div>
                             <Typography align={"left"} >
                                 Загрузить новый:

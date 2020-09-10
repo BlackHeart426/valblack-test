@@ -9,6 +9,11 @@ export const styleCardResult = makeStyles((theme: Theme) =>
                 boxShadow: '0 0 10px rgba(0,0,0,0.5)'
             }
         },
+        rightAnswer: {
+            [theme.breakpoints.down('sm')]: {
+                paddingLeft: '84px',
+            },
+        },
         card: {
             padding: 10
         }
