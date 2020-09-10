@@ -7,6 +7,15 @@ export const styleTestInfo = makeStyles((theme: Theme) =>
         },
         wrapper: {
             width: 'calc(100vw - 100px)',
+            [theme.breakpoints.down('sm')]: {
+                width: '100%',
+            },
+            [theme.breakpoints.up('md')]: {
+                width: '100%',
+            },
+            [theme.breakpoints.up('lg')]: {
+                width: '100%',
+            },
             height: '100%',
             margin: '0 auto',
             maxWidth: '1200px'
@@ -18,10 +27,29 @@ export const styleTestInfo = makeStyles((theme: Theme) =>
         },
         container: {
             position: 'relative',
-            padding: '40px 0'
+            padding: '40px 0',
+            [theme.breakpoints.down('sm')]: {
+                padding: 5,
+            },
+            [theme.breakpoints.up('md')]: {
+                padding: 5,
+            },
+            [theme.breakpoints.up('lg')]: {
+                padding: 5,
+            },
+
         },
         content: {
-            width: '60%'
+            width: '60%',
+            [theme.breakpoints.down('sm')]: {
+                width: '100%',
+            },
+            [theme.breakpoints.up('md')]: {
+                width: '100%',
+            },
+            [theme.breakpoints.up('lg')]: {
+                width: '100%',
+            },
         },
         boxCardInfo: {
             right: 0,
@@ -47,6 +75,18 @@ export const styleTestInfo = makeStyles((theme: Theme) =>
         },
         paper: {
             padding: theme.spacing(2),
+            [theme.breakpoints.down('sm')]: {
+                paddingTop: 150,
+                margin: "0 auto"
+            },
+            [theme.breakpoints.up('md')]: {
+                paddingTop: 150,
+                margin: "0 auto"
+            },
+            [theme.breakpoints.up('lg')]: {
+                paddingTop: 150,
+                margin: "0 auto"
+            },
             textAlign: 'center',
             color: theme.palette.text.secondary,
         },
