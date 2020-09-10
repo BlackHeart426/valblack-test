@@ -11,6 +11,9 @@ export const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
             maxHeight: 80
         },
+        drawerButton: {
+            marginLeft: theme.spacing(1),
+        },
         menuButton: {
             marginRight: theme.spacing(2),
         },

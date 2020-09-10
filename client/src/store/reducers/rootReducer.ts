@@ -5,15 +5,22 @@ import {ITestInfoState, testInfoReducer} from "./testInfoReducer";
 import {categoriesReducer, ICategoriesState} from "./categoriesReducer";
 import {testResultReducer} from "./testResultReducer";
 import {testResultShortInfoReducer} from "./testResultShortInfoReducer";
+import {appReducer, IApp} from "./appReducer";
 
 export interface RootState {
+    app: IApp,
     currentUser: ICurrentUserState,
     testInfo: ITestInfoState,
     categories: ICategoriesState
 }
 
+export interface IReduxBaseAction {
+    type: EReduxActionTypes
+}
+
 const rootReduce = combineReducers({
     currentUser: currentUserReducer,
+    app: appReducer,
     testInfo: testInfoReducer,
     categories: categoriesReducer,
     testResult: testResultReducer,

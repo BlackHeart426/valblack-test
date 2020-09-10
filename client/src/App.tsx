@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import {ILocalStore, loginActionCreator, setCurrentUser} from "./store/action/currentUser/currentUserAction";
 import {getAllLocalStorage, getLocalStorage, isAuth} from "./services/auth.service";
 import {Footer} from "./components/Navbar/footer";
+import TemporaryDrawer from "./components/Drawer/Drawer";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -52,6 +53,7 @@ function App(props: any) {
             <div className={classes.wrapper}>
                 <Router>
                     <Navbar/>
+                    <TemporaryDrawer/>
                     <div className={classes.content}>
                         {routes}
                     </div>

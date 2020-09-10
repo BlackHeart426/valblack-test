@@ -15,8 +15,10 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import WebIcon from '@material-ui/icons/Web';
 import {AuthorizationModal} from "../../container/Authorization/AuthorizationModal";
 import {connect} from "react-redux";
+import MenuIcon from '@material-ui/icons/Menu';
 import {logoutActionCreate} from "../../store/action/currentUser/currentUserAction";
 import {LISTTESTS, PROFILE, SETTINGS} from "../../router/enum";
+import {openDrawerActionCreator} from "../../store/action/app";
 
 function Navbar(props: any) {
     const classes = useStyles();
@@ -32,6 +34,10 @@ function Navbar(props: any) {
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
+    };
+
+    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        setMobileMoreAnchorEl(event.currentTarget);
     };
 
     const handleMenuClose = () => {
@@ -52,7 +58,7 @@ function Navbar(props: any) {
     // };
 
     const handleDrawerOpen = () => {
-        props.action.openingDrawer(true)
+        props.action.openDrawer()
     };
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -143,6 +149,17 @@ function Navbar(props: any) {
             <div className={classes.grow}>
                 <AppBar position="fixed" elevation={0} >
                     <Toolbar style={{padding: 0}} variant="dense">
+                        <Hidden lgUp>
+                            <IconButton
+                                edge="start"
+                                className={classes.drawerButton}
+                                color="inherit"
+                                onClick={handleDrawerOpen}
+                                aria-label="menu"
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        </Hidden>
                         <Typography className={classes.title} variant="h5" noWrap  onClick={handleHome}>
                             valBlack-test
                         </Typography>
@@ -196,6 +213,7 @@ function Navbar(props: any) {
                         }
                     </Toolbar>
                 </AppBar>
+                {renderMobileMenu}
                 {renderMenu}
             </div>
         </div>
@@ -206,7 +224,8 @@ function mapStateToProps(state: any) {
     return {
         isAuthorized: state.currentUser.data.isAuthorized,
         email: state.currentUser.data.email,
-        avatarUrl: state.currentUser.data.avatarUrl
+        avatarUrl: state.currentUser.data.avatarUrl,
+        openDrawer: state.app.openDrawer
     }
 
 }
@@ -216,6 +235,7 @@ function mapDispatchToProps(dispatch: any) {
     return {
         action: {
             logout: () => dispatch(logoutActionCreate()),
+            openDrawer: () => dispatch(openDrawerActionCreator())
         }
     }
 }
