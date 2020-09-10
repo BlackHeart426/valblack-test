@@ -10,13 +10,38 @@ export const useStyleResultTest = makeStyles((theme: Theme) =>
 
             paddingTop: 50,
             maxWidth: '1060px',
-            margin: '0 auto'
+            margin: '0 auto',
+            [theme.breakpoints.down('sm')]: {
+                paddingTop: 20,
+                paddingLeft: theme.spacing(1),
+                paddingRight: theme.spacing(1),
+            },
+            [theme.breakpoints.up('md')]: {
+                paddingTop: 20,
+                paddingLeft: theme.spacing(1),
+                paddingRight: theme.spacing(1),
+            },
+            [theme.breakpoints.up('lg')]: {
+                paddingTop: 20,
+                paddingLeft: theme.spacing(1),
+                paddingRight: theme.spacing(1),
+            },
         },
         resultTestHeader: {
             textTransform: 'uppercase',
             fontWeight: 600,
             fontSize: '1.5em',
-            marginBottom: '1em'
+            marginBottom: '1em',
+            [theme.breakpoints.down('sm')]: {
+                textAlign: ' center',
+            },
+            [theme.breakpoints.up('md')]: {
+                textAlign: ' center',
+            },
+            [theme.breakpoints.up('lg')]: {
+                textAlign: ' center',
+            },
+
         },
         resultTestTitle: {
             textTransform: 'uppercase',
@@ -36,15 +61,36 @@ export const useStyleResultTest = makeStyles((theme: Theme) =>
             borderRadius: 5,
             background: 'repeating-linear-gradient(45deg,#a73a38,#a73a38 175px,#ef5350 0,#ef5350 750px)'
         },
-        resultTestBannerResultIcon: {
+        resultTestBannerResultImg: {
             flexGrow: 2,
             textAlign: 'center',
-            fontSize: '6.5em'
+            fontSize: '6.5em',
+            [theme.breakpoints.down('sm')]: {
+                textAlign: 'left',
+            },
+            [theme.breakpoints.up('md')]: {
+                textAlign: 'left',
+            },
+            [theme.breakpoints.up('xs')]: {
+                textAlign: 'left',
+            },
+        },
+        resultTestBannerResultIcon: {
+            color: '#fff',
+            height: 100,
+            width: '14em',
+            [theme.breakpoints.down('sm')]: {
+                width: '5em',
+            },
         },
         resultTestBannerResultMeta: {
             fontWeight: 400,
             color: '#fff',
-            padding: '2em 4.5em'
+            padding: '2em 4.5em',
+            [theme.breakpoints.down('sm')]: {
+                padding: ' 0.5em 1.5em',
+            },
+
         },
         resultTestBannerResultTitle: {
             fontSize: '1.5em',

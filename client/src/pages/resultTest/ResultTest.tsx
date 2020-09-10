@@ -55,12 +55,12 @@ const ResultTest = (props: any) => {
             </div>
             <div className={resultTest.testPassed ? classes.resultTestBannerResultSuccess : classes.resultTestBannerResultError}>
                 <Grid container>
-                    <Grid item xs={3}>
-                        <div className={classes.resultTestBannerResultIcon}>
-                            <AssignmentIcon style={{color: '#fff', height: 100, width: '14em'}} />
+                    <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
+                        <div className={classes.resultTestBannerResultImg}>
+                            <AssignmentIcon className={classes.resultTestBannerResultIcon} />
                         </div>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid item xs={9} sm={9} md={9} lg={9} xl={9}>
                         <div className={classes.resultTestBannerResultMeta}>
                             <div className={classes.resultTestBannerResultTitle}>
                                 {resultTest.testPassed ? 'Тест пройден!' : 'Тест не пройден!'}
@@ -80,7 +80,7 @@ const ResultTest = (props: any) => {
                 </div>
                 <div className={classes.resultTestResultItems}>
                     <Grid container>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
                             <div className={classes.resultTestResultItem}>
                                 { ((resultTest.rightAnswer / resultTest.summaryAnswer) * 100).toFixed(2)}%
                             </div>
@@ -88,7 +88,7 @@ const ResultTest = (props: any) => {
                                 {resultTest.rightAnswer} из {resultTest.summaryAnswer} верных ответов
                             </div>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
                             <div className={classes.resultTestResultItem}>
                                 junior
                             </div>
