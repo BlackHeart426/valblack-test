@@ -10,7 +10,19 @@ export const useStylePassingTest = makeStyles((theme: Theme) =>
 
             paddingTop: 50,
             maxWidth: '960px',
-            margin: '0 auto'
+            margin: '0 auto',
+            [theme.breakpoints.down('sm')]: {
+                padding: 10,
+                margin: "0 auto"
+            },
+            [theme.breakpoints.up('md')]: {
+                padding: 10,
+                margin: "0 auto"
+            },
+            [theme.breakpoints.up('lg')]: {
+                padding: 10,
+                margin: "0 auto"
+            },
         },
         runTestHeader: {
             borderBottom:  '1px solid #b4b4b4',
