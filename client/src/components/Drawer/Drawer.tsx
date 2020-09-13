@@ -9,6 +9,7 @@ import {useHistory} from "react-router-dom";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {useStylesDrawer} from "./stylesDrawer";
+import ListAltIcon from '@material-ui/icons/ListAlt';
 
 export const drawerWidth = 240;
 
@@ -40,7 +41,7 @@ const TemporaryDrawer = (props: any) => {
             <List >
                 <ListItem button onClick={handleTests}>
                     <ListItemIcon>
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                        <ListAltIcon/>
                     </ListItemIcon>
                     <ListItemText >
                         Тесты
