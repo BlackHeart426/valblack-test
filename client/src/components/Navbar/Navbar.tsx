@@ -173,14 +173,14 @@ function Navbar(props: any) {
                                     Тесты
                                 </Button>
                             </div>
-                            <div className={classes.menuButton}>
-                                <Button
-                                    size="large"
-                                    color="inherit"
-                                >
-                                    Рейтинг
-                                </Button>
-                            </div>
+                            {/*<div className={classes.menuButton}>*/}
+                            {/*    <Button*/}
+                            {/*        size="large"*/}
+                            {/*        color="inherit"*/}
+                            {/*    >*/}
+                            {/*        Рейтинг*/}
+                            {/*    </Button>*/}
+                            {/*</div>*/}
                         </Hidden>
 
                         {props.isAuthorized
