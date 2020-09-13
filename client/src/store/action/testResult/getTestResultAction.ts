@@ -5,7 +5,7 @@ import {netWorkStatusDone, netWorkStatusError, netWorkStatusStarted} from "../..
 function requestResultTest(uuidTest: string) {
     const data = {[uuidTest]: {
             meta: {
-                netWorkStatus: netWorkStatusDone()
+                netWorkStatus: netWorkStatusStarted()
             }
         }
     }
@@ -19,7 +19,7 @@ function receiveResultTest(json: any) {
     const data = {[json.uuid]: {
             data: json,
             meta: {
-                netWorkStatus: netWorkStatusStarted()
+                netWorkStatus: netWorkStatusDone()
             }
         }
     }

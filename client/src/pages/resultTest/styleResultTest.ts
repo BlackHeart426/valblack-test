@@ -27,6 +27,18 @@ export const useStyleResultTest = makeStyles((theme: Theme) =>
                 paddingRight: theme.spacing(1),
             },
         },
+        resultTestLoader: {
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            position: 'fixed',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(205, 205, 205, 0.33)',
+            zIndex: 1000,
+        },
         resultTestHeader: {
             textTransform: 'uppercase',
             fontWeight: 600,
