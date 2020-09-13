@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Switch, RouteComponentProps, Route, Redirect, RouteProps } from "react-router-dom";
 import {HomePage} from "../pages/home/HomePage";
-import {NonFoundPage} from "../pages/nonFound/NonFoundPage";
+import {NotFoundPage} from "../pages/notFound/NotFoundPage";
 
 export const AuthAdminGuard: React.FC<RouteProps> = ({component: Component, ...rest}) => {
     if (!Component) {
@@ -11,7 +11,7 @@ export const AuthAdminGuard: React.FC<RouteProps> = ({component: Component, ...r
     return (
         <Route
             {...rest}
-            render={(props: RouteComponentProps<{}>) => (!!user ? <Component {...props} /> : <NonFoundPage/>)}
+            render={(props: RouteComponentProps<{}>) => (!!user ? <Component {...props} /> : <NotFoundPage/>)}
         />
     );
 };

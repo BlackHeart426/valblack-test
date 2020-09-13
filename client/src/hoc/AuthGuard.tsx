@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { RouteComponentProps, Route } from "react-router-dom";
-import {NonFoundPage} from "../pages/nonFound/NonFoundPage";
+import {NotFoundPage} from "../pages/notFound/NotFoundPage";
 import {connect} from "react-redux";
 
 export default function (Component: any) {
@@ -8,7 +8,7 @@ export default function (Component: any) {
         render(): React.ReactNode {
             return (
                 <Route
-                    render={(props: RouteComponentProps<{}>) => (this.props.isAuthorized ? <Component {...props} /> : <NonFoundPage/>)}
+                    render={(props: RouteComponentProps<{}>) => (this.props.isAuthorized ? <Component {...props} /> : <NotFoundPage/>)}
                 />
             )
         }

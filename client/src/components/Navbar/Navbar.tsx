@@ -128,12 +128,12 @@ function Navbar(props: any) {
                 </ListItemIcon>
                 <Typography variant="inherit">Профиль</Typography>
             </MenuItem>
-            <MenuItem onClick={handleOpenSettings}>
-                <ListItemIcon className={classes.menuIcons}>
-                    <SettingsIcon fontSize="small" />
-                </ListItemIcon>
-                <Typography variant="inherit">Настройки</Typography>
-            </MenuItem>
+            {/*<MenuItem onClick={handleOpenSettings}>*/}
+            {/*    <ListItemIcon className={classes.menuIcons}>*/}
+            {/*        <SettingsIcon fontSize="small" />*/}
+            {/*    </ListItemIcon>*/}
+            {/*    <Typography variant="inherit">Настройки</Typography>*/}
+            {/*</MenuItem>*/}
             <Divider/>
             <MenuItem onClick={handleLogout}>
                 <ListItemIcon className={classes.menuIcons}>

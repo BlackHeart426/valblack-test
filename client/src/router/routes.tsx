@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import TestList from "../pages/testList/TestList";
 import {HomePage} from "../pages/home/HomePage";
 import {AuthPage} from "../pages/auth/AuthPage";
-import {NonFoundPage} from "../pages/nonFound/NonFoundPage";
+import {NotFoundPage} from "../pages/notFound/NotFoundPage";
 import {HomeAdminPage} from "../modules/admin/pages/homeAdmin/HomeAdminPage";
 import {TestsPageAdmin} from "../modules/admin/pages/testsAdmin/TestsPageAdmin";
 import {AuthAdminPage} from "../modules/admin/pages/authAdmin/AuthAdminPage";
@@ -31,7 +31,7 @@ export const useRoutes = () => {
                 <Route exact path="/admin/home" component={HomeAdminPage}/>
                 <AuthAdminGuard exact path="/admin/testInfo" component={TestsPageAdmin}/>
                 <Route exact path="/admin/auth" component={AuthAdminPage}/>
-            <Route exact component={NonFoundPage}/>
+            <Route exact component={NotFoundPage}/>
         </Switch>
     )
 }
